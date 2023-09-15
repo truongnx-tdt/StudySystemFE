@@ -1,0 +1,16 @@
+form{
+    padding: 10px;
+}
+
+.a-account-porcess a{
+    margin: 5px;
+}
+
+.a-account-porcess a:hover{
+    color: red;
+}
+
+.btnLogin:hover{
+    background-color: pink;
+    color: black;
+}
