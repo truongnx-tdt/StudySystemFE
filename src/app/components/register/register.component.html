@@ -22,16 +22,16 @@
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Username</mat-label>
+        <mat-label>UserID</mat-label>
         <input
           matInput
-          formControlName="username"
-          placeholder="Enter your username"
+          formControlName="userID"
+          placeholder="Enter your UserID"
         />
         <mat-error
-          *ngIf="registerFormGroup.get('username')?.hasError('required')"
+          *ngIf="registerFormGroup.get('userID')?.hasError('required')"
         >
-          Username is <strong>required</strong>
+          UserID is <strong>required</strong>
         </mat-error>
       </mat-form-field>
 
@@ -88,6 +88,11 @@
           formControlName="phoneNumber"
           placeholder="Enter your phone number"
         />
+        <mat-error
+          *ngIf="registerFormGroup.get('phoneNumber')?.hasError('required')"
+        >
+        Phone number is <strong>required</strong>
+        </mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Address</mat-label>

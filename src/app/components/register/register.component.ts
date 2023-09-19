@@ -16,10 +16,10 @@ export class RegisterComponent {
   }
   registerFormGroup = this.formBuilder.group({
     fullName: this.formBuilder.control('', Validators.required),
-    username: this.formBuilder.control('', Validators.required),
+    userID: this.formBuilder.control('', Validators.required),
     password: this.formBuilder.control('', Validators.required),
     email: this.formBuilder.control('', Validators.compose([Validators.email, Validators.required])),
-    phoneNumber: this.formBuilder.control('', Validators.compose([Validators.minLength(10), Validators.maxLength(10)])),
+    phoneNumber: this.formBuilder.control('', Validators.compose([Validators.minLength(10), Validators.maxLength(10), Validators.required])),
     gender: this.formBuilder.control('0'),
     address: this.formBuilder.control('')
   });
@@ -34,15 +34,14 @@ export class RegisterComponent {
             this.toastr.error("Registration failed. Account already exists.");
           } else {
             this.toastr.success("register success");
-            this.router.navigate(['verify-email']);
+            this.router.navigate(['login']);
           }
         }, (error) => {
-          console.error(error);
+          console.log(error);
           this.toastr.error("Can't connect to server.");
         });
 
       } catch (error) {
-        console.error(error);
         this.toastr.error('Register fail', 'Fail');
       }
     }
@@ -55,6 +54,9 @@ export class RegisterComponent {
         this.toastr.warning('Please enter your username', 'Error');
       } else if (this.registerFormGroup.get('password')?.invalid) {
         this.toastr.warning('Please enter your your password', 'Error');
+      }
+      else if (this.registerFormGroup.get('phoneNumber')?.invalid) {
+        this.toastr.warning('Please enter your your phoneNumber', 'Error');
       }
     }
   }
