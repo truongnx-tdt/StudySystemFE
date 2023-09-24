@@ -42,7 +42,8 @@ export class RegisterComponent {
         });
 
       } catch (error) {
-        this.toastr.error('Register fail', 'Fail');
+        console.log(error)
+        this.toastr.error('Register fail: ' + error, 'Fail');
       }
     }
     else {

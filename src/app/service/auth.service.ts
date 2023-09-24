@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
@@ -11,7 +11,24 @@ export class AuthService {
 
   apiUrl = environment.apiUrl + "/api/login";
 
-  doLogin(request: any){
+  apiUrlLogout = environment.apiUrl + "/api/logout";
+
+  doLogin(request: any) {
     return this.httpRequest.post(this.apiUrl, request);
   }
+
+  logout() {
+    // let headers = new Headers({ 'Content-Type': 'application/json' });
+    // headers.append("Authorization", "Bearer " + this.getToken());
+    const options = {
+      headers: new HttpHeaders().append("Authorization", "Bearer " + this.getToken()),
+    }
+    return this.httpRequest.post(this.apiUrlLogout, {}, options);
+  }
+
+  getToken() {
+    // Lấy token từ session
+    return sessionStorage.getItem("token");
+  }
+
 }
