@@ -12,14 +12,13 @@ export class AuthService {
   apiUrl = environment.apiUrl + "/api/login";
 
   apiUrlLogout = environment.apiUrl + "/api/logout";
-
+  //login
   doLogin(request: any) {
     return this.httpRequest.post(this.apiUrl, request);
   }
-
+  
+  //logout
   logout() {
-    // let headers = new Headers({ 'Content-Type': 'application/json' });
-    // headers.append("Authorization", "Bearer " + this.getToken());
     const options = {
       headers: new HttpHeaders().append("Authorization", "Bearer " + this.getToken()),
     }
@@ -30,5 +29,20 @@ export class AuthService {
     // Lấy token từ session
     return sessionStorage.getItem("token");
   }
+
+  sendCodeProcess() {
+    const options = {
+      headers: new HttpHeaders().append("Authorization", "Bearer " + this.getToken()),
+    }
+    return this.httpRequest.get(environment.apiUrl + "/api/send-mail", options);
+  }
+
+  processValidateCode(code: any) {
+    const options = {
+      headers: new HttpHeaders().append("Authorization", "Bearer " + this.getToken()),
+    }
+    return this.httpRequest.post(environment.apiUrl + "/api/verify-email?code=" + code, {}, options);
+  }
+
 
 }

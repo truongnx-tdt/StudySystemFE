@@ -1,16 +1,19 @@
-form{
-    padding: 10px;
+.full-width {
+  width: 100%;
 }
 
-.a-account-porcess a{
-    margin: 5px;
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
 }
-
-.a-account-porcess a:hover{
-    color: red;
+.h-custom {
+  height: calc(100% - 73px);
 }
-
-.btnLogin:hover{
-    background-color: pink;
-    color: black;
+@media (max-width: 450px) {
+  .h-custom {
+    height: 100%;
+  }
 }

@@ -12,9 +12,6 @@ export class AppComponent implements OnInit {
   title = 'StudySystem';
   constructor(private router: Router, private service: AuthService, private toastr: ToastrService) { }
 
-  onLick() {
-    this.router.navigate([""]);
-  }
 
   ngOnInit() {
     if (isDevMode()) {

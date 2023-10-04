@@ -1,17 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="home">Navbar</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarTogglerDemo02"
+      aria-controls="navbarTogglerDemo02"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="login"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link disabled"
+            href="#"
+            tabindex="-1"
+            aria-disabled="true"
+            >Disabled</a
+          >
+        </li>
+        <li>
+          <form class="d-flex">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              <mat-icon>search</mat-icon>
+            </button>
+          </form>
+        </li>
+      </ul>
 
-<header class="bg-primary py-3">
-  <div class="container">
-    <div class="d-flex justify-content-between align-items-center">
-      <!-- Left Side: Home Button -->
-      <button mat-icon-button (click)="onLick()" style="color: white;">
-        <mat-icon>home</mat-icon>
-      </button>
       <!-- Right Side: Logout Button -->
-      <button mat-icon-button (click)="doLogout()" style="color: white;">
+      <a mat-icon-button title="logout" (click)="doLogout()">
         <mat-icon>logout</mat-icon>
-      </button>
+      </a>
     </div>
   </div>
-</header>
+</nav>
+<router-outlet> </router-outlet>
+<!-- <ngx-spinner type="ball-scale-multiple"></ngx-spinner> -->
+<!-- <ngx-spinner
+  bdColor="rgba(0, 0, 0, 1)"
+  template="<img src='https://media.giphy.com/media/o8igknyuKs6aY/giphy.gif' />"
+>
+</ngx-spinner> -->
 
-<router-outlet></router-outlet>

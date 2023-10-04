@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { RegisterService } from 'src/app/service/register.service';
@@ -11,18 +11,24 @@ import { RegisterService } from 'src/app/service/register.service';
 })
 export class RegisterComponent {
   hide = true;
+  registerFormGroup!: FormGroup;
   constructor(private service: RegisterService, private formBuilder: FormBuilder, private toastr: ToastrService, private router: Router) {
 
   }
-  registerFormGroup = this.formBuilder.group({
-    fullName: this.formBuilder.control('', Validators.required),
-    userID: this.formBuilder.control('', Validators.required),
-    password: this.formBuilder.control('', Validators.required),
-    email: this.formBuilder.control('', Validators.compose([Validators.email, Validators.required])),
-    phoneNumber: this.formBuilder.control('', Validators.compose([Validators.minLength(10), Validators.maxLength(10), Validators.required])),
-    gender: this.formBuilder.control('0'),
-    address: this.formBuilder.control('')
-  });
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.registerFormGroup = this.formBuilder.group({
+      fullName: this.formBuilder.control('', Validators.required),
+      userID: this.formBuilder.control('', Validators.required),
+      password: this.formBuilder.control('', Validators.required),
+      email: this.formBuilder.control('', Validators.compose([Validators.email, Validators.required])),
+      phoneNumber: this.formBuilder.control('', Validators.compose([Validators.minLength(10), Validators.maxLength(10), Validators.required])),
+      gender: this.formBuilder.control('0'),
+      address: this.formBuilder.control('')
+    });
+  }
+  
 
   response: any;
   async processedRegister() {
