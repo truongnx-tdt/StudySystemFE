@@ -16,7 +16,7 @@ export class AuthService {
   doLogin(request: any) {
     return this.httpRequest.post(this.apiUrl, request);
   }
-  
+
   //logout
   logout() {
     const options = {
@@ -44,5 +44,12 @@ export class AuthService {
     return this.httpRequest.post(environment.apiUrl + "/api/verify-email?code=" + code, {}, options);
   }
 
+  // isUserLoggedIn
+  isUserLoggedIn(): boolean {
+    if (this.getToken() && sessionStorage.getItem('isActive')) {
+      return true;
+    }
+    return false;
+  }
 
 }

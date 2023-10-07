@@ -14,6 +14,8 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { HomeComponent } from './components/home/home.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NotfoundComponent } from './components/notfound/notfound.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     RegisterComponent,
     ForgotPasswordComponent,
     HomeComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    NotfoundComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

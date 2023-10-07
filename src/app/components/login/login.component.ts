@@ -14,7 +14,11 @@ export class LoginComponent {
   loginFormGroup!: FormGroup;
   loadingTitle = "Loading...";
   constructor(private router: Router, private formBuilder: FormBuilder, private service: AuthService, private toastr: ToastrService, private spinner: NgxSpinnerService) {
-
+    if (service.isUserLoggedIn()) {
+      this.router.navigate(['home']);
+    } else {
+      sessionStorage.clear();
+    }
   }
 
   ngOnInit(): void {
@@ -43,10 +47,11 @@ export class LoginComponent {
           console.log(this.response);
           const tokens = this.response.response.data.token.split(".");
           const tokenFinal = tokens.slice(0, tokens.length - 1).join(".");
-          if (this.response.code === 200 && this.response.response && this.response.response.success === true && this.response.response.data.isActive === true) {
+          if (this.response.response.data.isActive === true) {
             sessionStorage.setItem('token', tokenFinal);
+            sessionStorage.setItem('isActive', this.response.response.data.isActive);
             this.router.navigate(['home']);
-          } else if (this.response.code === 200 && this.response.response && this.response.response.success === true && this.response.response.data.isActive === false) {
+          } else if (this.response.response.data.isActive === false) {
             sessionStorage.setItem('token', tokenFinal);
             this.router.navigate(['verify-email']);
           }

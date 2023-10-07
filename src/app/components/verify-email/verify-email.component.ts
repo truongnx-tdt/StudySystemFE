@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/auth.service';
@@ -10,18 +10,25 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./verify-email.component.css']
 })
 export class VerifyEmailComponent {
+  @ViewChildren('inputField')
+  inputFields!: QueryList<ElementRef>;
   constructor(private router: Router, private service: AuthService, private formBuilder: FormBuilder, private toastr: ToastrService) {
+
+  }
+  verificationForm!: FormGroup;
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.verificationForm = this.formBuilder.group({
+      v1: this.formBuilder.control('', Validators.required),
+      v2: this.formBuilder.control('', Validators.required),
+      v3: this.formBuilder.control('', Validators.required),
+      v4: this.formBuilder.control('', Validators.required),
+      v5: this.formBuilder.control('', Validators.required),
+      v6: this.formBuilder.control('', Validators.required)
+    })
   }
 
-
-  verificationForm = this.formBuilder.group({
-    v1: this.formBuilder.control('', Validators.required),
-    v2: this.formBuilder.control('', Validators.required),
-    v3: this.formBuilder.control('', Validators.required),
-    v4: this.formBuilder.control('', Validators.required),
-    v5: this.formBuilder.control('', Validators.required),
-    v6: this.formBuilder.control('', Validators.required)
-  })
 
   code: any;
   async processValidate() {
@@ -33,9 +40,11 @@ export class VerifyEmailComponent {
           if (this.response.response.success) {
             this.toastr.success("Active account successfuly");
             this.router.navigate(['home']);
+            sessionStorage.setItem('isActive', 'true');
           } else {
             this.toastr.error("code invalid");
           }
+
         }, error => {
           console.log(error);
           this.toastr.error("An error while verify code", "Error");
@@ -72,6 +81,9 @@ export class VerifyEmailComponent {
               this.buttonText = `${countdownDuration}s`;
             }
           }, 1000);
+
+        } else {
+          this.toastr.warning("Can't find your email");
         }
       }, error => {
         console.log(error);
@@ -83,5 +95,16 @@ export class VerifyEmailComponent {
     }
   }
 
+  // next input
+  onInput(index: number) {
+    const currentControlName = `v${index}`;
+    const currentValue = this.verificationForm.get(currentControlName)?.value;
 
+    if (currentValue !== '') {
+      const nextIndex = index;
+      if (index < 6) {
+        this.inputFields.toArray()[nextIndex].nativeElement.focus();
+      }
+    }
+  }
 }

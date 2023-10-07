@@ -13,7 +13,7 @@ export class RegisterComponent {
   hide = true;
   registerFormGroup!: FormGroup;
   constructor(private service: RegisterService, private formBuilder: FormBuilder, private toastr: ToastrService, private router: Router) {
-
+    
   }
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -28,7 +28,7 @@ export class RegisterComponent {
       address: this.formBuilder.control('')
     });
   }
-  
+
 
   response: any;
   async processedRegister() {

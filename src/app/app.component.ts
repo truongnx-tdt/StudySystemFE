@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AppComponent implements OnInit {
   title = 'StudySystem';
-  constructor(private router: Router, private service: AuthService, private toastr: ToastrService) { }
+  
 
 
   ngOnInit() {
@@ -20,19 +20,5 @@ export class AppComponent implements OnInit {
       console.log('Production!');
     }
   }
-  doLogout() {
-    try {
-      this.service.logout().subscribe(res => {
-        this.router.navigate([""]);
-        sessionStorage.clear();
-      }, error => {
-        console.log(error);
-        this.toastr.error("Must validate code before logout");
-      });
-    } catch (error) {
-      console.log(error);
-      this.toastr.warning("Error");
-    }
-
-  }
+  
 }
