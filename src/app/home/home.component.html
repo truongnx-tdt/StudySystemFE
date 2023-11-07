@@ -1,0 +1,13 @@
+<div class="container d-flex justify-content-center align-items-center">
+  <ngx-slick-carousel
+    class="carousel"
+    #slickModal="slick-carousel"
+    [config]="slideConfig"
+  >
+  
+    <div ngxSlickItem *ngFor="let slide of images" class="slide">
+      <img [src]="slide" alt=""/>
+    </div>
+
+  </ngx-slick-carousel>
+</div>

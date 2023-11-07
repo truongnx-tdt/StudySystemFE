@@ -51,5 +51,18 @@ export class AuthService {
     }
     return false;
   }
+  getRoleFromSession() {
+    if(sessionStorage.getItem('roles') === 'admin'){
+      return true;
+    }
+    return false;
+  }
 
+  // Is user onl
+  isUserOnl(){
+    const options = {
+      headers: new HttpHeaders().append("Authorization", "Bearer " + this.getToken()),
+    }
+    return this.httpRequest.put(environment.apiUrl + "/api/user-onl", {},options);
+  }
 }

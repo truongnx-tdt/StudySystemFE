@@ -1,0 +1,15 @@
+form{
+    padding: 10px;
+}
+.a-backLogin:hover{
+    color: red;
+}
+
+.btnRegister:hover{
+    background-color: pink;
+    color: black;
+}
+
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    background: white;
+  }

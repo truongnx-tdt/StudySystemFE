@@ -1,0 +1,184 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <form class="custom-form" *ngIf="isInitialFormVisible">
+        <div class="form-group custom-icon">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="form-group custom-h2">
+          <h2>{{userInfor.userFullName}}</h2>
+        </div>
+
+        <div class="form-group input-group m-2">
+          
+          <input
+            type="text"
+            class="form-control custom-input"
+            placeholder="Họ tên: {{userInfor.userFullName}} "
+          />
+          <span class="input-group-text bg-transparent border-0"
+            ><mat-icon>edit</mat-icon></span
+          >
+        </div>
+        <div class="form-group input-group m-2">
+          <select
+            class="form-select form-select-lg mb-2 custom-input"
+            aria-label=".form-select-lg example"
+          >
+            <option selected>Giới tính: {{userInfor.gender}}</option>
+            <option value="0">Nam</option>
+            <option value="1">Nữ</option>
+          </select>
+          <span class="input-group-text bg-transparent border-0"
+            ><mat-icon>edit</mat-icon></span
+          >
+        </div>
+        <div class="form-group m-2">
+          <input
+            type="text"
+            disabled="disabled"
+            class="form-control custom-input"
+            placeholder="Email: {{userInfor.email}}"
+          />
+        </div>
+        <div class="form-group m-2">
+          <input
+            type="text"
+            disabled="disabled"
+            class="form-control custom-input"
+            placeholder="Số điện thoại: {{userInfor.phoneNumber}}"
+          />
+        </div>
+        <div class="form-group m-2">
+          <input
+            type="text"
+            disabled="disabled"
+            class="form-control custom-input"
+            placeholder="Ngày tham gia TMember: {{userInfor.joinDateAt}}"
+          />
+        </div>
+        <div class="form-group m-2">
+          <input
+            type="text"
+            disabled="disabled"
+            class="form-control custom-input"
+            placeholder="Tổng tiền đã mua sắm: {{userInfor.priceBought}} vnđ"
+          />
+        </div>
+        <div class="form-group m-2">
+          <button
+            type="button"
+            class="btn btn-light input-group custom-button"
+            (click)="showUpdateAddressForm()"
+            style="border-bottom: 1px solid #e8e8e8"
+          >
+            <span class="input-group-text bg-transparent border-0" >Địa chỉ: {{userInfor.addressUserDes}}, {{userInfor.addressUserWard}}, {{userInfor.addressUserDistrict}}, {{userInfor.addressUserProvince}}</span>
+          </button>
+          
+        </div>
+
+        <div class="form-group m-2">
+          <button
+            type="button"
+            class="btn btn-light custom-button"
+            (click)="showChangePasswordForm()"
+            style="border-bottom: 1px solid #e8e8e8"
+          >
+            <span class="input-group-text bg-transparent border-0">Đổi mật khẩu</span>
+          </button>
+        </div>
+
+        <div class="form-group mt-3">
+          <button type="submit" class="btn btn-danger custom-button">
+            Cập nhật thông tin
+          </button>
+        </div>
+      </form>
+      <!-- Form đổi mật khẩu -->
+      <form class="custom-form" *ngIf="isChangePasswordFormVisible">
+        <div class="form-group">
+          <button
+            type="button"
+            class="btn btn-light custom-button-quay-lai"
+            (click)="showInitialForm()"
+          >
+            <i class="fas fa-arrow-left"></i> Quay lại
+          </button>
+        </div>
+
+        <div class="form-group change-password-form">
+          <input
+            type="password"
+            class="form-control custom-input"
+            placeholder="Mật khẩu cũ"
+          />
+          <input
+            type="password"
+            class="form-control custom-input"
+            placeholder="Mật khẩu mới"
+          />
+          <input
+            type="password"
+            class="form-control custom-input"
+            placeholder="Xác nhận mật khẩu mới"
+          />
+        </div>
+        <div class="form-group mt-3">
+          <button type="submit" class="btn btn-danger custom-button">
+            Xác nhận
+          </button>
+        </div>
+      </form>
+
+      <!-- form doi dia chi -->
+      <form class="custom-form" *ngIf="isUpdateAddressFormVisible">
+        <div class="form-group">
+          <button
+            type="button"
+            class="btn btn-light custom-button-quay-lai"
+            (click)="showInitialForm()"
+          >
+            <i class="fas fa-arrow-left"></i> Quay lại
+          </button>
+        </div>
+
+        <div class="form-group change-password-form">
+          <select
+            class="form-select form-select-lg mb-2 custom-input"
+            aria-label=".form-select-lg example"
+          >
+            <option selected>{{userInfor.addressUserProvince}}</option>
+            <option value="0">Nam</option>
+            <option value="1">Nữ</option>
+          </select>
+          <select
+            class="form-select form-select-lg mb-2 custom-input"
+            aria-label=".form-select-lg example"
+          >
+            <option selected>{{userInfor.addressUserDistrict}}</option>
+            <option value="0">Nam</option>
+            <option value="1">Nữ</option>
+          </select>
+          <select
+            class="form-select form-select-lg mb-2 custom-input"
+            aria-label=".form-select-lg example"
+          >
+            <option selected>{{userInfor.addressUserWard}}</option>
+            <option value="0">Nam</option>
+            <option value="1">Nữ</option>
+          </select>
+          <input
+            type="password"
+            class="form-control custom-input"
+            placeholder="Địa chỉ nhà: {{userInfor.addressUserDes}}"
+          />
+        </div>
+        <div class="form-group mt-3">
+          <button type="submit" class="btn btn-danger custom-button">
+            Xác nhận
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

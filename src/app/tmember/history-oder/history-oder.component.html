@@ -1,0 +1,14 @@
+<div>
+    <button (click)="showContent('null')">Null</button>
+    <button (click)="showContent('new')">New</button>
+    <button (click)="showContent('mem')">Mem</button>
+    <button (click)="showContent('vip')">Vip</button>
+  </div>
+  
+  <div>
+    <div *ngIf="selectedButton === 'null'">Nội dung Null</div>
+    <div *ngIf="selectedButton === 'new'">Nội dung New</div>
+    <div *ngIf="selectedButton === 'mem'">Nội dung Mem</div>
+    <div *ngIf="selectedButton === 'vip'">Nội dung Vip</div>
+  </div>
+  

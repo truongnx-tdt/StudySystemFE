@@ -10,7 +10,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatRadioModule } from '@angular/material/radio';
-
+import { MatSelectModule } from '@angular/material/select';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 @NgModule({
     exports: [
         FlexLayoutModule,
@@ -23,7 +24,9 @@ import { MatRadioModule } from '@angular/material/radio';
         MatToolbarModule,
         MatCheckboxModule,
         MatProgressBarModule,
-        MatRadioModule
+        MatRadioModule,
+        MatSelectModule,
+        SlickCarouselModule
     ]
 })
 

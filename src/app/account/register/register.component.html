@@ -1,0 +1,190 @@
+<div fxLayoutAlign="center center" style="margin-top: 10px;">
+  <mat-card fxFlex="35" >
+    <mat-toolbar style="background-color: transparent;">
+      <span>Đăng ký tài khoản mới</span>
+    </mat-toolbar>
+    <form fxLayout="column" [formGroup]="registerFormGroup">
+      <mat-form-field appearance="outline">
+        <mat-label>Full name</mat-label>
+        <input
+          matInput
+          formControlName="userFullName"
+          placeholder="Enter your name"
+        />
+        <mat-error
+          *ngIf="registerFormGroup.get('userFullName')?.hasError('required')"
+        >
+          Full name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>UserID</mat-label>
+        <input
+          matInput
+          formControlName="userID"
+          placeholder="Enter your UserID"
+        />
+        <mat-error
+          *ngIf="registerFormGroup.get('userID')?.hasError('required')"
+        >
+          UserID is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          placeholder="Enter your password"
+          [type]="hide ? 'password' : 'text'"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+        <mat-error
+          *ngIf="registerFormGroup.get('password')?.hasError('required')"
+        >
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          placeholder="Enter your email"
+          required
+        />
+        <mat-error
+          *ngIf="
+            registerFormGroup.get('email')?.hasError('email') &&
+            !registerFormGroup.get('email')?.hasError('required')
+          "
+        >
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="registerFormGroup.get('email')?.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Phone number</mat-label>
+        <input
+          matInput
+          type="tel"
+          formControlName="phoneNumber"
+          placeholder="Enter your phone number"
+          required
+          #input
+          maxlength="10"
+        />
+        <mat-error
+          *ngIf="registerFormGroup.get('phoneNumber')?.hasError('required')"
+        >
+          Phone number is <strong>required</strong>
+        </mat-error>
+        <mat-error
+          *ngIf="registerFormGroup.get('phoneNumber')?.hasError('minlength')"
+        >
+          Phone number must be 10 characters
+        </mat-error>
+        <mat-error
+          *ngIf="registerFormGroup.get('phoneNumber')?.hasError('pattern')"
+        >
+          Phone numberis only number
+        </mat-error>
+      </mat-form-field>
+
+      <!-- start location -->
+      <div formGroupName="address" class="form-group mb-3">
+        <div class="form-group mb-3">
+          <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label>Choose province</mat-label>
+            <mat-select
+              formControlName="provinceCode"
+              (selectionChange)="onProvinceChange()"
+            >
+              <mat-option
+                *ngFor="let province of provinces"
+                [value]="province.code"
+                >{{ province.name }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group mb-3" aria-label="Default select example">
+          <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label>Choose district</mat-label>
+            <mat-select
+              formControlName="districtCode"
+              (selectionChange)="onDistrictChange()"
+            >
+              <mat-option
+                *ngFor="let district of districts"
+                [value]="district.code"
+                >{{ district.name }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group mb-3">
+          <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label>Choose ward</mat-label>
+            <mat-select formControlName="wardCode">
+              <mat-option *ngFor="let ward of wards" [value]="ward.code">{{
+                ward.name
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group mb-3">
+          <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label>Address deatils</mat-label>
+            <input matInput formControlName="descriptions" />
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- end location form -->
+      <div>
+        <mat-radio-group aria-label="gender" formControlName="gender">
+          <mat-radio-button value="0" [checked]="true">Male</mat-radio-button>
+          <mat-radio-button value="1">Female</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-around center"
+        style="margin-top: 15px"
+      >
+        <button
+          type="submit"
+          mat-raised-button
+          style="width: 10em"
+          color="primary"
+          class="btnRegister"
+          (click)="processedRegister()"
+        >
+          Register
+        </button>
+        <a mat-raised-button routerLink="/account/login" class="a-backLogin"
+          >Back to login</a
+        >
+      </div>
+    </form>
+  </mat-card>
+</div>

@@ -1,0 +1,9 @@
+/* css for style img slide */
+.slick-prev::before,
+.slick-next::before {
+  color: black !important;
+}
+
+.carousel {
+  width: 840px;
+}
