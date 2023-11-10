@@ -3,8 +3,8 @@
     <ul class="list-group list-group-flush">
       <li
         class="list-group-item"
-        [class.selected-item]="selectedItem === 0"
-        (click)="onItemClick(0)"
+        routerLinkActive="selected-item"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
         <a routerLink="/tmember/home" class="nav-link">
           <div class="icon-and-text">
@@ -15,8 +15,8 @@
       </li>
       <li
         class="list-group-item"
-        [class.selected-item]="selectedItem === 1"
-        (click)="onItemClick(1)"
+        routerLinkActive="selected-item"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
         <a routerLink="/tmember/history-order" class="nav-link">
           <div class="icon-and-text">
@@ -27,8 +27,8 @@
       </li>
       <li
         class="list-group-item"
-        [class.selected-item]="selectedItem === 2"
-        (click)="onItemClick(2)"
+        routerLinkActive="selected-item"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
         <a routerLink="/tmember" class="nav-link">
           <div class="icon-and-text">
@@ -39,8 +39,8 @@
       </li>
       <li
         class="list-group-item"
-        [class.selected-item]="selectedItem === 3"
-        (click)="onItemClick(3)"
+        routerLinkActive="selected-item"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
         <a routerLink="/tmember" class="nav-link">
           <div class="icon-and-text">
@@ -51,8 +51,8 @@
       </li>
       <li
         class="list-group-item"
-        [class.selected-item]="selectedItem === 4"
-        (click)="onItemClick(4)"
+        routerLinkActive="selected-item"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
         <a routerLink="/tmember" class="nav-link">
           <div class="icon-and-text">
@@ -63,8 +63,8 @@
       </li>
       <li
         class="list-group-item"
-        [class.selected-item]="selectedItem === 5"
-        (click)="onItemClick(5)"
+        routerLinkActive="selected-item"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
         <a routerLink="/tmember/account/user-info" class="nav-link">
           <div class="icon-and-text">
@@ -75,8 +75,8 @@
       </li>
       <li
         class="list-group-item"
-        [class.selected-item]="selectedItem === 6"
-        (click)="onItemClick(6)"
+        routerLinkActive="selected-item"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
         <a routerLink="/tmember/account/support" class="nav-link">
           <div class="icon-and-text">
@@ -87,8 +87,8 @@
       </li>
       <li
         class="list-group-item"
-        [class.selected-item]="selectedItem === 7"
-        (click)="onItemClick(7)"
+        routerLinkActive="selected-item"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
         <a routerLink="/tmember/account/feedback" class="nav-link">
           <div class="icon-and-text">

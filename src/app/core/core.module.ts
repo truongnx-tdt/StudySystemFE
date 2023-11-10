@@ -8,25 +8,30 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { BreadcrumdComponent } from './breadcrumd/breadcrumd.component';
+import { BreadcrumbModule } from 'xng-breadcrumb';
 
 
 @NgModule({
   declarations: [
     NotfoundComponent,
     HeaderComponent,
-    FooterComponent
-    ],
+    FooterComponent,
+    BreadcrumdComponent
+  ],
   imports: [
     CommonModule,
     CoreRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BreadcrumbModule,
     FormsModule
   ],
-  exports:[
+  exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    BreadcrumdComponent
   ]
 })
 export class CoreModule { }

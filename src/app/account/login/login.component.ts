@@ -53,12 +53,8 @@ export class LoginComponent {
               sessionStorage.setItem('roles', 'user');
               this.router.navigate(['/account/verify-email']);
             }
-          }
-          if (this.response.response.data.role === 1) {
-            sessionStorage.setItem('token', tokenFinal);
-            sessionStorage.setItem('isActive', this.response.response.data.isActive);
-            sessionStorage.setItem('roles', 'admin');
-            this.router.navigate(['/admin']);
+          } else {
+            this.toastr.error("Sai tài khoản hoặc mật khẩu", 'Error');
           }
           this.spinner.hide();
         }, (error) => {

@@ -1,14 +1,16 @@
-
 <!-- <ngx-spinner type="ball-scale-multiple"></ngx-spinner> -->
 <!-- <ngx-spinner
   bdColor="rgba(0, 0, 0, 1)"
   template="<img src='https://media.giphy.com/media/o8igknyuKs6aY/giphy.gif' />"
 >
 </ngx-spinner> -->
-<ng-container *ngIf="!auth.getRoleFromSession()">
+<ng-container>
   <app-header></app-header>
 </ng-container>
+<div class="f-flex m-0 p-0">
+  <app-breadcrumd></app-breadcrumd>
+</div>
 <router-outlet></router-outlet>
-<ng-container *ngIf="!auth.getRoleFromSession()">
+<ng-container>
   <app-footer></app-footer>
 </ng-container>

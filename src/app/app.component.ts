@@ -7,18 +7,14 @@ import { AuthService } from './service/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'StudySystem';
+  title = 'Tshops';
 
   constructor(public auth: AuthService) {
     // sessionStorage.clear();
   }
 
   ngOnInit() {
-    if (isDevMode()) {
-      console.log('Development!');
-    } else {
-      console.log('Production!');
-    }
+   
     // user login-onl check
     this.isUserOnl()
   }
@@ -26,14 +22,18 @@ export class AppComponent implements OnInit {
   // user Onl
   isUserOnl() {
     // Thiết lập hàm định thời để gọi lại sau mỗi 5 phút
-
-    setInterval(() => {
-      if (this.auth.isUserLoggedIn()) {
-        this.auth.isUserOnl().subscribe(response => {
-          console.log('user-onl');
-        });
-      }
-    }, 5 * 60 * 1000);
+    if (this.auth.isUserLoggedIn()) {
+      setInterval(() => {
+        if (this.auth.isUserLoggedIn()) {
+          this.auth.isUserOnl().subscribe(response => {
+            console.log('user-onl');
+          }, error => {
+            // sessionStorage.clear();
+            // window.location.reload();
+          });
+        }
+      }, 5 * 60 * 1000);
+    }
   }
 
 
