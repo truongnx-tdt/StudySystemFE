@@ -1,7 +1,11 @@
 <section class="banner">
-  <owl-carousel-o [options]="customBannerOptions">
-    <ng-template carouselSlide>Slide 1</ng-template>
-    <ng-template carouselSlide>Slide 2</ng-template>
-    <ng-template carouselSlide>Slide 3</ng-template>
-  </owl-carousel-o>
+  <div class="containers-banner">
+    <owl-carousel-o [options]="customBannerOptions">
+      <ng-container *ngFor="let item of items">
+        <ng-template carouselSlide
+          ><a routerLink=""><img class="rounded" src="{{ item.img }}" alt="" /></a
+        ></ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
 </section>

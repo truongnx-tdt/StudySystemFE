@@ -7,8 +7,6 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./carousel-product.component.css']
 })
 export class CarouselProductComponent {
-
-  
   @Input()items: any;
   customOptions: OwlOptions = {
     loop: true,
@@ -22,7 +20,6 @@ export class CarouselProductComponent {
     smartSpeed: 1500,
     animateIn: 'linear',
     animateOut: 'linear',
-    autoplayHoverPause: true,
     navSpeed: 700,
     navText: ['<i class="fal fa-chevron-left"></i>', '<i class="fal fa-chevron-right"></i>'],
     responsive: {

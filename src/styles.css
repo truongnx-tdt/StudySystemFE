@@ -35,16 +35,51 @@ body {
 }
 
 .policy-product .owl-prev {
-  left: -20px;
+  left: -10px;
   transform: translate(-50%, -50%);
 }
 .policy-product .owl-next {
-  right: -80px;
+  right: -70px;
   transform: translate(-50%, -50%);
 }
 
 .policy-product .owl-prev i,
 .policy-product .owl-next i {
+  font-size: 24px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+/* css for prev/next banner */
+.banner .owl-prev,
+.banner .owl-next {
+  background: #C2C2C273!important;
+  color: #fff4f4 !important;
+  height: 46px !important;
+  width: 46px !important;
+  border-radius: 50% !important;
+  top: 50%;
+  position: absolute;
+}
+
+.banner .owl-prev:hover,
+.banner .owl-next:hover {
+  background: rgba(244, 239, 239, 0.958)!important;
+  color: gray!important;
+}
+
+.banner .owl-prev {
+  left: 41px;
+  transform: translate(-50%, -50%);
+}
+.banner .owl-next {
+  right: 0px;
+  transform: translate(-50%, -50%);
+}
+
+.banner .owl-prev i,
+.banner .owl-next i {
   font-size: 24px;
   top: 50%;
   transform: translate(-50%, -50%);
