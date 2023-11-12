@@ -13,4 +13,40 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
 body {
   position: relative;
   font-family: "Roboto", sans-serif;
+  background: #f4f4f4;
+}
+
+/* css for carousel product prev/next*/
+.policy-product .owl-prev,
+.policy-product .owl-next {
+  background: whitesmoke!important;
+  color: #222 !important;
+  height: 60px !important;
+  width: 60px !important;
+  border-radius: 50% !important;
+  top: 50%;
+  position: absolute;
+  box-shadow: 1px 4px 8px 0px rgba(0, 0, 0, 0.5);
+}
+
+.policy-product .owl-prev:hover,
+.policy-product .owl-next:hover {
+  background: rgba(248, 232, 232, 0.958)!important;
+}
+
+.policy-product .owl-prev {
+  left: -20px;
+  transform: translate(-50%, -50%);
+}
+.policy-product .owl-next {
+  right: -80px;
+  transform: translate(-50%, -50%);
+}
+
+.policy-product .owl-prev i,
+.policy-product .owl-next i {
+  font-size: 24px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
 }
