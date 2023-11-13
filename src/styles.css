@@ -85,3 +85,10 @@ body {
   transform: translate(-50%, -50%);
   position: absolute;
 }
+
+.slick-slide{
+  background: white;
+  margin: 5px;
+  width: 121.6px;
+  border-radius: 5px;
+}

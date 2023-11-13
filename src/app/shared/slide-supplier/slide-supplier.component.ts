@@ -22,7 +22,7 @@ export class SlideSupplierComponent {
 
 
   slideConfig = {
-    slidesToShow: 5,
+    slidesToShow: 8,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 1500,

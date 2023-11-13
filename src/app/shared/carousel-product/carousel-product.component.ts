@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-carousel-product',
@@ -7,7 +8,22 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./carousel-product.component.css']
 })
 export class CarouselProductComponent {
-  @Input()items: any;
+
+  /**
+   *
+   */
+  constructor(private noti: ToastrService) {
+
+  }
+  toggleHeart(item: any) {
+    item.isLike = !item.isLike;
+    if (item.isLike) {
+      this.noti.success('Thêm ' + item.name + ' vào danh sách yêu thích')
+    }
+
+
+  }
+  @Input() items: any;
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,

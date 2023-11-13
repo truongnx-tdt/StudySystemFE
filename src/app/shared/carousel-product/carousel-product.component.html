@@ -2,7 +2,7 @@
   <owl-carousel-o [options]="customOptions">
     <ng-container *ngFor="let item of items">
       <ng-template carouselSlide
-        ><div class="card d-flex align-items-center pb-3 pt-2 shadow-sm">
+        ><div class="card d-flex align-items-center pt-2 shadow-sm">
           <div class="d-flex align-items-center">
             <a routerLink=""
               ><img
@@ -36,6 +36,28 @@
               >{{ item.price }}&nbsp;₫</del
             >
           </span>
+          <div class="d-flex justify-content-end mt-2 me-2 h-auto w-100">
+            <p
+              style="
+                font-size: 12px;
+                opacity: 0.5;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+                  sans-serif;
+              "
+            >
+              Yêu thích
+            </p>
+            <a
+              routerLink=""
+              class="nav-link ml-auto"
+              (click)="toggleHeart(item)"
+              ><i
+                class="fal fa-heart heart-icon"
+                [ngClass]="{'red-background': item.isLike}"
+                style="font-size: 20px; margin: 0 5px 0 5px; color: red"
+              ></i
+            ></a>
+          </div>
         </div>
       </ng-template>
     </ng-container>

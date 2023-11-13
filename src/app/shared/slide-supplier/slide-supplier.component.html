@@ -4,10 +4,8 @@
     #slickModal="slick-carousel"
     [config]="slideConfig"
   >
-  
     <div ngxSlickItem *ngFor="let slide of images" class="slide">
-      <img class="bg-light" [src]="slide" alt=""/>
+      <a class="bg-white"><img width="70px" height="70px" style="margin: -10px 25px;" [src]="slide" alt="" /></a>
     </div>
-
   </ngx-slick-carousel>
 </div>
