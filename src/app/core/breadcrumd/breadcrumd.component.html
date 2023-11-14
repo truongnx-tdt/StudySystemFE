@@ -9,14 +9,14 @@
         <div class="col-9">
           <h1>{{ breadcrumbs[0].label | titlecase }}</h1>
         </div> -->
-        <div class="col-9">
-          <xng-breadcrumb style="color: #009981;">
-            <ng-container *xngBreadcrumbItem="let breadcrumb">
-              {{ breadcrumb | titlecase }}
-            </ng-container>
-          </xng-breadcrumb>
-        </div>
+      <div class="col-9">
+        <xng-breadcrumb separator=">" style="color: #009981">
+          <ng-container *xngBreadcrumbItem="let breadcrumb">
+            {{ breadcrumb | titlecase }}
+          </ng-container>
+        </xng-breadcrumb>
       </div>
+    </div>
     <!-- </div> -->
   </section>
 </ng-container>

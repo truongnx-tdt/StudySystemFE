@@ -9,21 +9,21 @@ import { FeedbackComponent } from './feedback/feedback.component';
 
 const routes: Routes = [
   {
-    path: '', component: HomeMemberComponent,
+    path: '', component: HomeMemberComponent, data: { breadcrumb: 'Tài khoản' },
     children: [
       {
         path: 'home', component: DefaultComponent
       },
       {
-        path: 'history-order', component: HistoryOderComponent
+        path: 'history-order', component: HistoryOderComponent, data: { breadcrumb: 'Lịch sử đặt hàng' }
       },
       {
-        path: 'account/user-info', component: AcountMemberComponent
+        path: 'account/user-info', component: AcountMemberComponent, data: { breadcrumb: 'Chi tiết' }
       },
       {
-        path: 'account/support', component: SupportComponent
+        path: 'account/support', component: SupportComponent, data: { breadcrumb: 'Hỗ trợ' }
       }, {
-        path: 'account/feedback', component: FeedbackComponent
+        path: 'account/feedback', component: FeedbackComponent, data: { breadcrumb: 'Phản hồi' }
       }
     ]
   },

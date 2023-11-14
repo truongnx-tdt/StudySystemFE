@@ -4,7 +4,7 @@ import { IntroductionComponent } from './introduction/introduction.component';
 
 const routes: Routes = [
   {
-    path: 'Details', component: IntroductionComponent
+    path: 'Details', component: IntroductionComponent,  data: { breadcrumb: 'Giới thiệu' }
   }
 ];
 

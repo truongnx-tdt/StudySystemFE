@@ -21,8 +21,13 @@ export class FooterComponent {
     }, error => {
       console.log(error)
       Swal.fire("Email không chính xác.")
-      this.email =''
+      this.email = ''
     });
+  }
+
+  isHiddenSocial = true;
+  hidenSocialMedia() {
+    this.isHiddenSocial = !this.isHiddenSocial;
   }
 
 }

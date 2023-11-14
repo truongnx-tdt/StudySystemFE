@@ -1,128 +1,289 @@
 <!-- Footer -->
-<footer class="bg-dark text-center text-white" *ngIf="!footerHidden.isFooterHidden()">
-    <!-- Grid container -->
-    <div class="container p-4">
-      <!-- Section: Social media -->
-      <section class="mb-4">
-        <!-- Facebook -->
-        <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/truongnxtdt?locale=vi_VN" role="button"
-          ><i class="fab fa-facebook-f"></i
-        ></a>
-  
-        <!-- Twitter -->
-        <a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com/?lang=vi" role="button"
-          ><i class="fab fa-twitter"></i
-        ></a>
-  
-        <!-- Google -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-google"></i
-        ></a>
-  
-        <!-- Instagram -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-instagram"></i
-        ></a>
-  
-        <!-- Linkedin -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-linkedin-in"></i
-        ></a>
-  
-        <!-- Github -->
-        <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/truong29102002" role="button"
-          ><i class="fab fa-github"></i
-        ></a>
-      </section>
-      <!-- Section: Social media -->
-  
-      <!-- Section: Form -->
-      <section class="">
-        <form>
-          <!--Grid row-->
-          <div class="row d-flex justify-content-center">
-            <!--Grid column-->
-            <div class="col-auto">
-              <p class="pt-2">
-                <strong>Đăng ký để nhận những thông tin mới</strong>
-              </p>
-            </div>
-            <!--Grid column-->
-  
-            <!--Grid column-->
-            <div class="col-md-5 col-12">
-              <!-- Email input -->
-              <div class="form-outline form-white mb-4">
-                <input type="email" id="form5Example21" class="form-control" placeholder="Email address" [(ngModel)]="email" [ngModelOptions]="{standalone: true}"/>
-              </div>
-            </div>
-            <!--Grid column-->
-  
-            <!--Grid column-->
-            <div class="col-auto">
-              <!-- Submit button -->
-              <button type="submit" class="btn btn-outline-light mb-4" (click)="sendMailAdsToUserRegister()">
-                Subscribe
-              </button>
-            </div>
-            <!--Grid column-->
+<footer class="container" *ngIf="!footerHidden.isFooterHidden()">
+  <section>
+    <div class="container">
+      <div class="corevalue">
+        <div class="item">
+          <span class="icon">
+            <i class="fal fa-badge-check"></i>
+          </span>
+          <div class="text">
+            <span>Sản phẩm</span>
+            <strong>CH&#205;NH H&#195;NG</strong>
           </div>
-          <!--Grid row-->
-        </form>
-      </section>
-      <!-- Section: Form -->
-  
-      <!-- Section: Text -->
-      <section class="mb-4">
-        <p>
-          Web bán đồ điện tử
-        </p>
-      </section>
-      <!-- Section: Text -->
-  
-      <!-- Section: Links -->
-      <section class="">
-        <!--Grid row-->
-        <div class="row">
-          <!--Grid column-->
-          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-            <h5 class="text-uppercase">Thông tin liên hệ</h5>
-  
-            <ul class="list-unstyled mb-0">
-              <li>
-                <a class="text-white nav-link">Số điện thoại: 0326054827</a>
-              </li>
-              <li>
-                <a class="text-white nav-link">Email: xuantruong@devtdt.id.vn</a>
-              </li>
-            </ul>
-          </div>
-          <!--Grid column-->
-  
-          <!--Grid column-->
-          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-           
-          </div>
-          <!--Grid column-->
-  
-          <!--Grid column-->
-          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.4737884515102!2d105.73253187538778!3d21.053730980601866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31345457e292d5bf%3A0x20ac91c94d74439a!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBuZ2hp4buHcCBIw6AgTuG7mWk!5e0!3m2!1svi!2s!4v1698417461279!5m2!1svi!2s" width="600" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-          </div>
-          <!--Grid column-->
         </div>
-        <!--Grid row-->
-      </section>
-      <!-- Section: Links -->
+        <div class="item">
+          <span class="icon">
+            <i class="fal fa-dolly"></i>
+          </span>
+          <div class="text">
+            <span>Miễn ph&#237; vận chuyển</span>
+            <strong>TO&#192;N QUỐC</strong>
+          </div>
+        </div>
+        <div class="item">
+          <span class="icon">
+            <i class="fal fa-headset"></i>
+          </span>
+          <div class="text">
+            <span>Hotline hỗ trợ</span>
+            <strong>0326.054.827</strong>
+          </div>
+        </div>
+        <div class="item">
+          <span class="icon">
+            <i class="fal fa-arrows-rotate"></i>
+          </span>
+          <div class="text">
+            <span>Thủ tục đổi trả</span>
+            <strong>DỄ D&#192;NG</strong>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- Grid container -->
-  
-    <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2023 Copyright by:
-      <a class="text-white" href="https://sv.dhcnhn.vn" target="_blank">TruongNX - HAUI</a>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="subscript">
+        <div class="icon-text">
+          <img src="https://hoanghamobile.com/Content/web/img/sub-logo.png" />
+          <div class="text">
+            <h4>Đăng ký nhận tin</h4>
+            <p>
+              Đăng ký để nhận những chương trình khuyến mại hot nhất của Hoàng
+              Hà Mobile
+            </p>
+          </div>
+        </div>
+        <div class="form">
+          <form>
+            <div class="input">
+              <input
+                type="email"
+                [(ngModel)]="email"
+                id="email"
+                name="email"
+                placeholder="Nhập E-mail của bạn"
+              />
+            </div>
+            <button type="submit" (click)="sendMailAdsToUserRegister()">
+              <i class="fal fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
-    <!-- Copyright -->
-  </footer>
-  <!-- Footer -->
+  </section>
+
+  <div class="container">
+    <div class="bg">
+      <div class="col-content">
+        <div class="link-content">
+          <h4>
+            <a style="font-size: 15px; font-weight: bold">Hỗ Trợ - Dịch Vụ</a>
+          </h4>
+          <ul>
+            <li>
+              <a routerLink="/mua-hang-tra-gop">Mua h&#224;ng trả g&#243;p</a>
+            </li>
+            <li>
+              <a routerLink="/huong-dan-dat-hang"
+                >Hướng dẫn đặt h&#224;ng v&#224; thanh to&#225;n</a
+              >
+            </li>
+            <li><a routerLink="/order/check">Tra cứu đơn h&#224;ng</a></li>
+            <li>
+              <a routerLink="/chinh-sach-bao-hanh"
+                >Ch&#237;nh s&#225;ch bảo h&#224;nh</a
+              >
+            </li>
+            <li>
+              <a routerLink="/dat-hang/bao-hanh-mo-rong"
+                >Phạm vi, điều khoản g&#243;i bảo h&#224;nh mở rộng</a
+              >
+            </li>
+            <li>
+              <a routerLink="/chinh-sach-bao-mat"
+                >Ch&#237;nh s&#225;ch bảo mật</a
+              >
+            </li>
+            <li>
+              <a routerLink="/chinh-sach-giai-quyet-khieu-nai"
+                >Ch&#237;nh s&#225;ch giải quyết khiếu nại</a
+              >
+            </li>
+            <li>
+              <a routerLink="/dieu-khoan-mua-ban-hang-hoa"
+                >Điều khoản mua b&#225;n h&#224;ng h&#243;a</a
+              >
+            </li>
+            <li>
+              <a routerLink="/cau-hoi-thuong-gap">C&#226;u hỏi thường gặp</a>
+            </li>
+          </ul>
+        </div>
+        <div class="link-content">
+          <h4>
+            <a style="font-size: 15px; font-weight: bold"
+              >Th&#244;ng Tin Li&#234;n Hệ</a
+            >
+          </h4>
+          <ul>
+            <li>
+              <a routerLink="/mua-hang-online">B&#225;n h&#224;ng Online</a>
+            </li>
+            <li>
+              <a routerLink="/cham-soc-khach-hang"
+                >Chăm s&#243;c kh&#225;ch h&#224;ng</a
+              >
+            </li>
+            <li>
+              <a
+                routerLink="/tin-tuc/hoang-ha-care-dich-vu-sua-chua-dien-thoai-may-tinh-bang-voi-gia-tot-nhat-thi-truong"
+                >Dịch vụ sửa chữa Xuan Truong</a
+              >
+            </li>
+            <li>
+              <a routerLink="/hop-tac-kinh-doanh">Hợp t&#225;c kinh doanh</a>
+            </li>
+            <li>
+              <a routerLink="/trung-tam-bao-hanh">Tra cứu bảo h&#224;nh</a>
+            </li>
+          </ul>
+        </div>
+        <div class="link-content">
+          <h4>
+            <a
+              routerLink="/he-thong-cua-hang"
+              style="font-size: 15px; font-weight: bold"
+              >Hệ thống si&#234;u thị tr&#234;n to&#224;n quốc</a
+            >
+          </h4>
+          <ul>
+            <li>
+              <a routerLink="/he-thong-cua-hang"
+                >Danh s&#225;ch si&#234;u thị tr&#234;n to&#224;n quốc</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="font-weight: bold">Tổng đài</h4>
+          <a class="hotline" routerLink="">0326.054.827</a>
+        </div>
+
+        <div>
+          <h4 style="font-size: 15px; font-weight: bold; color: #ffffff">
+            Thanh toán miễn phí
+          </h4>
+          <!-- <ul class="list-logo">
+            <li>
+              <img src="/Content/web/img/logo-visa.png" />
+              <img src="/Content/web/img/logo-master.png" />
+            </li>
+            <li>
+              <img src="/Content/web/img/logo-jcb.png" />
+              <img src="/Content/web/img/logo-samsungpay.png" />
+            </li>
+            <li>
+              <img src="/Content/web/img/logo-atm.png" />
+              <img src="/Content/web/img/logo-vnpay.png" />
+            </li>
+          </ul> -->
+        </div>
+
+        <div>
+          <h4 style="font-size: 15px; font-weight: bold; color: #ffffff">
+            Hình thức vận chuyển
+          </h4>
+          <!-- <ul class="list-logo">
+            <li>
+              <img src="/Content/web/img/nhattin.jpg" />
+              <img src="/Content/web/img/vnpost.jpg" />
+            </li>
+          </ul>
+          <div class="mg-top20">
+            <a routerLink="http://online.gov.vn/Home/WebDetails/28738" target="_blank"
+              ><img src="/Content/web/img/logo-bct.png"
+            /></a>
+          </div> -->
+        </div>
+      </div>
+
+      <div class="info">
+        <p>
+          © 2023. TRƯỜNG ĐẠI HỌC CÔNG NGHIỆP HÀ NỘI. MST: 0101498046. (Đăng
+          k&#253; lần đầu: 10 tháng 8, 1898, Đăng k&#253; thay đổi ng&#224;y
+          02/12/2005)
+        </p>
+        <p>
+          <strong
+            >Thành lập theo Quyết định số 315/2005/QĐ-TTg ngày 02/12/2005 của
+            Thủ tướng Chính phủ</strong
+          >
+        </p>
+        <p>
+          Địa chỉ:Số 298 đường Cầu Diễn, quận Bắc Từ Liêm, Hà Nội. Điện thoại:
+          +84 243 765 5121. Chịu trách nhiệm nội dung:
+          <strong>Nguyễn Xuân Trường</strong>.
+        </p>
+      </div>
+    </div>
+
+    <div id="navSocial" *ngIf="isHiddenSocial">
+      <div class="social">
+        <ul>
+          <li>
+            <a role="button"
+              title="close"
+              target="_blank"
+              class="black"
+              (click)="hidenSocialMedia()"
+              ><span><i class="fal fa-xmark"></i></span
+            ></a>
+          </li>
+          <li>
+            <a
+              routerLink=""
+              title="Facebook Xuan Truong"
+              target="_blank"
+              class="blue"
+              ><span><i class="fa-brands fa-facebook-f"></i></span
+            ></a>
+          </li>
+          <li>
+            <a
+              routerLink=""
+              title="Youtube Xuan Truong Channel"
+              target="_blank"
+              class="red"
+              ><span><i class="fa-brands fa-youtube"></i></span
+            ></a>
+          </li>
+          <li>
+            <a
+              routerLink=""
+              title="Xuan Truong Instagram"
+              target="_blank"
+              class="rainbow"
+              ><span><i class="fa-brands fa-instagram"></i></span
+            ></a>
+          </li>
+          <li>
+            <a routerLink="" title="Tiktok" target="_blank" class="black"
+              ><span><i class="fa-brands fa-tiktok"></i></span
+            ></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="backtoTop">
+      <a id="top" routerLink="javascript:;">
+        <i class="icon-left"></i>
+      </a>
+    </div>
+  </div>
+</footer>

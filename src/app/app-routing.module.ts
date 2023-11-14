@@ -6,8 +6,20 @@ import { authGuard } from './guard/auth.guard';
 import { authIsactiveGuard } from './guard/auth-isactive.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, data: { breadcrumb: 'Home' } },
-  { path: 'home', component: HomeComponent, data: { breadcrumb: 'Home' } },
+  {
+    path: '', component: HomeComponent, data: {
+      breadcrumb: {
+        label: 'Home'
+      }
+    }
+  },
+  {
+    path: 'home', component: HomeComponent, data: {
+      breadcrumb: {
+        label: 'Home'
+      }
+    }
+  },
   // add lazy loading for account
   {
     path: 'account',
@@ -19,12 +31,18 @@ const routes: Routes = [
   {
     path: 'tmember',
     canActivate: [authGuard, authIsactiveGuard],
-    loadChildren: () => import('./tmember/tmember.module').then(m => m.TmemberModule)
+    loadChildren: () => import('./tmember/tmember.module').then(m => m.TmemberModule),
+    data: {
+      breadcrumb: { skip: true, alias: 'mentorAdd' }
+    }
   },
   // add lazy load for introduction
   {
     path: 'intro',
-    loadChildren: () => import('./introduction-us/introduction-us.module').then(m => m.IntroductionUsModule)
+    loadChildren: () => import('./introduction-us/introduction-us.module').then(m => m.IntroductionUsModule),
+    data: {
+      breadcrumb: { skip: true, alias: 'mentorAdd' }
+    }
   }
   ,
   { path: '**', component: NotfoundComponent }

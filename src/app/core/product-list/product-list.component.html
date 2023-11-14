@@ -1,0 +1,85 @@
+<div class="box-home">
+  <div class="header-container">
+    <div class="header">
+      <h4>
+        <a class="nav-link" routerLink="/apple">{{ title }}</a>
+      </h4>
+    </div>
+  </div>
+  <div class="row row-cols-5">
+    <ng-container *ngFor="let item of items.slice(0, displayedItems)">
+      <div class="col mb-2">
+        <div
+          class="card d-flex align-items-center pt-2 shadow-sm"
+          style="width: 222.6px"
+        >
+          <div class="d-flex align-items-center">
+            <a routerLink=""
+              ><img
+                src="https://cdn.hoanghamobile.com/i/productlist/ts/Uploads/2023/03/13/c55-1-den.png"
+                alt="Card image cap"
+                style="width: 180px; height: 225px"
+            /></a>
+          </div>
+
+          <div class="d-flex text-center">
+            <a
+              class="nav-link fw-bold m-2 truncate"
+              routerLink=""
+              role="button"
+              style="font-size: 13px"
+              >{{ item.name }}</a
+            >
+          </div>
+
+          <span class="price">
+            <strong style="font-weight: bold; color: red; font-size: 16px"
+              >{{
+                item.priceSell ? item.priceSell : item.price + " "
+              }}&nbsp;₫</strong
+            >
+            &nbsp;&nbsp;
+            <del
+              class="fst-italic"
+              style="font-size: 13px; color: #333333; font-weight: 100"
+              *ngIf="item.priceSell"
+              >{{ item.price }}&nbsp;₫</del
+            >
+          </span>
+          <div class="d-flex justify-content-end mt-2 me-2 h-auto w-100">
+            <p
+              style="
+                font-size: 12px;
+                opacity: 0.5;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+                  sans-serif;
+              "
+            >
+              Yêu thích
+            </p>
+            <a
+              routerLink=""
+              class="nav-link ml-auto"
+              (click)="toggleHeart(item)"
+              ><i
+                class="fal fa-heart heart-icon"
+                [ngClass]="{ 'red-background': item.isLike }"
+                style="font-size: 20px; margin: 0 5px 0 5px; color: red"
+              ></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="more-product text-center mt-3">
+    <a class="nav-link" role="button" (click)="loadMore()">
+      {{
+        remainingItems() > 0
+          ? "Xem thêm " + remainingItems() + " sản phẩm"
+          : "Đã hiển thị hết"
+      }}</a
+    >
+  </div>
+</div>

@@ -10,6 +10,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BreadcrumdComponent } from './breadcrumd/breadcrumd.component';
 import { BreadcrumbModule } from 'xng-breadcrumb';
+import { ProductListComponent } from './product-list/product-list.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { BreadcrumbModule } from 'xng-breadcrumb';
     NotfoundComponent,
     HeaderComponent,
     FooterComponent,
-    BreadcrumdComponent
+    BreadcrumdComponent,
+    ProductListComponent
   ],
   imports: [
     CommonModule,
@@ -26,12 +29,14 @@ import { BreadcrumbModule } from 'xng-breadcrumb';
     ReactiveFormsModule,
     HttpClientModule,
     BreadcrumbModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot()
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
-    BreadcrumdComponent
+    BreadcrumdComponent,
+    ProductListComponent
   ]
 })
 export class CoreModule { }

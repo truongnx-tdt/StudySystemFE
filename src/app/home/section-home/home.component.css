@@ -25,12 +25,12 @@ section .quick-sales .item img {
 /* css flash sell */
 
 section .flash-sales {
-  margin: 20px 0 30px 0
+  margin: 20px 0 30px 0;
 }
 
 section .flash-sales .header {
   display: flex;
-  margin-bottom: 20px
+  margin-bottom: 20px;
 }
 
 section .flash-sales .header h3 {
@@ -40,11 +40,11 @@ section .flash-sales .header h3 {
   margin: 0 30px 0 0;
   color: #fc521d;
   text-decoration: none;
-  padding-top: 15px
+  padding-top: 15px;
 }
 
 section .flash-sales .header h3 i {
-  margin: 0 -6px 0 -4px
+  margin: 0 -6px 0 -4px;
 }
 
 .flash-sale-nav {
@@ -52,11 +52,11 @@ section .flash-sales .header h3 i {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex
+  display: flex;
 }
 
 .flash-sale-nav li {
-  margin: 20px 10px 0 10px
+  margin: 20px 10px 0 10px;
 }
 
 .flash-sale-nav li a {
@@ -65,15 +65,45 @@ section .flash-sales .header h3 i {
   background: #fff;
   font-weight: bold;
   padding: 5px 15px;
-  border-radius: 10px
+  border-radius: 10px;
 }
 
 .flash-sale-nav li a:hover {
   background: #009981;
-  color: #fff
+  color: #fff;
 }
 
 .flash-sale-nav li a.actived {
   background: #009981;
-  color: #fff
+  color: #fff;
+}
+
+/* css orther link */
+.other-link {
+  flex-grow: 3;
+  display: flex;
+  position: absolute;
+  right: 174px;
+  font-size: 13px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+section .other-link a,
+section .other-link a:link,
+section .other-link a:visited {
+  display: block;
+  margin-left: 10px;
+  border: 1px solid #ccc;
+  background: #fff;
+  padding: 5px 10px;
+  border-radius: 8px;
+  color: #333;
+  margin-bottom: 18px;
+}
+
+section .other-link a:hover,
+section .other-link a.actived {
+  color: #fff;
+  background: #00483d;
+  border-color: #00483d;
 }

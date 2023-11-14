@@ -1,5 +1,8 @@
 <div class="containers-home container">
   <app-banner-slider></app-banner-slider>
+  <!-- suplier -->
+  <section><app-slide-supplier></app-slide-supplier></section>
+  <!-- quick-sales -->
   <section>
     <div class="container">
       <div class="quick-sales">
@@ -93,6 +96,88 @@
       </div>
     </div>
   </section>
+  <!-- ads -->
+  <section>
+    <div class="container">
+      <div class="ads">
+        <a routerLink=""
+          ><img
+            src="https://cdn.hoanghamobile.com/i/home/Uploads/2023/11/01/flip4-s22-ultra-1200x200.png"
+            style="width: 100%"
+        /></a>
+      </div>
+    </div>
+  </section>
 
-  <section><app-slide-supplier></app-slide-supplier></section>
+  <!-- product apple -->
+  <section>
+    <app-product-list
+      [items]="itemApple"
+      [title]="titleApple"
+    ></app-product-list>
+  </section>
+
+  <!-- ads -->
+  <section>
+    <div class="container">
+      <div class="ads">
+        <a routerLink=""
+          ><img
+            src="https://cdn.hoanghamobile.com/i/home/Uploads/2023/11/04/m34.jpg"
+            style="width: 100%"
+        /></a>
+      </div>
+    </div>
+  </section>
+  <!-- product hot-->
+  <section>
+    <app-product-list
+      [items]="itemApple"
+      [title]="titleProductHot"
+    ></app-product-list>
+  </section>
+  <!-- ads -->
+  <section>
+    <div class="container">
+      <div class="ads">
+        <a routerLink=""
+          ><img
+            src="	https://cdn.hoanghamobile.com/i/home/Uploads/2023/11/06/1200x200-tuan-le-01.png"
+            style="width: 100%"
+        /></a>
+      </div>
+    </div>
+  </section>
+  <!-- laptop-->
+  <section>
+    <div class="other-link">
+      <a
+        class="nav-link"
+        routerLink="/dien-thoai-di-dong/iphone/iphone-15-series"
+        >ASUS TUF Gaming F15</a
+      >
+      <a
+        class="nav-link"
+        routerLink="/dien-thoai-di-dong/tecno-pova-5-8gb-128gb-chinh-hang"
+        >MSI Modern 14</a
+      >
+      <a
+        class="nav-link"
+        routerLink="/dien-thoai-di-dong/xiaomi/redmi-note-12-series"
+        >MSI Bravo 15</a
+      >
+      <a
+        class="nav-link"
+        routerLink="/dien-thoai-di-dong/samsung/samsung-galaxy-s23"
+        >Lenovo IdeaPad 5</a
+      >
+      <a class="actived nav-link" routerLink="/dien-thoai-di-dong"
+        >Xem tất cả</a
+      >
+    </div>
+    <app-product-list
+      [items]="itemApple"
+      [title]="'LAPTOP NỔI BẬT'"
+    ></app-product-list>
+  </section>
 </div>
