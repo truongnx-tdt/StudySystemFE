@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
@@ -7,7 +7,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./banner-slider.component.css']
 })
 export class BannerSliderComponent {
-  items: any;
+  @Input()items: any;
   constructor() {
     this.items = DATA_BANNER;
   }

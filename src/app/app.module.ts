@@ -8,8 +8,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './home/home.module';
+import { ProductModule } from './product/product.module';
+import { DienThoaiModule } from './dien-thoai/dien-thoai.module';
+import { AppleModule } from './Apple/apple.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,10 @@ import { HomeModule } from './home/home.module';
     ToastrModule.forRoot(),
     FormsModule,
     CoreModule,
-    HomeModule
+    HomeModule,
+    ProductModule,
+    DienThoaiModule,
+    AppleModule
   ],
   providers: [],
   bootstrap: [AppComponent],

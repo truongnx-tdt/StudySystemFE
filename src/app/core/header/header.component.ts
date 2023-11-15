@@ -2,6 +2,7 @@ import { Component, DoCheck, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/account/account.service';
+import { ProductService } from 'src/app/product/product.service';
 import { HeaderService } from 'src/app/service/header.service';
 import Swal from 'sweetalert2';
 
@@ -12,8 +13,8 @@ import Swal from 'sweetalert2';
 })
 export class HeaderComponent implements DoCheck {
   isLoggedIn: boolean = false;
-  constructor(private router: Router, public service: AccountService, private toastr: ToastrService, public headerService: HeaderService) { }
-//#region style for nav
+  constructor(private router: Router, public service: AccountService, private toastr: ToastrService, public headerService: HeaderService, private productService: ProductService) { }
+  //#region style for nav
   isHeaderFixed: boolean = false;
 
   @HostListener('window:scroll', [])
@@ -37,7 +38,7 @@ export class HeaderComponent implements DoCheck {
     'position': 'static',
     'top': 'auto'
   };
-//#endregion
+  //#endregion
   login() {
     this.router.navigate(['/account/login']);
   }
@@ -78,6 +79,13 @@ export class HeaderComponent implements DoCheck {
     } else {
       this.isNavbarHidden = true;
     }
+  }
+
+
+  // toggel greater than 100 mil
+  navigateToList100() {
+    // Chuyển hướng đến component danh sách sản phẩm
+    this.router.navigate(['/dien-thoai/filter-price-13']);
   }
 
 }

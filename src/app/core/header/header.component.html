@@ -55,9 +55,9 @@
       <div class="logo">
         <a routerLink="" title="TSHops">
           <img
-            src="/assets/img/logo-TDT-PhotoRoom.png-PhotoRoom.png"
+            src="/assets/icon/logo-PhotoRoom.png-PhotoRoom.png"
             alt="TSHops"
-            style="max-height: 70px"
+            style="width: 276px; height: 37px"
           />
         </a>
       </div>
@@ -106,7 +106,7 @@
     <div class="container">
       <ul class="root">
         <li id="dien-thoai-di-dong">
-          <a routerLink="/dien-thoai-di-dong" target="_self">
+          <a routerLink="/dien-thoai">
             <i class="icon fa fa-mobile-phone"></i>
             <span>Điện thoại</span>
           </a>
@@ -114,39 +114,35 @@
             <div class="sub">
               <div class="menu g1">
                 <h4>
-                  <a routerLink="/dien-thoai-di-dong">Hãng sản xuất</a>
+                  <a routerLink="/dien-thoai">Hãng sản xuất</a>
                 </h4>
                 <ul class="display-column format_3">
-                  <li><a routerLink="/dien-thoai-di-dong/iphone">Apple</a></li>
+                  <li><a routerLink="/dien-thoai/apple">Apple</a></li>
                   <li>
-                    <a routerLink="/dien-thoai-di-dong/samsung">Samsung</a>
+                    <a routerLink="/dien-thoai/samsung">Samsung</a>
                   </li>
-                  <li><a routerLink="/dien-thoai-di-dong/xiaomi">Xiaomi</a></li>
-                  <li><a routerLink="/dien-thoai-di-dong/oppo">OPPO</a></li>
-                  <li><a routerLink="/dien-thoai-di-dong/tecno">TECNO</a></li>
-                  <li><a routerLink="/dien-thoai-di-dong/nokia">Nokia</a></li>
-                  <li><a routerLink="/dien-thoai-di-dong/realme">realme</a></li>
-                  <li><a routerLink="/dien-thoai-di-dong/vivo">Vivo</a></li>
-                  <li><a routerLink="/dien-thoai-di-dong/honor">HONOR</a></li>
-                  <li><a routerLink="/dien-thoai-di-dong/htc">HTC</a></li>
+                  <li><a routerLink="/dien-thoai/xiaomi">Xiaomi</a></li>
+                  <li><a routerLink="/dien-thoai/oppo">OPPO</a></li>
+                  <li><a routerLink="/dien-thoai/tecno">TECNO</a></li>
+                  <li><a routerLink="/dien-thoai/nokia">Nokia</a></li>
+                  <li><a routerLink="/dien-thoai/realme">realme</a></li>
+                  <li><a routerLink="/dien-thoai/vivo">Vivo</a></li>
+                  <li><a routerLink="/dien-thoai/honor">HONOR</a></li>
+                  <li><a routerLink="/dien-thoai/htc">HTC</a></li>
                   <li>
-                    <a routerLink="/dien-thoai-di-dong/infinix">Infinix</a>
+                    <a routerLink="/dien-thoai/infinix">Infinix</a>
                   </li>
                   <li>
-                    <a routerLink="/dien-thoai-di-dong/asus-rog-phone">ROG</a>
+                    <a routerLink="/dien-thoai/asus-rog-phone">ROG</a>
                   </li>
-                  <li><a routerLink="/dien-thoai-di-dong/nubia">Nubia</a></li>
-                  <li><a routerLink="/dien-thoai-di-dong/xor">XOR</a></li>
+                  <li><a routerLink="/dien-thoai/nubia">Nubia</a></li>
+                  <li><a routerLink="/dien-thoai/xor">XOR</a></li>
                   <li>
-                    <a routerLink="/dien-thoai-di-dong/masstel">Masstel</a>
+                    <a routerLink="/dien-thoai/masstel">Masstel</a>
                   </li>
-                  <li><a routerLink="/dien-thoai-di-dong/tcl">TCL</a></li>
-                  <li><a routerLink="/dien-thoai-di-dong/itel">Itel</a></li>
-                  <li>
-                    <a routerLink="/san-pham-sap-ra-mat-tin-don/dien-thoai"
-                      >Mới - tin đồn</a
-                    >
-                  </li>
+                  <li><a routerLink="/dien-thoai/tcl">TCL</a></li>
+                  <li><a routerLink="/dien-thoai/itel">Itel</a></li>
+                  
                 </ul>
                 <h4>
                   <a routerLink="/dien-thoai-cao-cap">Điện thoại cao cấp</a>
@@ -161,44 +157,40 @@
                 </h4>
                 <ul class="display-row format_2">
                   <li>
-                    <a
-                      routerLink="/dien-thoai-di-dong?filters={%22price%22:%22T100t%22}&amp;search=true"
-                      >Tr&#234;n 100 triệu</a
-                    >
+                    <a role="button" (click)="navigateToList100()">Tr&#234;n 100 triệu</a>
                   </li>
                   <li>
                     <a
-                      routerLink='/dien-thoai-di-dong?=&amp;filters={"sort":"10","price":"1t"}'
+                      routerLink='/dien-thoai?=&amp;filters={"sort":"10","price":"1t"}'
                       >Dưới 1 triệu</a
                     >
                   </li>
                   <li>
                     <a
-                      routerLink='/dien-thoai-di-dong?=&amp;filters={"sort":"10","price":"2t-3t"}'
+                      routerLink='/dien-thoai?=&amp;filters={"sort":"10","price":"2t-3t"}'
                       >Từ 2 đến 3 triệu</a
                     >
                   </li>
                   <li>
                     <a
-                      routerLink='/dien-thoai-di-dong?=&amp;filters={"sort":"10","price":"3t-4t"}'
+                      routerLink='/dien-thoai?=&amp;filters={"sort":"10","price":"3t-4t"}'
                       >Từ 3 đến 4 triệu</a
                     >
                   </li>
                   <li>
-                    <a
-                      routerLink='/dien-thoai-di-dong?=&amp;filters={"price":"6t-8t"}'
+                    <a routerLink='/dien-thoai?=&amp;filters={"price":"6t-8t"}'
                       >Từ 6 đến 8 triệu</a
                     >
                   </li>
                   <li>
                     <a
-                      routerLink='/dien-thoai-di-dong?=&amp;filters={"price":"15t-20t"}'
+                      routerLink='/dien-thoai?=&amp;filters={"price":"15t-20t"}'
                       >Từ 15 đến 20 triệu</a
                     >
                   </li>
                   <li>
                     <a
-                      routerLink="/dien-thoai-di-dong?search=true&amp;filters={%22price%22:%2220t-100tr%22}&amp;search=true"
+                      routerLink="/dien-thoai?search=true&amp;filters={%22price%22:%2220t-100tr%22}&amp;search=true"
                       >Từ 20 đến 100 triệu</a
                     >
                   </li>
@@ -208,22 +200,20 @@
                 <h4><a>Quan t&#226;m nhất</a></h4>
                 <ul class="display-row format_2">
                   <li>
-                    <a routerLink='/dien-thoai-di-dong?filters={"sort":"6"}'
-                      >Hôm nay</a
-                    >
+                    <a routerLink='/dien-thoai?filters={"sort":"6"}'>Hôm nay</a>
                   </li>
                   <li>
-                    <a routerLink='/dien-thoai-di-dong?filters={"sort":"7"}'
+                    <a routerLink='/dien-thoai?filters={"sort":"7"}'
                       >Tuần n&#224;y</a
                     >
                   </li>
                   <li>
-                    <a routerLink='/dien-thoai-di-dong?filters={"sort":"8"}'
+                    <a routerLink='/dien-thoai?filters={"sort":"8"}'
                       >Tháng n&#224;y</a
                     >
                   </li>
                   <li>
-                    <a routerLink='/dien-thoai-di-dong?filters={"sort":"10"}'
+                    <a routerLink='/dien-thoai?filters={"sort":"10"}'
                       >Năm nay</a
                     >
                   </li>
@@ -242,13 +232,13 @@
           </div>
         </li>
         <li id="apple">
-          <a routerLink="/apple" target="_self">
+          <a routerLink="/apple">
             <i class="icon fa-solid fa-mobile"></i>
             <span>Apple</span>
           </a>
         </li>
         <li id="laptop">
-          <a routerLink="/laptop" target="_self">
+          <a routerLink="/laptop">
             <i class="icon fas fa-laptop-code"></i>
             <span>Laptop</span>
           </a>
@@ -317,7 +307,7 @@
           </div>
         </li>
         <li id="tablet">
-          <a routerLink="/tablet" target="_self">
+          <a routerLink="/tablet">
             <i class="icon fa-solid fa-tablet"></i>
             <span>Tablet</span>
           </a>
@@ -347,7 +337,7 @@
           </div>
         </li>
         <li id="man-hinh">
-          <a routerLink="/man-hinh" target="_self">
+          <a routerLink="/man-hinh">
             <i class="icon fas fa-desktop"></i>
             <span>M&#224;n h&#236;nh</span>
           </a>
@@ -428,7 +418,7 @@
           </div>
         </li>
         <li id="smart-tv">
-          <a routerLink="/smart-tv" target="_self">
+          <a routerLink="/smart-tv">
             <i class="icon fa fa-tv"></i>
             <span>Smart TV</span>
           </a>
@@ -463,7 +453,7 @@
           </div>
         </li>
         <li id="dong-ho">
-          <a routerLink="/dong-ho" target="_self">
+          <a routerLink="/dong-ho">
             <i class="icon fal fa-watch"></i>
             <span>Đồng hồ</span>
           </a>
@@ -507,7 +497,7 @@
           </div>
         </li>
         <li id="loa-tai-nghe">
-          <a routerLink="/loa-tai-nghe" target="_self">
+          <a routerLink="/loa-tai-nghe">
             <i class="icon fa-solid fa-headphones-simple"></i>
             <span>&#194;m thanh</span>
           </a>
@@ -584,7 +574,7 @@
           </div>
         </li>
         <li id="smart-home">
-          <a routerLink="/smart-home" target="_self">
+          <a routerLink="/smart-home">
             <i class="icon fa-solid fa-house-signal"></i>
             <span>Smart Home</span>
           </a>
@@ -701,7 +691,7 @@
           </div>
         </li>
         <li id="phu-kien">
-          <a routerLink="/phu-kien" target="_self">
+          <a routerLink="/phu-kien">
             <i class="icon fa-solid fa-microchip"></i>
             <span>Phụ kiện</span>
           </a>
@@ -716,9 +706,7 @@
                 <ul class="display-column format_1">
                   <li><a routerLink="/sac-du-phong">Sạc dự ph&#242;ng</a></li>
                   <li>
-                    <a routerLink="/cu-sac-day-cap"
-                      >Củ sạc, d&#226;y cáp</a
-                    >
+                    <a routerLink="/cu-sac-day-cap">Củ sạc, d&#226;y cáp</a>
                   </li>
                   <li><a routerLink="/the-nho-usb">Thẻ nhớ - USB</a></li>
                   <li>
@@ -895,7 +883,7 @@
           </div>
         </li>
         <li id="do-choi-cong-nghe">
-          <a routerLink="/do-choi-cong-nghe" target="_self">
+          <a routerLink="/do-choi-cong-nghe">
             <i class="icon fa-solid fa-gamepad"></i>
             <span>Đồ chơi CN</span>
           </a>
@@ -937,7 +925,7 @@
           </div>
         </li>
         <li id="kho-san-pham-cu">
-          <a routerLink="/kho-san-pham-cu" target="_self">
+          <a routerLink="/kho-san-pham-cu">
             <i class="icon fa-solid fa-retweet"></i>
             <span>Máy trôi</span>
           </a>
@@ -1017,7 +1005,7 @@
           </div>
         </li>
         <li id="dich-vu-sua-chua">
-          <a routerLink="/dich-vu-sua-chua" target="_self">
+          <a routerLink="/dich-vu-sua-chua">
             <i class="icon fa-solid fa-screwdriver-wrench"></i>
             <span>Sửa chữa</span>
           </a>
@@ -1057,8 +1045,7 @@
                   <li>
                     <a
                       routerLink="/dich-vu-sua-chua/apple/iphone/cap-phim-am-luong-phim-nguon"
-                      >Cáp phím &#226;m lượng - Cáp phím
-                      nguồn</a
+                      >Cáp phím &#226;m lượng - Cáp phím nguồn</a
                     >
                   </li>
                   <li>
@@ -1113,7 +1100,7 @@
           </div>
         </li>
         <li id="dich-vu">
-          <a routerLink="/dich-vu" target="_self">
+          <a routerLink="/dich-vu">
             <i class="icon fas fa-sim-card"></i>
             <span>Dịch Vụ</span>
           </a>
@@ -1142,7 +1129,7 @@
           </div>
         </li>
         <li id="tin-tuc">
-          <a routerLink="/tin-tuc" target="_self">
+          <a routerLink="/tin-tuc">
             <i class="icon fa fa-newspaper-o"></i>
             <span>Tin hot</span>
           </a>
