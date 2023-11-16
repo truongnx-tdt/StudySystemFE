@@ -70,3 +70,50 @@
   background-image: linear-gradient(#00917a, #00483d);
   color: #fff;
 }
+
+/* css prom0te */
+.item .promote {
+  border-radius: 5px;
+  background-image: linear-gradient(#00917a, #079780);
+  padding: 2px;
+  box-shadow: 0 4px 6px #00000029;
+  margin: 0 10px 0 -10px;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s, visibility 0.2s;
+  color: #333;
+}
+
+.item .promote a {
+  color: #222;
+}
+
+.item .promote ul {
+  list-style: none;
+  background: #fff;
+  border-radius: 4px;
+  margin: 0;
+  padding: 10px 10px 5px 10px;
+  text-align: left;
+}
+
+.item .promote ul li {
+  padding-bottom: 5px;
+  font-size: 10px;
+}
+.item:hover .promote {
+  display: block;
+  visibility: visible;
+  opacity: 0.9;
+  animation: fade 1s;
+}
+.item .bag {
+  display: inline-block;
+  background: #f7941e 0% 0% no-repeat padding-box;
+  box-shadow: 0 4px 6px #00000029;
+  border-radius: 3px;
+  padding: 3px 5px;
+  color: #fff;
+  font-size: 11px;
+}

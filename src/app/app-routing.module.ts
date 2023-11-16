@@ -60,6 +60,18 @@ const routes: Routes = [
     path: 'apple',
     loadChildren: () => import('./Apple/apple.module').then(m => m.AppleModule),
     data: { breadcrumb: { skip: true, alias: 'skipApple' } }
+  },
+  // add lazy load search
+  {
+    path: 'tim-kiem',
+    loadChildren: () => import('./search-result/search-result.module').then(m => m.SearchResultModule),
+    data: { breadcrumb: { label: 'Tìm kiếm', alias: 'timKiem' } }
+  },
+  // add lazy loading for laptop sc
+  {
+    path: 'laptop',
+    loadChildren: () => import('./laptop/laptop.module').then(m => m.LaptopModule),
+    data: { breadcrumb: { alias: 'laptop' } }
   }
   ,
   { path: '**', component: NotfoundComponent }

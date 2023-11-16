@@ -5,9 +5,9 @@
         <li><a routerLink="/intro/Details">Giới thiệu</a></li>
         <li><a routerLink="/san-pham-da-xem">Sản phẩm yêu thích</a></li>
         <li>
-          <a routerLink="/trung-tam-bao-hanh">Trung t&#226;m bảo h&#224;nh</a>
+          <a routerLink="/trung-tam-bao-hanh">Trung tâm bảo hành</a>
         </li>
-        <li><a routerLink="/order/check">Tra cứu đơn h&#224;ng</a></li>
+        <li><a routerLink="/order/check">Sản phẩm đã xem</a></li>
         <li>
           <a
             id="login-modal"
@@ -63,15 +63,20 @@
       </div>
 
       <div class="search-box">
-        <form method="get" enctype="application/x-www-form-urlencoded">
+        <form
+          method="get"
+          [formGroup]="searchForm"
+          enctype="application/x-www-form-urlencoded"
+        >
           <div class="border">
             <input
               type="text"
               id="kwd"
               name="kwd"
+              formControlName="searchTerm"
               placeholder="Hôm nay bạn cần tìm gì?"
             />
-            <button type="submit" class="search">
+            <button type="submit" class="search" (click)="searchProcess()">
               <i class="fa fa-search" aria-hidden="true"></i>
             </button>
           </div>
@@ -142,7 +147,6 @@
                   </li>
                   <li><a routerLink="/dien-thoai/tcl">TCL</a></li>
                   <li><a routerLink="/dien-thoai/itel">Itel</a></li>
-                  
                 </ul>
                 <h4>
                   <a routerLink="/dien-thoai-cao-cap">Điện thoại cao cấp</a>
@@ -157,7 +161,9 @@
                 </h4>
                 <ul class="display-row format_2">
                   <li>
-                    <a role="button" (click)="navigateToList100()">Tr&#234;n 100 triệu</a>
+                    <a role="button" (click)="navigateToList100()"
+                      >Tr&#234;n 100 triệu</a
+                    >
                   </li>
                   <li>
                     <a
@@ -197,19 +203,19 @@
                 </ul>
               </div>
               <div class="menu g3">
-                <h4><a>Quan t&#226;m nhất</a></h4>
+                <h4><a>Quan tâm nhất</a></h4>
                 <ul class="display-row format_2">
                   <li>
                     <a routerLink='/dien-thoai?filters={"sort":"6"}'>Hôm nay</a>
                   </li>
                   <li>
                     <a routerLink='/dien-thoai?filters={"sort":"7"}'
-                      >Tuần n&#224;y</a
+                      >Tuần này</a
                     >
                   </li>
                   <li>
                     <a routerLink='/dien-thoai?filters={"sort":"8"}'
-                      >Tháng n&#224;y</a
+                      >Tháng này</a
                     >
                   </li>
                   <li>
@@ -247,12 +253,12 @@
               <div class="menu g1">
                 <h4><a routerLink="/laptop">Hãng sản xuất</a></h4>
                 <ul class="display-column format_3">
-                  <li><a routerLink="/laptop/macbook">Apple</a></li>
+                  <li><a routerLink="/laptop/apple">Apple</a></li>
                   <li><a routerLink="/laptop/asus">ASUS</a></li>
                   <li><a routerLink="/laptop/dell">Dell</a></li>
-                  <li><a routerLink="/laptop/hang-san-xuat/acer">Acer</a></li>
+                  <li><a routerLink="/laptop/acer">Acer</a></li>
                   <li><a routerLink="/laptop/msi">MSI</a></li>
-                  <li><a routerLink="/laptop/hang-san-xuat/lg">LG</a></li>
+                  <li><a routerLink="/laptop/lg">LG</a></li>
                   <li><a routerLink="/laptop/huawei">HUAWEI</a></li>
                   <li><a routerLink="/laptop/microsoft">Surface</a></li>
                   <li><a routerLink="/laptop/lenovo">Lenovo</a></li>
@@ -260,11 +266,11 @@
                   <li><a routerLink="/laptop/gigabyte">GIGABYTE</a></li>
                   <li><a routerLink="/laptop/itel">Itel</a></li>
                   <li>
-                    <a routerLink="/laptop/hang-san-xuat/xiaomi">Xiaomi</a>
+                    <a routerLink="/laptop/xiaomi">Xiaomi</a>
                   </li>
                   <li><a routerLink="/laptop/masstel">Masstel</a></li>
                 </ul>
-                <h4><a>Ph&#226;n loại Sản phẩm</a></h4>
+                <h4><a>Phân loại Sản phẩm</a></h4>
                 <ul class="display-column format_1">
                   <li>
                     <a routerLink="/laptop/cao-cap-sang-trong"
@@ -291,7 +297,7 @@
                 <h4><a>Mức giá</a></h4>
                 <ul class="display-row format_2">
                   <li>
-                    <a routerLink="">Tr&#234;n 20 triệu</a>
+                    <a routerLink="/laptop/filter-price-13">Tr&#234;n 20 triệu</a>
                   </li>
                   <li>
                     <a routerLink="">Từ 12 đến 15 Triệu</a>
@@ -339,7 +345,7 @@
         <li id="man-hinh">
           <a routerLink="/man-hinh">
             <i class="icon fas fa-desktop"></i>
-            <span>M&#224;n h&#236;nh</span>
+            <span>Màn h&#236;nh</span>
           </a>
           <div class="sub-container">
             <div class="sub">
@@ -371,28 +377,28 @@
                 </ul>
               </div>
               <div class="menu g2">
-                <h4><a>Ph&#226;n loại sản phẩm</a></h4>
+                <h4><a>Phân loại sản phẩm</a></h4>
                 <ul class="display-column format_1">
                   <li>
                     <a routerLink="/man-hinh/phan-loai-san-pham/man-hinh-do-hoa"
-                      >M&#224;n h&#236;nh đồ họa</a
+                      >Màn h&#236;nh đồ họa</a
                     >
                   </li>
                   <li>
                     <a routerLink="/man-hinh/phan-loai-san-pham/man-hinh-gaming"
-                      >M&#224;n h&#236;nh Gaming</a
+                      >Màn h&#236;nh Gaming</a
                     >
                   </li>
                   <li>
                     <a
                       routerLink="/man-hinh/phan-loai-san-pham/man-hinh-van-phong"
-                      >M&#224;n h&#236;nh văn ph&#242;ng</a
+                      >Màn h&#236;nh văn ph&#242;ng</a
                     >
                   </li>
                   <li>
                     <a
                       routerLink="/man-hinh/phan-loai-san-pham/man-hinh-di-dong"
-                      >M&#224;n h&#236;nh di động</a
+                      >Màn h&#236;nh di động</a
                     >
                   </li>
                 </ul>
@@ -400,7 +406,7 @@
               <div class="menu g3">
                 <h4>
                   <a routerLink="/phu-kien/phu-kien-man-hinh"
-                    >Phụ kiện m&#224;n h&#236;nh</a
+                    >Phụ kiện màn h&#236;nh</a
                   >
                 </h4>
                 <ul class="display-row format_1"></ul>
@@ -411,7 +417,7 @@
                   ><img
                     style="width: 580px"
                     src="https://hoanghamobile.com/Uploads/2023/09/06/95aug-1-02.png"
-                    alt="M&#224;n h&#236;nh MSI G2412"
+                    alt="Màn h&#236;nh MSI G2412"
                 /></a>
               </div>
             </div>
@@ -607,7 +613,7 @@
                   </li>
                   <li>
                     <a routerLink="/smart-home/can-thong-minh"
-                      >C&#226;n thông minh</a
+                      >Cân thông minh</a
                     >
                   </li>
                   <li>
@@ -706,7 +712,7 @@
                 <ul class="display-column format_1">
                   <li><a routerLink="/sac-du-phong">Sạc dự ph&#242;ng</a></li>
                   <li>
-                    <a routerLink="/cu-sac-day-cap">Củ sạc, d&#226;y cáp</a>
+                    <a routerLink="/cu-sac-day-cap">Củ sạc, dây cáp</a>
                   </li>
                   <li><a routerLink="/the-nho-usb">Thẻ nhớ - USB</a></li>
                   <li>
@@ -714,7 +720,7 @@
                   </li>
                   <li>
                     <a routerLink="/phu-kien/mieng-dan-man-hinh"
-                      >Miếng dán m&#224;n h&#236;nh</a
+                      >Miếng dán màn h&#236;nh</a
                     >
                   </li>
                 </ul>
@@ -728,12 +734,12 @@
               <div class="menu g1">
                 <h4>
                   <a routerLink="/phu-kien/ban-phim-chuot-gaming-gear"
-                    >B&#224;n phím, Chuột &amp; Gaming Gear</a
+                    >Bàn phím, Chuột &amp; Gaming Gear</a
                   >
                 </h4>
                 <ul class="display-column format_2">
                   <li>
-                    <a routerLink="/phu-kien/ban-phim">B&#224;n Phím</a>
+                    <a routerLink="/phu-kien/ban-phim">Bàn Phím</a>
                   </li>
                   <li><a routerLink="/phu-kien/chuot">Chuột</a></li>
                   <li>
@@ -745,7 +751,7 @@
                 </ul>
                 <h4>
                   <a routerLink="/camera-an-ninh"
-                    >Camera an ninh - H&#224;nh tr&#236;nh</a
+                    >Camera an ninh - Hành tr&#236;nh</a
                   >
                 </h4>
                 <ul class="display-row format_1">
@@ -756,7 +762,7 @@
                   </li>
                   <li>
                     <a routerLink="/camera-an-ninh/camera-hanh-trinh"
-                      >Camera h&#224;nh tr&#236;nh</a
+                      >Camera hành tr&#236;nh</a
                     >
                   </li>
                 </ul>
@@ -790,13 +796,13 @@
                 </ul>
                 <h4>
                   <a routerLink="/phu-kien/pin-man-hinh"
-                    >Pin, M&#224;n h&#236;nh chính hãng</a
+                    >Pin, Màn h&#236;nh chính hãng</a
                   >
                 </h4>
                 <ul class="display-column format_1">
                   <li>
                     <a routerLink="/phu-kien/pin-man-hinh/man-hinh-iphone"
-                      >M&#224;n h&#236;nh iPhone</a
+                      >Màn h&#236;nh iPhone</a
                     >
                   </li>
                   <li>
@@ -899,7 +905,7 @@
                   </li>
                   <li>
                     <a routerLink="/do-choi-cong-nghe/day-do-nhip-tim"
-                      >D&#226;y đo nhịp tim</a
+                      >Dây đo nhịp tim</a
                     >
                   </li>
                   <li>
@@ -914,7 +920,7 @@
                   </li>
                   <li>
                     <a routerLink="/do-choi-cong-nghe/camera-hanh-trinh"
-                      >Camera h&#224;nh tr&#236;nh</a
+                      >Camera hành tr&#236;nh</a
                     >
                   </li>
                 </ul>
@@ -932,7 +938,7 @@
           <div class="sub-container">
             <div class="sub">
               <div class="menu g0">
-                <h4><a>H&#224;ng cũ giá rẻ</a></h4>
+                <h4><a>Hàng cũ giá rẻ</a></h4>
                 <ul class="display-column format_3">
                   <li>
                     <a routerLink='/kho-san-pham-cu?=&amp;filters={"type":"1"}'
@@ -976,7 +982,7 @@
                   </li>
                   <li>
                     <a routerLink='/kho-san-pham-cu?=&amp;filters={"type":"11"}'
-                      >D&#226;y cáp</a
+                      >Dây cáp</a
                     >
                   </li>
                   <li>
@@ -1020,12 +1026,12 @@
                   </li>
                   <li>
                     <a routerLink="/dich-vu-sua-chua/android/man-hinh"
-                      >M&#224;n h&#236;nh</a
+                      >Màn h&#236;nh</a
                     >
                   </li>
                   <li>
                     <a routerLink="/dich-vu-sua-chua/android/vo-va-mat-lung"
-                      >Vỏ v&#224; mặt lưng</a
+                      >Vỏ và mặt lưng</a
                     >
                   </li>
                 </ul>
@@ -1045,13 +1051,13 @@
                   <li>
                     <a
                       routerLink="/dich-vu-sua-chua/apple/iphone/cap-phim-am-luong-phim-nguon"
-                      >Cáp phím &#226;m lượng - Cáp phím nguồn</a
+                      >Cáp phím âm lượng - Cáp phím nguồn</a
                     >
                   </li>
                   <li>
                     <a
                       routerLink="/dich-vu-sua-chua/apple/iphone/loa-trong-loa-ngoai"
-                      >Loa Trong - Loa Ngo&#224;i</a
+                      >Loa Trong - Loa Ngoài</a
                     >
                   </li>
                   <li>
@@ -1066,7 +1072,7 @@
                   </li>
                   <li>
                     <a routerLink="/dich-vu-sua-chua/apple/iphone/man-hinh"
-                      >M&#224;n h&#236;nh</a
+                      >Màn h&#236;nh</a
                     >
                   </li>
                   <li>
@@ -1091,7 +1097,7 @@
                   </li>
                   <li>
                     <a routerLink="/dich-vu-sua-chua/apple/ipad/man-hinh"
-                      >M&#224;n h&#236;nh</a
+                      >Màn h&#236;nh</a
                     >
                   </li>
                 </ul>
@@ -1149,7 +1155,7 @@
                   <li>
                     <a
                       routerLink="/tin-khuyen-mai/uu-dai-hot/khuyen-mai-jbl-harman-kardon"
-                      >&#226;m thanh - JBL &amp; Harman</a
+                      >âm thanh - JBL &amp; Harman</a
                     >
                   </li>
                   <li>

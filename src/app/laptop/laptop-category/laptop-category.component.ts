@@ -1,19 +1,17 @@
-import { Subscription } from 'rxjs';
 import { Component } from '@angular/core';
-import { DienThoaiService } from '../dien-thoai.service';
+import { LaptopService } from '../laptop.service';
 import { ActivatedRoute } from '@angular/router';
 import { BreadcrumbService } from 'xng-breadcrumb';
-import { ProductService } from 'src/app/product/product.service';
 
 @Component({
-  selector: 'app-dien-thoai-cateroy-id',
-  templateUrl: './dien-thoai-cateroy-id.component.html',
-  styleUrls: ['./dien-thoai-cateroy-id.component.css']
+  selector: 'app-laptop-category',
+  templateUrl: './laptop-category.component.html',
+  styleUrls: ['./laptop-category.component.css']
 })
-export class DienThoaiCateroyIdComponent {
+export class LaptopCategoryComponent {
   allItems: any;
   titleCategory: any;
-  constructor(private serviceProduct: DienThoaiService, private route: ActivatedRoute, private bcService: BreadcrumbService) {
+  constructor(private serviceProduct: LaptopService, private route: ActivatedRoute, private bcService: BreadcrumbService) {
 
   }
   ngOnInit() {
@@ -27,15 +25,15 @@ export class DienThoaiCateroyIdComponent {
     if (id === 'filter-price-13') {
       this.serviceProduct.getProductsByCategory().subscribe(products => {
         this.allItems = products.filter((product: any) => product.priceSell ? product.priceSell > 5000000 : product.price > 5000000)
-        this.titleCategory = 'Điện thoại trên 100 triệu'
-        this.bcService.set('@dienThoai', 'Điện thoại');
+        this.titleCategory = 'Laptop trên 100 triệu'
+        this.bcService.set('@laptop', 'Laptop');
         this.bcService.set('@filterType', "Trên 100 triệu");
       });
     } else {
       this.serviceProduct.getProductsByBrand(id).subscribe(products => {
         this.allItems = products;
-        this.titleCategory = id === 'apple' ? 'Điện thoại iphone' : 'Điện thoại ' + id;
-        this.bcService.set('@dienThoai', 'Điện thoại');
+        this.titleCategory = id === 'apple' ? 'Macbook' : 'Laptop ' + id;
+        this.bcService.set('@laptop', 'laptop');
         this.bcService.set('@filterType', id);
       });
     }

@@ -1,4 +1,5 @@
 import { Component, DoCheck, HostListener } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/account/account.service';
@@ -13,7 +14,25 @@ import Swal from 'sweetalert2';
 })
 export class HeaderComponent implements DoCheck {
   isLoggedIn: boolean = false;
-  constructor(private router: Router, public service: AccountService, private toastr: ToastrService, public headerService: HeaderService, private productService: ProductService) { }
+  searchForm!: any;
+  constructor(private router: Router, public service: AccountService, private toastr: ToastrService, public headerService: HeaderService, private formBuilder: FormBuilder) { }
+
+  // form search
+  ngOnInit() {
+    this.searchForm = this.formBuilder.group({
+      searchTerm: ['']
+    });
+  }
+  searchProcess() {
+    const searchTerm = this.searchForm.get('searchTerm').value;
+    if (searchTerm.trim() !== '') {
+      this.router.navigate(['/tim-kiem'], { queryParams: { id: searchTerm } });
+      this.searchForm.get('searchTerm').setValue('');
+    } else {
+      this.toastr.error('Bạn cần nhập từ khóa đế tìm kiếm')
+    }
+  }
+
   //#region style for nav
   isHeaderFixed: boolean = false;
 

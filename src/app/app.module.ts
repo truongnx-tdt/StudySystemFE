@@ -12,6 +12,7 @@ import { HomeModule } from './home/home.module';
 import { ProductModule } from './product/product.module';
 import { DienThoaiModule } from './dien-thoai/dien-thoai.module';
 import { AppleModule } from './Apple/apple.module';
+import { SearchResultModule } from './search-result/search-result.module';
 
 @NgModule({
   declarations: [
