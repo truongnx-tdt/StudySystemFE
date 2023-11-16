@@ -72,6 +72,12 @@ const routes: Routes = [
     path: 'laptop',
     loadChildren: () => import('./laptop/laptop.module').then(m => m.LaptopModule),
     data: { breadcrumb: { alias: 'laptop' } }
+  },
+  // add lazy loading for laptop sc
+  {
+    path: 'tablet',
+    loadChildren: () => import('./tablet/tablet.module').then(m => m.TabletModule),
+    data: { breadcrumb: { alias: 'tablet' } }
   }
   ,
   { path: '**', component: NotfoundComponent }
