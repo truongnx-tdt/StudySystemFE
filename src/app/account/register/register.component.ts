@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { LocationService } from 'src/app/service/location.service';
 import { AccountService } from '../account.service';
 import { HeaderService } from 'src/app/service/header.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +21,7 @@ export class RegisterComponent {
   districts: any;
   resWards: any;
   wards: any;
-  constructor(private service: AccountService, private formBuilder: FormBuilder, private toastr: ToastrService, private router: Router, private location: LocationService) {
+  constructor(private dialog : MatDialogRef<RegisterComponent>,private service: AccountService, private formBuilder: FormBuilder, private toastr: ToastrService, private router: Router, private location: LocationService) {
 
   }
   ngOnInit(): void {
@@ -31,7 +32,7 @@ export class RegisterComponent {
       userID: this.formBuilder.control('', Validators.required),
       password: this.formBuilder.control('', Validators.required),
       email: this.formBuilder.control('', Validators.compose([Validators.email, Validators.required])),
-      phoneNumber: this.formBuilder.control('', Validators.compose([Validators.pattern("^[0-9]*$"),Validators.minLength(10), Validators.maxLength(10), Validators.required])),
+      phoneNumber: this.formBuilder.control('', Validators.compose([Validators.pattern("^[0-9]*$"), Validators.minLength(10), Validators.maxLength(10), Validators.required])),
       gender: this.formBuilder.control('0'),
       address: this.formBuilder.group({
         provinceCode: this.formBuilder.control(''), // Tạo FormControl cho tỉnh
@@ -74,7 +75,7 @@ export class RegisterComponent {
             this.toastr.error("Registration failed. Account already exists.");
           } else {
             this.toastr.success("register success");
-            this.router.navigate(['/account/login']);
+            this.dialog.close();
           }
         }, (error) => {
           console.log(error);
@@ -88,17 +89,18 @@ export class RegisterComponent {
     }
     else {
       if (this.registerFormGroup.get('email')?.invalid) {
-        this.toastr.warning('Please enter email valid', 'Error');
-      } else if (this.registerFormGroup.get('fullName')?.invalid) {
-        this.toastr.warning('Please enter your fulll name', 'Error');
-      } else if (this.registerFormGroup.get('username')?.invalid) {
-        this.toastr.warning('Please enter your username', 'Error');
+        this.toastr.warning('Bạn chưa nhập email', 'Error');
+      } else if (this.registerFormGroup.get('userFullName')?.invalid) {
+        this.toastr.warning('Bạn chưa nhập họ tên', 'Error');
+      } else if (this.registerFormGroup.get('userID')?.invalid) {
+        this.toastr.warning('Bạn chưa nhập tài khoản', 'Error');
       } else if (this.registerFormGroup.get('password')?.invalid) {
-        this.toastr.warning('Please enter your your password', 'Error');
+        this.toastr.warning('Bạn chưa nhập mật khẩu', 'Error');
       }
       else if (this.registerFormGroup.get('phoneNumber')?.invalid) {
-        this.toastr.warning('Please enter your your phoneNumber', 'Error');
-      }
+        this.toastr.warning('Số điện thoại phải được nhập và là số có 10 chữ số', 'Error');
+      } 
+
     }
   }
 }

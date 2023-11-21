@@ -1,0 +1,22 @@
+<section class="banner">
+  <div class="containers-banner">
+    <div>
+      <img [src]="mainData" style="width: 100%" />
+    </div>
+
+    <div class="wrapper">
+      <owl-carousel-o
+      (change)="getData($event)"
+        [options]="customThumbsOptions"
+      >
+        <ng-container *ngFor="let slide of items; let i = index">
+          <ng-template class="slide" carouselSlide>
+            <div (click)="getIndex(slide)">
+              <img [src]="slide.img"/>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+  </div>
+</section>

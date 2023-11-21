@@ -4,7 +4,7 @@
       <ng-template carouselSlide
         ><div class="card d-flex align-items-center pt-2 shadow-sm">
           <div class="d-flex align-items-center">
-            <a routerLink=""
+            <a routerLink="/product-details/{{item.id}}"
               ><img
                 src="https://cdn.hoanghamobile.com/i/productlist/ts/Uploads/2023/03/13/c55-1-den.png"
                 alt="Card image cap"
@@ -15,7 +15,7 @@
           <div class="d-flex text-center">
             <a
               class="nav-link fw-bold m-2 truncate"
-              routerLink=""
+              routerLink="/product-details/{{item.id}}"
               role="button"
               style="font-size: 13px"
               >{{ item.name }}</a

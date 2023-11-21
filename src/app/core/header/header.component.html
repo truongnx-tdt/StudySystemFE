@@ -11,7 +11,7 @@
         <li>
           <a
             id="login-modal"
-            routerLink="/account/login"
+            role="button"
             *ngIf="!service.isUserLoggedIn()"
             (click)="login()"
             >Đăng nhập</a
@@ -20,7 +20,8 @@
         <li>
           <a
             id="login-modal"
-            routerLink="/account/register"
+            role="button"
+            (click)="register()"
             *ngIf="!service.isUserLoggedIn()"
             >Đăng ký</a
           >

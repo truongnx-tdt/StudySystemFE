@@ -78,6 +78,10 @@ const routes: Routes = [
     path: 'tablet',
     loadChildren: () => import('./tablet/tablet.module').then(m => m.TabletModule),
     data: { breadcrumb: { alias: 'tablet' } }
+  },
+  {
+    path: 'product-details',
+    loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
   }
   ,
   { path: '**', component: NotfoundComponent }

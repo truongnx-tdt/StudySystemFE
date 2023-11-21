@@ -14,7 +14,7 @@
           style="width: 222.6px"
         >
           <div class="d-flex align-items-center item">
-            <a routerLink=""
+            <a routerLink="/product-details/{{item.id}}"
               ><img
                 src="https://cdn.hoanghamobile.com/i/productlist/ts/Uploads/2023/03/13/c55-1-den.png"
                 alt="Card image cap"
@@ -22,7 +22,7 @@
             /></a>
             <div class="promote">
               <a class="nav-link"
-                routerLink="/{{item.categoryId}}/{{item.id}}"
+                routerLink="/product-details/{{item.id}}"
               >
                 <ul>
                   <li>
@@ -45,7 +45,7 @@
           <div class="d-flex text-center">
             <a
               class="nav-link fw-bold m-2 truncate"
-              routerLink=""
+              routerLink="/product-details/{{item.id}}"
               role="button"
               style="font-size: 13px"
               >{{ item.name }}</a

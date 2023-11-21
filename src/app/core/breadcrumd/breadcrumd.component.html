@@ -1,3 +1,5 @@
+<div *ngIf="!headerService.isHeaderHidden()">
+
 <ng-container *ngIf="$any(bcService.breadcrumbs$ | async) as breadcrumbs">
   <section
     *ngIf="breadcrumbs[breadcrumbs.length - 1].label !== 'Trang chủ'"
@@ -24,3 +26,4 @@
     <!-- </div> -->
   </section>
 </ng-container>
+</div>

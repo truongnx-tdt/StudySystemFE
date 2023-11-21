@@ -9,6 +9,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BannerSliderComponent } from './banner-slider/banner-slider.component';
 import { CountdownTimerComponent } from './countdown-timer/countdown-timer.component';
 import { ToastrModule } from 'ngx-toastr';
+import { CarouselProductDetailsComponent } from './carousel-product-details/carousel-product-details.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ToastrModule } from 'ngx-toastr';
     SlideSupplierComponent,
     CarouselProductComponent,
     BannerSliderComponent,
-    CountdownTimerComponent
+    CountdownTimerComponent,
+    CarouselProductDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { ToastrModule } from 'ngx-toastr';
     SlideSupplierComponent,
     CarouselProductComponent,
     BannerSliderComponent,
-    CountdownTimerComponent
+    CountdownTimerComponent,
+    CarouselProductDetailsComponent
   ]
 })
 export class SharedModule { }

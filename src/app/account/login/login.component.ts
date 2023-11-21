@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from '../account.service';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,7 @@ import { AccountService } from '../account.service';
 export class LoginComponent {
   loginFormGroup!: FormGroup;
   loadingTitle = "Loading...";
-  constructor(private router: Router, private formBuilder: FormBuilder, private service: AccountService, private toastr: ToastrService, private spinner: NgxSpinnerService) {
+  constructor(private router: Router, private formBuilder: FormBuilder, private service: AccountService, private toastr: ToastrService, private spinner: NgxSpinnerService, private dialog: MatDialog, public dialogRef: MatDialogRef<LoginComponent>) {
     if (service.isUserLoggedIn()) {
       this.router.navigate(['']);
     } else {
@@ -53,6 +55,7 @@ export class LoginComponent {
               sessionStorage.setItem('roles', 'user');
               this.router.navigate(['/account/verify-email']);
             }
+            this.dialogRef.close();
           } else {
             this.toastr.error("Sai tài khoản hoặc mật khẩu", 'Error');
           }
@@ -76,5 +79,14 @@ export class LoginComponent {
       this.toastr.error('Invalid input')
     }
   }
+
+  register() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = '1200px';
+    dialogConfig.height = '750px';
+    const dialogRef = this.dialog.open(RegisterComponent, dialogConfig);
+    this.dialogRef.close();
+  }
+
 
 }

@@ -12,6 +12,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { MatDialogModule } from "@angular/material/dialog";
 @NgModule({
     exports: [
         FlexLayoutModule,
@@ -26,7 +27,8 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
         MatProgressBarModule,
         MatRadioModule,
         MatSelectModule,
-        SlickCarouselModule
+        SlickCarouselModule,
+        MatDialogModule
     ]
 })
 
