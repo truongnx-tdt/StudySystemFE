@@ -85,13 +85,13 @@
         </div>
 
         <div class="content" *ngIf="selectedButton === 'SellTop1'">
-          <app-carousel-product [items]="itemsProduct"></app-carousel-product>
+          <app-carousel-product [items]="flashSellDL"></app-carousel-product>
         </div>
         <div class="content" *ngIf="selectedButton === 'SellTop2'">
-          <app-carousel-product [items]="itemsProduct"></app-carousel-product>
+          <app-carousel-product [items]="flashSelllaptop"></app-carousel-product>
         </div>
         <div class="content" *ngIf="selectedButton === 'SellTop3'">
-          <app-carousel-product [items]="itemsProduct"></app-carousel-product>
+          <app-carousel-product [items]="flashSellOrther"></app-carousel-product>
         </div>
       </div>
     </div>
@@ -112,7 +112,7 @@
   <!-- product apple -->
   <section>
     <app-product-list
-      [items]="itemApple"
+      [items]="appleProduct"
       [title]="titleApple"
     ></app-product-list>
   </section>
@@ -132,7 +132,7 @@
   <!-- product hot-->
   <section>
     <app-product-list
-      [items]="itemApple"
+      [items]="phonetop"
       [title]="titleProductHot"
     ></app-product-list>
   </section>
@@ -176,7 +176,7 @@
       >
     </div>
     <app-product-list
-      [items]="itemApple"
+      [items]="laptopList"
       [title]="'LAPTOP NỔI BẬT'"
     ></app-product-list>
   </section>

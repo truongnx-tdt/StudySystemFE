@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { forkJoin } from 'rxjs';
+import { ProductService } from 'src/app/product/product.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -12,325 +14,39 @@ export class HomeComponent {
   showContent(button: string): void {
     this.selectedButton = button;
   }
+  data: any[] = [];
+  flashSellDL: any;
+  flashSelllaptop: any;
+  flashSellOrther: any;
+  appleProduct: any;
+  laptopList: any;
+  phonetop: any;
   //#endregion
   itemsProduct: any;
-  itemApple: any;
-  constructor() {
-    this.itemsProduct = DATA_PRODUCT;
-    this.itemApple = DATA_PRODUCT2;
+  constructor(private productService: ProductService) {
+
   }
   titleApple = 'APPLE AUTHORISED RESELLER';
   titleProductHot = 'ĐIỆN THOẠI NỔI BẬT';
-}
-const DATA_PRODUCT = [
-  {
-    id: 'SP08',
-    name: 'Túi xách Laptop SIMTOP SuperSlim 15.6"',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '',
-    idWish: '01',
-    isLike: true,
-  }, {
-    id: 'SP07',
-    name: 'OPPO Reno8 T 5G (8GB/128GB) - Chính hãng ',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    idWish: '02',
-    isLike: true,
-  },
-  {
-    id: 'SP06',
-    name: 'Nokia C21 Plus (2GB/64GB) - Chính hãng',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    idWish: '',
-    isLike: false,
-  },
-  {
-    id: 'SP05',
-    name: 'Ốp lưng GEAR4 D3O Crystal Palace Galaxy S22 Plus - Chính hãng',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    isLike: false,
-    idWish: '',
-  },
-  {
-    id: 'SP04',
-    name: 'Nokia C21 Plus (2GB/64GB) - Chính hãng',
-    img: 'apple-watch.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    isLike: false,
-    idWish: '',
-  },
-  {
-    id: 'SP03',
-    name: 'Nokia C21 Plus (2GB/64GB) - Chính hãng',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    isLike: false,
-    idWish: '',
-  },
-  {
-    id: 'SP02',
-    name: 'Máy tính bảng Huawei Matepad LTE - Chính hãng',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    isLike: false,
-    idWish: '',
-  }
-];
 
-const DATA_PRODUCT2 = [
-  {
-    id: 'SP08',
-    name: 'Túi xách Laptop SIMTOP SuperSlim 15.6"',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '',
-    idWish: '01',
-    isLike: true,
-  }, {
-    id: 'SP07',
-    name: 'OPPO Reno8 T 5G (8GB/128GB) - Chính hãng ',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    idWish: '02',
-    isLike: true,
-  },
-  {
-    id: 'SP06',
-    name: 'Nokia C21 Plus (2GB/64GB) - Chính hãng',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    idWish: '',
-    isLike: false,
-  },
-  {
-    id: 'SP05',
-    name: 'Ốp lưng GEAR4 D3O Crystal Palace Galaxy S22 Plus - Chính hãng',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    isLike: false,
-    idWish: '',
-  },
-  {
-    id: 'SP04',
-    name: 'Nokia C21 Plus (2GB/64GB) - Chính hãng',
-    img: 'apple-watch.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    isLike: false,
-    idWish: '',
-  },
-  {
-    id: 'SP03',
-    name: 'Nokia C21 Plus (2GB/64GB) - Chính hãng',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    isLike: false,
-    idWish: '',
-  },
-  {
-    id: 'SP02',
-    name: 'Máy tính bảng Huawei Matepad LTE - Chính hãng',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    isLike: false,
-    idWish: '',
-  }, {
-    id: 'SP08',
-    name: 'Túi xách Laptop SIMTOP SuperSlim 15.6"',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '',
-    idWish: '01',
-    isLike: true,
-  }, {
-    id: 'SP07',
-    name: 'OPPO Reno8 T 5G (8GB/128GB) - Chính hãng ',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    idWish: '02',
-    isLike: true,
-  },
-  {
-    id: 'SP06',
-    name: 'Nokia C21 Plus (2GB/64GB) - Chính hãng',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    idWish: '',
-    isLike: false,
-  },
-  {
-    id: 'SP05',
-    name: 'Ốp lưng GEAR4 D3O Crystal Palace Galaxy S22 Plus - Chính hãng',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    isLike: false,
-    idWish: '',
-  },
-  {
-    id: 'SP04',
-    name: 'Nokia C21 Plus (2GB/64GB) - Chính hãng',
-    img: 'apple-watch.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    isLike: false,
-    idWish: '',
-  },
-  {
-    id: 'SP03',
-    name: 'Nokia C21 Plus (2GB/64GB) - Chính hãng',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    isLike: false,
-    idWish: '',
-  },
-  {
-    id: 'SP02',
-    name: 'Máy tính bảng Huawei Matepad LTE - Chính hãng',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    isLike: false,
-    idWish: '',
-  }, {
-    id: 'SP08',
-    name: 'Túi xách Laptop SIMTOP SuperSlim 15.6"',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '',
-    idWish: '01',
-    isLike: true,
-  }, {
-    id: 'SP07',
-    name: 'OPPO Reno8 T 5G (8GB/128GB) - Chính hãng ',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    idWish: '02',
-    isLike: true,
-  },
-  {
-    id: 'SP06',
-    name: 'Nokia C21 Plus (2GB/64GB) - Chính hãng',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    idWish: '',
-    isLike: false,
-  },
-  {
-    id: 'SP05',
-    name: 'Ốp lưng GEAR4 D3O Crystal Palace Galaxy S22 Plus - Chính hãng',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    isLike: false,
-    idWish: '',
-  },
-  {
-    id: 'SP04',
-    name: 'Nokia C21 Plus (2GB/64GB) - Chính hãng',
-    img: 'apple-watch.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    isLike: false,
-    idWish: '',
-  },
-  {
-    id: 'SP03',
-    name: 'Nokia C21 Plus (2GB/64GB) - Chính hãng',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    isLike: false,
-    idWish: '',
-  },
-  {
-    id: 'SP02',
-    name: 'Máy tính bảng Huawei Matepad LTE - Chính hãng',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    isLike: false,
-    idWish: '',
-  }, {
-    id: 'SP08',
-    name: 'Túi xách Laptop SIMTOP SuperSlim 15.6"',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '',
-    idWish: '01',
-    isLike: true,
-  }, {
-    id: 'SP07',
-    name: 'OPPO Reno8 T 5G (8GB/128GB) - Chính hãng ',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    idWish: '02',
-    isLike: true,
-  },
-  {
-    id: 'SP06',
-    name: 'Nokia C21 Plus (2GB/64GB) - Chính hãng',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    idWish: '',
-    isLike: false,
-  },
-  {
-    id: 'SP05',
-    name: 'Ốp lưng GEAR4 D3O Crystal Palace Galaxy S22 Plus - Chính hãng',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    isLike: false,
-    idWish: '',
-  },
-  {
-    id: 'SP04',
-    name: 'Nokia C21 Plus (2GB/64GB) - Chính hãng',
-    img: 'apple-watch.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    isLike: false,
-    idWish: '',
-  },
-  {
-    id: 'SP03',
-    name: 'Nokia C21 Plus (2GB/64GB) - Chính hãng',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    isLike: false,
-    idWish: '',
-  },
-  {
-    id: 'SP02',
-    name: 'Máy tính bảng Huawei Matepad LTE - Chính hãng',
-    img: '14-prm-den.jpg',
-    price: '4000000',
-    priceSell: '29000000',
-    isLike: false,
-    idWish: '',
+
+  ngOnInit(): void {
+    this.loadData();
   }
-];
+
+  loadData() {
+    this.productService.getProduct().subscribe((result: any) => {
+      this.data = result;
+      this.flashSellDL = this.data.filter(x => (x.categoryId === 'dien-thoai' || x.categoryId === 'tablet') && x.productSell > 0).slice(0, 10);
+      this.flashSelllaptop = this.data.filter(x => (x.categoryId === 'lap-top' || x.categoryId === 'man-hinh' || x.categoryId === 'smart-tv') && x.productSell > 0).slice(0, 10);
+      this.flashSellOrther = this.data.filter(x => (x.categoryId !== 'lap-top' && x.categoryId !== 'tablet' && x.categoryId !== 'dien-thoai' && x.categoryId !== 'man-hinh' && x.categoryId !== 'smart-tv') && x.productSell > 0).slice(0, 10);
+
+      this.appleProduct = this.data.filter(x => x.productBrand === 'apple');
+      this.laptopList = this.data.filter(x => x.categoryId === 'lap-top' || x.categoryId === 'pc');
+      this.phonetop = this.data.filter(x => x.categoryId === 'dien-thoai');
+
+    });
+
+  }
+
+}

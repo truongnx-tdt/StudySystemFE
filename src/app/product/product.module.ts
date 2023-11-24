@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CoreModule } from '../core/core.module';
 import { MaterialModule } from '../material.module';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     ProductRoutingModule,
     MaterialModule,
     SharedModule,
-    CoreModule
+    CoreModule,
+    FormsModule
   ]
 })
 export class ProductModule { }

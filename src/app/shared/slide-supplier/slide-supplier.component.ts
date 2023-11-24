@@ -14,8 +14,7 @@ export class SlideSupplierComponent {
   constructor(private service: SharedService) {
     this.imgSubscription = this.service.getImgsSupplier().subscribe(imgs => {
       this.images = imgs
-    })
-
+    });
   }
   images: any;
   private imgSubscription!: Subscription;

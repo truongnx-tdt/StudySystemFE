@@ -83,7 +83,7 @@ section .flash-sales .header h3 i {
   flex-grow: 3;
   display: flex;
   position: absolute;
-  right: 174px;
+  right: 170px;
   font-size: 13px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }

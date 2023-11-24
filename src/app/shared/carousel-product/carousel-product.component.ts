@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-carousel-product',
@@ -12,15 +13,19 @@ export class CarouselProductComponent {
   /**
    *
    */
-  constructor(private noti: ToastrService) {
+  constructor(private noti: ToastrService, private authService: AuthService) {
 
   }
   toggleHeart(item: any) {
-    item.isLike = !item.isLike;
-    if (item.isLike) {
-      this.noti.success('Thêm ' + item.name + ' vào danh sách yêu thích')
+    if (this.authService.isUserLoggedIn()) {
+      item.isLike = !item.isLike;
+      if (item.isLike) {
+        this.noti.success('Thêm ' + item.productName + ' vào danh sách yêu thích')
+      }
     }
-
+    else {
+      this.noti.info('Bạn cần đăng nhập để sử dụng tính năng này.');
+    }
 
   }
   @Input() items: any;

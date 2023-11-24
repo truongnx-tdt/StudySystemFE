@@ -82,6 +82,15 @@ const routes: Routes = [
   {
     path: 'product-details',
     loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
+    , data: { breadcrumb: { alias: 'detail' } }
+  },
+  {
+    path: 'viewed',
+    loadChildren: () => import('./viewed/viewed.module').then(m => m.ViewedModule)
+  },
+  {
+    path: 'cart',
+    loadChildren: () => import('./cart/cart.module').then(m=>m.CartModule)
   }
   ,
   { path: '**', component: NotfoundComponent }

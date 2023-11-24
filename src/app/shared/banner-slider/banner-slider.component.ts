@@ -7,7 +7,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./banner-slider.component.css']
 })
 export class BannerSliderComponent {
-  @Input()items: any;
+  @Input() items: any;
   constructor() {
     this.items = DATA_BANNER;
   }
@@ -54,6 +54,11 @@ const DATA_BANNER = [{
 },
 {
   img: 'https://cdn.hoanghamobile.com/i/home/Uploads/2023/11/10/1200x375-lenovo.png',
+  id: 'SP01'
+},
+
+{
+  img: 'https://cdn.hoanghamobile.com/i/home/Uploads/2023/11/15/hoangha-1200x382.jpg',
   id: 'SP01'
 }
 ];
