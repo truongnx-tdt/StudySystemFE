@@ -4,7 +4,7 @@ import { CartProductComponent } from './cart-product/cart-product.component';
 
 const routes: Routes = [
   {
-    path: '', component: CartProductComponent
+    path: '', component: CartProductComponent, data: { breadcrumb: { skip: true } }
   }
 ];
 

@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AccountService } from '../account.service';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { RegisterComponent } from '../register/register.component';
+import { CartService } from 'src/app/cart/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ import { RegisterComponent } from '../register/register.component';
 export class LoginComponent {
   loginFormGroup!: FormGroup;
   loadingTitle = "Loading...";
-  constructor(private router: Router, private formBuilder: FormBuilder, private service: AccountService, private toastr: ToastrService, private spinner: NgxSpinnerService, private dialog: MatDialog, public dialogRef: MatDialogRef<LoginComponent>) {
+  constructor(private router: Router, private formBuilder: FormBuilder, private service: AccountService, private toastr: ToastrService, private spinner: NgxSpinnerService, private dialog: MatDialog, public dialogRef: MatDialogRef<LoginComponent>, private cartService: CartService) {
     if (service.isUserLoggedIn()) {
       this.router.navigate(['']);
     } else {
@@ -44,21 +45,22 @@ export class LoginComponent {
           this.response = res;
           const tokens = this.response.response.data.token.split(".");
           const tokenFinal = tokens.slice(0, tokens.length - 1).join(".");
-          if (this.response.response.data.role === 0) {
-            if (this.response.response.data.isActive === true) {
-              sessionStorage.setItem('token', tokenFinal);
-              sessionStorage.setItem('isActive', this.response.response.data.isActive);
-              sessionStorage.setItem('roles', 'user');
-              this.router.navigate(['/home']);
-            } else if (this.response.response.data.isActive === false) {
-              sessionStorage.setItem('token', tokenFinal);
-              sessionStorage.setItem('roles', 'user');
-              this.router.navigate(['/account/verify-email']);
+          if (this.response.response.data.isActive === true) {
+            sessionStorage.setItem('token', tokenFinal);
+            sessionStorage.setItem('isActive', this.response.response.data.isActive);
+            sessionStorage.setItem('roles', this.response.response.data.role);
+            const data = this.cartService.getDataToSync();
+            if (data!==null) {
+              this.cartService.syncCartWithDatabase(data).subscribe(res => {
+                
+              });
             }
-            this.dialogRef.close();
-          } else {
-            this.toastr.error("Sai tài khoản hoặc mật khẩu", 'Error');
+          } else if (this.response.response.data.isActive === false) {
+            sessionStorage.setItem('token', tokenFinal);
+            sessionStorage.setItem('roles', 'user');
+            this.router.navigate(['/account/verify-email']);
           }
+          this.dialogRef.close();
           this.spinner.hide();
         }, (error) => {
           this.error = error;

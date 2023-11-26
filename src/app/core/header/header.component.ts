@@ -87,9 +87,9 @@ export class HeaderComponent implements DoCheck {
       if (rs.isConfirmed) {
         try {
           this.service.logout().subscribe(res => {
-            this.router.navigate([""]);
             this.isLoggedIn = false;
             sessionStorage.clear();
+            this.router.navigate([this.router.url]);
           }, error => {
             console.log(error);
             this.toastr.error("Must validate code before logout");

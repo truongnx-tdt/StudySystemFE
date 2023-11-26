@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { ProductService } from 'src/app/product/product.service';
+import { HomeService } from '../home.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -24,7 +25,7 @@ export class HomeComponent {
   //#endregion
   itemsProduct: any;
   constructor(private productService: ProductService) {
-
+    
   }
   titleApple = 'APPLE AUTHORISED RESELLER';
   titleProductHot = 'ĐIỆN THOẠI NỔI BẬT';
@@ -32,6 +33,7 @@ export class HomeComponent {
 
   ngOnInit(): void {
     this.loadData();
+
   }
 
   loadData() {

@@ -112,7 +112,11 @@
     <div class="container">
       <ul class="root">
         <li id="dien-thoai-di-dong">
-          <a routerLink="/dien-thoai">
+          <a
+            routerLink="/dien-thoai"
+            routerLinkActive="acitve-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
             <i class="icon fa fa-mobile-phone"></i>
             <span>Điện thoại</span>
           </a>
@@ -239,7 +243,11 @@
           </div>
         </li>
         <li id="apple">
-          <a routerLink="/apple">
+          <a
+            routerLink="/apple"
+            routerLinkActive="acitve-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
             <i class="icon fa-solid fa-mobile"></i>
             <span>Apple</span>
           </a>
@@ -298,7 +306,9 @@
                 <h4><a>Mức giá</a></h4>
                 <ul class="display-row format_2">
                   <li>
-                    <a routerLink="/laptop/filter-price-13">Tr&#234;n 20 triệu</a>
+                    <a routerLink="/laptop/filter-price-13"
+                      >Tr&#234;n 20 triệu</a
+                    >
                   </li>
                   <li>
                     <a routerLink="">Từ 12 đến 15 Triệu</a>

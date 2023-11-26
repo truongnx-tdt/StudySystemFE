@@ -14,7 +14,7 @@ export class AuthService {
   apiUrlLogout = environment.apiUrl + "/api/logout";
   //login
   doLogin(request: any) {
-    return this.httpRequest.post(this.apiUrl, request);
+    return this.httpRequest.post(this.apiUrl, request)
   }
 
   //logout
@@ -51,12 +51,6 @@ export class AuthService {
     }
     return false;
   }
-  getRoleFromSession() {
-    if(sessionStorage.getItem('roles') === 'admin'){
-      return true;
-    }
-    return false;
-  }
 
   // Is user onl
   isUserOnl(){
@@ -65,4 +59,7 @@ export class AuthService {
     }
     return this.httpRequest.put(environment.apiUrl + "/api/user-onl", {},options);
   }
+
+
+
 }

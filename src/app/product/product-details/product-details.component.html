@@ -94,7 +94,8 @@
             <a
               title="Mua ngay"
               data-sku="MPUR4EU"
-              href="javascript:;"
+              routerLink="/cart"
+              (click)="addToCart()"
               class="btn-red btnQuickOrder btnbuy"
               ><strong>MUA NGAY</strong
               ><span> Giao tận nhà (COD) <br />Hoặc Nhận tại cửa hàng</span></a
@@ -110,6 +111,7 @@
               "
               title="Thêm vào giỏ hàng"
               role="button"
+              (click)="addToCart()"
               class="add-cart btn-orange btnbuy btn-icon"
               ><i class="fal fa-cart-plus"></i
               ><label style="font-size: 11px">Thêm giỏ hàng</label></a
@@ -173,7 +175,7 @@
         <div class="product-shop">
           <div class="warranty">
             <h4>THÔNG TIN BẢO HÀNH</h4>
-            <p  *ngIf="dataProductDetail.productStatus === 0">
+            <p *ngIf="dataProductDetail.productStatus === 0">
               <i class="fal fa-shield-check"></i>
               <span
                 ><strong
@@ -260,7 +262,7 @@
               </ul>
             </div>
           </div>
-          <div class="out-date"  *ngIf="dataProductDetail.productStatus === 0">
+          <div class="out-date" *ngIf="dataProductDetail.productStatus === 0">
             <p class="title">
               <strong
                 ><a role="button">{{

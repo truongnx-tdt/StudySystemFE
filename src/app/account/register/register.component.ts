@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LocationService } from 'src/app/service/location.service';
 import { AccountService } from '../account.service';
-import { HeaderService } from 'src/app/service/header.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +21,7 @@ export class RegisterComponent {
   districts: any;
   resWards: any;
   wards: any;
-  constructor(private dialog : MatDialogRef<RegisterComponent>,private service: AccountService, private formBuilder: FormBuilder, private toastr: ToastrService, private router: Router, private location: LocationService) {
+  constructor(private dialog: MatDialogRef<RegisterComponent>, private service: AccountService, private formBuilder: FormBuilder, private toastr: ToastrService, private router: Router, private location: LocationService, private dialogO: MatDialog) {
 
   }
   ngOnInit(): void {
@@ -75,6 +75,8 @@ export class RegisterComponent {
             this.toastr.error("Registration failed. Account already exists.");
           } else {
             this.toastr.success("register success");
+            const dialogConfig = new MatDialogConfig();
+            this.dialogO.open(LoginComponent, dialogConfig);
             this.dialog.close();
           }
         }, (error) => {
@@ -99,7 +101,7 @@ export class RegisterComponent {
       }
       else if (this.registerFormGroup.get('phoneNumber')?.invalid) {
         this.toastr.warning('Số điện thoại phải được nhập và là số có 10 chữ số', 'Error');
-      } 
+      }
 
     }
   }

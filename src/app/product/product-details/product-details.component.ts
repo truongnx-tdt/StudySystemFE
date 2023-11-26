@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { CartService } from 'src/app/cart/cart.service';
+import { cartItem } from 'src/app/cart/cart-type';
 
 @Component({
   selector: 'app-product-details',
@@ -14,9 +16,9 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class ProductDetailsComponent {
   // convert to html
   htmlContent!: SafeHtml;
-  showFullContent = false; 
+  showFullContent = false;
   dataProductDetail: any;
-  constructor(private productService: ProductService, private route: ActivatedRoute, private brcrumb: BreadcrumbService, private authService: AuthService, private noti: ToastrService, private sanitizer: DomSanitizer) {
+  constructor(private productService: ProductService, private route: ActivatedRoute, private brcrumb: BreadcrumbService, private authService: AuthService, private noti: ToastrService, private sanitizer: DomSanitizer, private cartService: CartService) {
 
   }
   ngOnInit(): void {
@@ -72,5 +74,58 @@ export class ProductDetailsComponent {
   toggleContentVisibility() {
     this.showFullContent = !this.showFullContent;
   }
-  
+
+
+  // add to cart
+  addToCart(): void {
+    if (this.authService.isUserLoggedIn()) {
+      const cartInsertData = {
+        cartInsertData: [
+          {
+            productId: this.dataProductDetail.productId || '',
+            quantity: 1,
+            price: this.dataProductDetail.productSell > 0 ? this.dataProductDetail.productSell : this.dataProductDetail.productPrice
+          }]
+      }
+      this.cartService.syncCartWithDatabase(cartInsertData).subscribe(res => {
+        this.noti.success('Thêm sản phẩm vào giỏ hàng thành công!')
+      }, error => {
+        this.noti.error('Thêm sản phẩm vào giỏ hàng không thành công!')
+      })
+      this.cartService.clearCart();
+    } else {
+      const totalQuantity = this.dataProductDetail.productQuantity;
+      console.log(totalQuantity)
+      const newItem: cartItem = {
+        productId: this.dataProductDetail.productId,
+        productName: this.dataProductDetail.productName,
+        priceSell: this.dataProductDetail.productSell,
+        price: this.dataProductDetail.productPrice,
+        imagePath: this.dataProductDetail.images[0].imagePath,
+        totalQuantity: totalQuantity,
+        isSelected: false,
+        quantity: 1,
+      };
+      this.cartService.getCartItems().subscribe((cartItems: any[]) => {
+        const existingItem = cartItems.find((cartItem) => cartItem.productId === this.dataProductDetail.productId);
+        if (existingItem) {
+          if (existingItem.quantity < totalQuantity) {
+            this.cartService.addToCart(existingItem);
+            this.noti.success('Thêm sản phẩm vào giỏ hàng thành công!')
+          } else {
+            this.noti.error('Số lượng sản phẩm đã vượt quá giới hạn.');
+          }
+        } else {
+          if (1 < totalQuantity) {
+            console.log(newItem)
+            this.cartService.addToCart(newItem);
+            this.noti.success('Thêm sản phẩm vào giỏ hàng thành công!')
+          } else {
+            this.noti.error('Số lượng sản phẩm đã vượt quá giới hạn.');
+          }
+        }
+      });
+    }
+  }
+
 } 

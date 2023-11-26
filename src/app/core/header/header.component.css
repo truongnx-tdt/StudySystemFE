@@ -15,7 +15,7 @@ a {
 header .top-navigation {
   width: 100%;
   display: inline-flex;
-  background: #FFE6E6;
+  background: #ffe6e6;
   padding: 6px 0;
 }
 
@@ -55,7 +55,7 @@ header .top-navigation li.member i {
 
 header .top-navigation li.member .sub {
   position: absolute;
-  background: transparent linear-gradient(90deg, red 0%, #FFE6E6 100%) 0% 0%
+  background: transparent linear-gradient(90deg, red 0%, #ffe6e6 100%) 0% 0%
     no-repeat;
   z-index: 99;
   right: 0;
@@ -64,7 +64,7 @@ header .top-navigation li.member .sub {
 }
 
 header .top-navigation li.member:hover {
-  background: transparent linear-gradient(90deg, red 0%, #FFE6E6 100%) 0% 0%
+  background: transparent linear-gradient(90deg, red 0%, #ffe6e6 100%) 0% 0%
     no-repeat;
 }
 
@@ -131,8 +131,8 @@ header .heading .search-box button {
   position: absolute;
   right: 4px;
   top: -5px;
-  background: #FFE6E6;
-  background-image: linear-gradient(#00917a, #FFE6E6);
+  background: #ffe6e6;
+  background-image: linear-gradient(#00917a, #ffe6e6);
   border: none;
   border-radius: 17px;
   width: 42px;
@@ -251,7 +251,7 @@ header nav {
 }
 
 header nav ul.root {
-  background: #FFE6E6;
+  background: #ffe6e6;
   box-shadow: 0 4px 6px #ccc;
   border-radius: 5px;
   list-style: none;
@@ -297,11 +297,15 @@ header nav ul.root li a:after {
   height: 4px;
   content: " ";
   border-radius: 2px;
-  background: #FFE6E6;
+  background: #ffe6e6;
 }
 
 header nav ul.root li.actived a:after,
 header nav ul.root li:hover a:after {
+  background: #f7941e;
+}
+
+header nav ul.root li .acitve-link:after {
   background: #f7941e;
 }
 
@@ -447,45 +451,49 @@ header nav .sub .g6 {
 /* css for fix nav */
 
 nav.scroll-to-fixed-fixed ul.root {
-  box-shadow: none
+  box-shadow: none;
 }
 
 nav.scroll-to-fixed-fixed ul.root li {
-  margin: 8px 7px 4px 7px
+  margin: 8px 7px 4px 7px;
 }
 
-nav.scroll-to-fixed-fixed ul.root li a, nav.scroll-to-fixed-fixed ul.root li a:link, nav.scroll-to-fixed-fixed ul.root li a:visited {
+nav.scroll-to-fixed-fixed ul.root li a,
+nav.scroll-to-fixed-fixed ul.root li a:link,
+nav.scroll-to-fixed-fixed ul.root li a:visited {
   display: flex;
-  white-space: nowrap
+  white-space: nowrap;
 }
 
 nav.scroll-to-fixed-fixed ul.root li a .icon {
   font-size: 15px;
-  margin-right: 4px
+  margin-right: 4px;
 }
 
 nav.scroll-to-fixed-fixed ul.root li a span {
   font-size: 12px;
-  line-height: 25px
+  line-height: 25px;
 }
 
 nav.scroll-to-fixed-fixed .sub-container {
-  top: 24px
+  top: 24px;
 }
 
 nav.scroll-to-fixed-fixed ul.root li ul li {
-  margin: 0
+  margin: 0;
 }
 
-nav.scroll-to-fixed-fixed ul.root li .sub a,nav.scroll-to-fixed-fixed ul.root li .sub a:link,nav.scroll-to-fixed-fixed ul.root li .sub a:visited {
-  display: block
+nav.scroll-to-fixed-fixed ul.root li .sub a,
+nav.scroll-to-fixed-fixed ul.root li .sub a:link,
+nav.scroll-to-fixed-fixed ul.root li .sub a:visited {
+  display: block;
 }
 
 /* css for my account  */
 .account-button {
   position: relative;
   display: inline-block;
-  margin-right: 100px
+  margin-right: 100px;
 }
 
 .account-options {
@@ -500,7 +508,6 @@ nav.scroll-to-fixed-fixed ul.root li .sub a,nav.scroll-to-fixed-fixed ul.root li
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
-
 
 .account-options ul li a {
   display: block;
