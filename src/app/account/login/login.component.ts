@@ -50,9 +50,11 @@ export class LoginComponent {
             sessionStorage.setItem('isActive', this.response.response.data.isActive);
             sessionStorage.setItem('roles', this.response.response.data.role);
             const data = this.cartService.getDataToSync();
-            if (data!==null) {
+            if (data !== null) {
               this.cartService.syncCartWithDatabase(data).subscribe(res => {
-                
+                this.cartService.getCartItems().subscribe((cartItems) => {
+                });
+                this.cartService.notifyCartChanged()
               });
             }
           } else if (this.response.response.data.isActive === false) {

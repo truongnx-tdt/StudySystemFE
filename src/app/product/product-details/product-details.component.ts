@@ -78,6 +78,7 @@ export class ProductDetailsComponent {
 
   // add to cart
   addToCart(): void {
+
     if (this.authService.isUserLoggedIn()) {
       const cartInsertData = {
         cartInsertData: [
@@ -89,6 +90,9 @@ export class ProductDetailsComponent {
       }
       this.cartService.syncCartWithDatabase(cartInsertData).subscribe(res => {
         this.noti.success('Thêm sản phẩm vào giỏ hàng thành công!')
+        this.cartService.getCartItems().subscribe((cartItems) => {
+        });
+        this.cartService.notifyCartChanged()
       }, error => {
         this.noti.error('Thêm sản phẩm vào giỏ hàng không thành công!')
       })
@@ -126,6 +130,7 @@ export class ProductDetailsComponent {
         }
       });
     }
+
   }
 
 } 

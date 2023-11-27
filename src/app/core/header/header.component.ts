@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/account/account.service';
 import { LoginComponent } from 'src/app/account/login/login.component';
 import { RegisterComponent } from 'src/app/account/register/register.component';
+import { CartService } from 'src/app/cart/cart.service';
 import { ProductService } from 'src/app/product/product.service';
 import { HeaderService } from 'src/app/service/header.service';
 import Swal from 'sweetalert2';
@@ -19,12 +20,19 @@ import Swal from 'sweetalert2';
 export class HeaderComponent implements DoCheck {
   isLoggedIn: boolean = false;
   searchForm!: any;
-  constructor(private router: Router, public service: AccountService, private toastr: ToastrService, public headerService: HeaderService, private formBuilder: FormBuilder, private dialog: MatDialog) { }
+  cartItemCount: number = 0;
+  constructor(private router: Router, public service: AccountService, private toastr: ToastrService, public headerService: HeaderService, private formBuilder: FormBuilder, private dialog: MatDialog, private cartService: CartService) { }
 
   // form search
   ngOnInit() {
     this.searchForm = this.formBuilder.group({
       searchTerm: ['']
+    });
+    this.cartService.getCartItems().subscribe(res => {
+    })
+    this.cartService.cartItems$.subscribe((cartItems) => {
+      // Xử lý sự thay đổi trong giỏ hàng ở đây
+      this.cartItemCount = this.cartService.getTotalQuantity();
     });
   }
   searchProcess() {
@@ -89,7 +97,7 @@ export class HeaderComponent implements DoCheck {
           this.service.logout().subscribe(res => {
             this.isLoggedIn = false;
             sessionStorage.clear();
-            this.router.navigate([this.router.url]);
+            location.reload()
           }, error => {
             console.log(error);
             this.toastr.error("Must validate code before logout");

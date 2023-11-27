@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, of } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, of } from 'rxjs';
 import { AuthService } from '../service/auth.service';
 import { environment } from 'src/environments/environment';
 
@@ -8,6 +8,9 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CartService {
+
+  private cartItemsSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  public cartItems$: Observable<any[]> = this.cartItemsSubject.asObservable();
 
   private cartItems: any[] = [];
   private lastActionTime: number = Date.now();
@@ -17,6 +20,11 @@ export class CartService {
     this.setupInactivityTimer();
   }
 
+
+  public notifyCartChanged() {
+    this.cartItemsSubject.next(this.cartItems);
+  }
+
   getCartItems(): Observable<any[]> {
     if (this.auth.isUserLoggedIn()) {
       const options = {
@@ -24,18 +32,23 @@ export class CartService {
       };
 
       return this.http.get(environment.apiUrl + '/api/get-cart', options).pipe(
-        map((response: any) => response.response.data.cartData),
+        map((response: any) => {
+          this.cartItems = response.response.data.cartData;
+          this.notifyCartChanged(); 
+          return this.cartItems;
+        }),
         catchError(error => {
           console.error('Error fetching cart items:', error);
-          return of([]); // Trả về một Observable rỗng nếu có lỗi
+          return of([]); 
         })
       );
     } else {
       const storedCart = localStorage.getItem('cart');
       if (storedCart) {
         this.cartItems = JSON.parse(storedCart);
+        this.notifyCartChanged();
       }
-      return of(this.cartItems); // Trả về một Observable chứa giỏ hàng từ local storage
+      return of(this.cartItems);
     }
   }
 
@@ -47,13 +60,15 @@ export class CartService {
       if (this.cartItems[existingItemIndex].quantity < item.totalQuantity) {
         this.cartItems[existingItemIndex].quantity++;
         this.updateCartItems(this.cartItems);
+        this.notifyCartChanged(); 
       } else {
         console.log('Số lượng sản phẩm đã vượt quá giới hạn.');
       }
     } else {
       if (1 < item.totalQuantity) {
-        this.cartItems.push({ ...item});
+        this.cartItems.push({ ...item });
         this.updateCartItems(this.cartItems);
+        this.notifyCartChanged(); 
       } else {
         console.log('Số lượng sản phẩm đã vượt quá giới hạn.');
       }
@@ -62,15 +77,18 @@ export class CartService {
     localStorage.setItem('cart', JSON.stringify(this.cartItems));
     this.resetInactivityTimer();
   }
-  
+
   updateCartItems(items: any[]) {
     // Cập nhật thông tin giỏ hàng
     this.cartItems = [...items];
     localStorage.setItem('cart', JSON.stringify(this.cartItems));
+    this.notifyCartChanged()
   }
   clearCart() {
     this.cartItems = [];
     localStorage.removeItem('cart');
+    this.notifyCartChanged()
+
   }
 
   getDataToSync() {
@@ -104,6 +122,7 @@ export class CartService {
     const options = {
       headers: new HttpHeaders().append("Authorization", "Bearer " + this.auth.getToken()),
     }
+    this.notifyCartChanged()
     return this.http.post(environment.apiUrl + '/api/update-cart', items, options)
   }
 
@@ -120,6 +139,26 @@ export class CartService {
 
   resetInactivityTimer() {
     this.lastActionTime = Date.now();
+  }
+
+
+  updateQuantity(item: any): Observable<any> {
+    const options = {
+      headers: new HttpHeaders().append("Authorization", "Bearer " + this.auth.getToken()),
+    }
+    return this.http.put(environment.apiUrl + '/api/calculate-total', item, options)
+  }
+
+  deleteItems(items: any): Observable<any> {
+    const options = {
+      headers: new HttpHeaders().append("Authorization", "Bearer " + this.auth.getToken()),
+    }
+    return this.http.post(environment.apiUrl + '/api/cart-delete', items, options)
+  }
+
+  getTotalQuantity(): number {
+    // Tính tổng số lượng từ danh sách giỏ hàng
+    return this.cartItems.reduce((total, item) => total + item.quantity, 0);
   }
 
 }

@@ -31,7 +31,7 @@ export class HomeMemberComponent {
           this.service.logout().subscribe(res => {
             this.isLoggedIn = false;
             sessionStorage.clear();
-            this.router.navigate([this.router.url]);
+            location.reload()
           }, error => {
             console.log(error);
             this.toastr.error("Must validate code before logout");
