@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { CartService } from '../cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/auth.service';
+import Swal from 'sweetalert2';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { LoginComponent } from 'src/app/account/login/login.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-product',
@@ -12,7 +16,7 @@ export class CartProductComponent {
   /**
    *
    */
-  constructor(private cartService: CartService, private toastr: ToastrService, private authService: AuthService) {
+  constructor(private cartService: CartService, private toastr: ToastrService, private authService: AuthService, private dialog: MatDialog, private route: Router) {
   }
 
   cartItems: any;
@@ -41,6 +45,7 @@ export class CartProductComponent {
   checkedList: any;
   itemSelected: boolean = false;
   totalPrice: number = 0;
+  countItemCheck: number = 0;
   checkUncheckAll() {
     for (var i = 0; i < this.cartItems.length; i++) {
       this.cartItems[i].isSelected = this.masterSelected;
@@ -66,11 +71,13 @@ export class CartProductComponent {
   getCheckedItemList() {
     this.checkedList = [];
     this.totalPrice = 0;
+    this.countItemCheck = 0;
     for (var i = 0; i < this.cartItems.length; i++) {
       if (this.cartItems[i].isSelected) {
         this.checkedList.push(this.cartItems[i]);
         const price = this.cartItems[i].priceSell > 0 ? this.cartItems[i].priceSell : this.cartItems[i].price
-        this.totalPrice += price * this.cartItems[i].quantity
+        this.totalPrice += price * this.cartItems[i].quantity;
+        this.countItemCheck += this.cartItems[i].quantity;
       }
     }
 
@@ -78,7 +85,8 @@ export class CartProductComponent {
   }
 
   orderProduct() {
-    console.log(this.checkedList)
+    this.route.navigate(['order']);
+    sessionStorage.setItem('listItemOrder', JSON.stringify(this.checkedList));
   }
   // Hàm xử lý khi nút "+" được click
   increaseQuantity(index: number) {
@@ -203,10 +211,12 @@ export class CartProductComponent {
 
   calculationTotalPrice() {
     this.totalPrice = 0;
+    this.countItemCheck = 0;
     for (var i = 0; i < this.cartItems.length; i++) {
       if (this.cartItems[i].isSelected) {
         const price = this.cartItems[i].priceSell > 0 ? this.cartItems[i].priceSell : this.cartItems[i].price
         this.totalPrice += price * this.cartItems[i].quantity
+        this.countItemCheck += this.cartItems[i].quantity;
       }
     }
   }

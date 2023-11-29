@@ -28,8 +28,8 @@ export class HeaderComponent implements DoCheck {
     this.searchForm = this.formBuilder.group({
       searchTerm: ['']
     });
-    this.cartService.getCartItems().subscribe(res => {
-    })
+    // this.cartService.getCartItems().subscribe(res => {
+    // })
     this.cartService.cartItems$.subscribe((cartItems) => {
       // Xử lý sự thay đổi trong giỏ hàng ở đây
       this.cartItemCount = this.cartService.getTotalQuantity();

@@ -1,0 +1,437 @@
+<section>
+  <div class="container">
+    <div class="cart">
+      <div class="header">
+        <div class="back">
+          <a href="javascript:window.history.back();">
+            <i class="fal fa-arrow-left"></i>
+            <strong>Quay lại</strong>
+          </a>
+        </div>
+      </div>
+
+      <!--begin content order -->
+      <div
+        class="container block-info mt-3"
+        *ngIf="checkedList && checkedList.length > 0"
+      >
+        <div id="listItemSuperCart">
+          <div class="cart-layout">
+            <div class="cart-info" id="cartInfo">
+              <div class="cart-items">
+                <div
+                  class="block__product-item__outer"
+                  *ngFor="let item of checkedList"
+                >
+                  <div class="block__product-item">
+                    <div class="checkbox-product">
+                      <div
+                        class="select-product-action custom-control custom-checkbox"
+                      >
+                        <label class="custom-control-label">
+                          <img
+                            [src]="item.imagePath"
+                            loading="lazy"
+                            class="product-img"
+                          />
+                        </label>
+                      </div>
+                    </div>
+                    <div class="product-info">
+                      <div
+                        class="d-flex justify-content-between align-items-start"
+                      >
+                        <a
+                          routerLink="/product-details/{{ item.productId }}"
+                          class="product-name nav-link"
+                          >{{ item.productName }}</a
+                        >
+                      </div>
+                      <div
+                        class="d-flex justify-content-between align-items-end"
+                      >
+                        <div class="block-box-price">
+                          <!---->
+                          <!---->
+
+                          <div class="box-info__box-price">
+                            <p class="product__price--show">
+                              {{
+                                item.priceSell > 0
+                                  ? (item.priceSell | number)
+                                  : (item.price | number)
+                              }}
+                              đ
+                            </p>
+                            <p
+                              class="product__price--through"
+                              *ngIf="item.priceSell > 0"
+                            >
+                              {{ item.price | number }} đ
+                            </p>
+                            <!---->
+                          </div>
+                        </div>
+                        <div class="action d-flex">
+                          Số lượng: {{ item.quantity }}
+                        </div>
+                      </div>
+                      <!---->
+                      <!---->
+                    </div>
+                    <!---->
+                    <!---->
+                  </div>
+                </div>
+              </div>
+
+              <div class="cart-total">
+                <p>
+                  Tổng giá trị:
+                  <strong class="price">{{ totalPrice | number }} ₫</strong>
+                </p>
+                <p>
+                  Tổng số lượng:
+                  <strong class="price">{{ totalQuantity }}</strong>
+                </p>
+                <p>
+                  Cần thanh toán:
+                  <strong class="price text-red"
+                    >{{ totalPrice | number }} ₫</strong
+                  >
+                </p>
+                <p>
+                  <i>{{ totalPriceWords | uppercase }}</i>
+                </p>
+                <button class="next">Tiếp tục</button>
+              </div>
+            </div>
+
+            <div class="cart-form">
+              <form onsubmit="return validFormOrder_v3(this);">
+                <input type="hidden" name="OrderPayTypeID" value="1" />
+                <input
+                  type="hidden"
+                  id="ValidType"
+                  name="ValidType"
+                  value="2"
+                />
+                <input
+                  type="hidden"
+                  id="hdnGoogleRecaptcha"
+                  name="hdnGoogleRecaptcha"
+                />
+
+                <input
+                  type="hidden"
+                  name="IsPreOrder"
+                  id="IsPreOrder"
+                  value="False"
+                />
+                <input
+                  name="__RequestVerificationToken"
+                  type="hidden"
+                  value="-Ga3kDZM2egLsZk-Oskhw6T6025OYZGhZ2vnoTJyMAuV9Mc0Lgc9jqhW3ZD_8gUaHz_mQXKaOW2p_qNVAx5Deqcovz41"
+                />
+                <h3>Thông tin khách hàng</h3>
+                <p class="text-gray">
+                  <i>Bạn cần nhập đầy đủ các trường thông tin có dấu *</i>
+                </p>
+                <div class="row">
+                  <div class="col">
+                    <div class="control">
+                      <input
+                        name="Title"
+                        type="text"
+                        placeholder="Họ và tên *"
+                        data-required="1"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <div class="control">
+                      <input
+                        name="Phone"
+                        type="tel"
+                        placeholder="Số điện thoại *"
+                        data-required="1"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row shInfo">
+                  <div class="col">
+                    <div class="control">
+                      <input name="Email" type="email" placeholder="Email" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <span class="group"
+                    ><strong>Hình thức nhận hàng</strong></span
+                  >
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div id="payType_1" class="payment-opt">
+                      <label class="radio-ctn">
+                        <span>Nhận hàng tại nhà</span>
+                        <input
+                          name="ReceiveTypeID"
+                          type="radio"
+                          value="1"
+                          class="cart-paymentTypeId"
+                        />
+                        <span class="checkmark"></span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div id="payType_5" class="payment-opt payment-selected">
+                      <label class="radio-ctn">
+                        <span>Nhận hàng tại cửa hàng</span>
+                        <input
+                          name="ReceiveTypeID"
+                          type="radio"
+                          value="5"
+                          class="cart-paymentTypeId"
+                          checked
+                        />
+                        <span class="checkmark"></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="f_payType_1">
+                  <div class="row">
+                    <div class="col">
+                      <div class="control">
+                        <select
+                          id="SystemCityID"
+                          name="SystemCityID"
+                          placeholder="Tỉnh/Thành phố *"
+                          data-required="1"
+                        >
+                          <option value="">Tỉnh/Thành phố *</option>
+                          <option value="1">H&#224; Nội</option>
+                          <option value="50">TP HCM</option>
+                          <option value="57">An Giang</option>
+                          <option value="49">
+                            B&#224; Rịa - Vũng T&#224;u
+                          </option>
+                          <option value="15">Bắc Giang</option>
+                          <option value="4">Bắc Kạn</option>
+                          <option value="62">Bạc Li&#234;u</option>
+                          <option value="18">Bắc Ninh</option>
+                          <option value="53">Bến Tre</option>
+                          <option value="35">B&#236;nh Định</option>
+                          <option value="47">B&#236;nh Dương</option>
+                          <option value="45">B&#236;nh Phước</option>
+                          <option value="39">B&#236;nh Thuận</option>
+                          <option value="63">C&#224; Mau</option>
+                          <option value="59">Cần Thơ</option>
+                          <option value="3">Cao Bằng</option>
+                          <option value="32">Đ&#224; Nẵng</option>
+                          <option value="42">Đắk Lắk</option>
+                          <option value="43">Đắk N&#244;ng</option>
+                          <option value="7">Điện Bi&#234;n</option>
+                          <option value="48">Đồng Nai</option>
+                          <option value="56">Đồng Th&#225;p</option>
+                          <option value="41">Gia Lai</option>
+                          <option value="2">H&#224; Giang</option>
+                          <option value="23">H&#224; Nam</option>
+                          <option value="28">H&#224; Tĩnh</option>
+                          <option value="19">Hải Dương</option>
+                          <option value="20">Hải Ph&#242;ng</option>
+                          <option value="60">Hậu Giang</option>
+                          <option value="11">Ho&#224; B&#236;nh</option>
+                          <option value="21">Hưng Y&#234;n</option>
+                          <option value="37">Kh&#225;nh H&#242;a</option>
+                          <option value="58">Ki&#234;n Giang</option>
+                          <option value="40">Kon Tum</option>
+                          <option value="8">Lai Ch&#226;u</option>
+                          <option value="44">L&#226;m Đồng</option>
+                          <option value="13">Lạng Sơn</option>
+                          <option value="6">L&#224;o Cai</option>
+                          <option value="51">Long An</option>
+                          <option value="24">Nam Định</option>
+                          <option value="27">Nghệ An</option>
+                          <option value="25">Ninh B&#236;nh</option>
+                          <option value="38">Ninh Thuận</option>
+                          <option value="16">Ph&#250; Thọ</option>
+                          <option value="36">Ph&#250; Y&#234;n</option>
+                          <option value="29">Quảng B&#236;nh</option>
+                          <option value="33">Quảng Nam</option>
+                          <option value="34">Quảng Ng&#227;i</option>
+                          <option value="14">Quảng Ninh</option>
+                          <option value="30">Quảng Trị</option>
+                          <option value="61">S&#243;c Trăng</option>
+                          <option value="9">Sơn La</option>
+                          <option value="46">T&#226;y Ninh</option>
+                          <option value="22">Th&#225;i B&#236;nh</option>
+                          <option value="12">Th&#225;i Nguy&#234;n</option>
+                          <option value="26">Thanh H&#243;a</option>
+                          <option value="31">Thừa Thi&#234;n Huế</option>
+                          <option value="52">Tiền Giang</option>
+                          <option value="54">Tr&#224; Vinh</option>
+                          <option value="5">Tuy&#234;n Quang</option>
+                          <option value="55">Vĩnh Long</option>
+                          <option value="17">Vĩnh Ph&#250;c</option>
+                          <option value="10">Y&#234;n B&#225;i</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="control">
+                        <select
+                          id="SystemDistrictID"
+                          name="SystemDistrictID"
+                          placeholder="Quận/Huyện *"
+                          data-required="1"
+                        >
+                          <option value="">Quận/Huyện *</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row shInfo">
+                    <div class="col">
+                      <div class="control">
+                        <input
+                          id="Address"
+                          name="Address"
+                          type="text"
+                          placeholder="Địa chỉ nhận hàng *"
+                          data-required="1"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="f_payType_5" style="display: none">
+                  <div class="row">
+                    <span class="group"><strong>Nơi nhận hàng</strong></span>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="control">
+                        <select
+                          id="MKSystemCityID"
+                          name="MKSystemCityID"
+                          placeholder="Tỉnh/Thành phố"
+                        >
+                          <option value="">Tỉnh/Thành phố *</option>
+                          <option value="1">H&#224; Nội</option>
+                          <option value="50">TP HCM</option>
+                          <option value="57">An Giang</option>
+                          <option value="49">
+                            B&#224; Rịa - Vũng T&#224;u
+                          </option>
+                          <option value="15">Bắc Giang</option>
+                          <option value="62">Bạc Li&#234;u</option>
+                          <option value="18">Bắc Ninh</option>
+                          <option value="35">B&#236;nh Định</option>
+                          <option value="47">B&#236;nh Dương</option>
+                          <option value="45">B&#236;nh Phước</option>
+                          <option value="39">B&#236;nh Thuận</option>
+                          <option value="63">C&#224; Mau</option>
+                          <option value="59">Cần Thơ</option>
+                          <option value="32">Đ&#224; Nẵng</option>
+                          <option value="42">Đắk Lắk</option>
+                          <option value="43">Đắk N&#244;ng</option>
+                          <option value="7">Điện Bi&#234;n</option>
+                          <option value="48">Đồng Nai</option>
+                          <option value="56">Đồng Th&#225;p</option>
+                          <option value="41">Gia Lai</option>
+                          <option value="23">H&#224; Nam</option>
+                          <option value="28">H&#224; Tĩnh</option>
+                          <option value="19">Hải Dương</option>
+                          <option value="20">Hải Ph&#242;ng</option>
+                          <option value="11">Ho&#224; B&#236;nh</option>
+                          <option value="21">Hưng Y&#234;n</option>
+                          <option value="37">Kh&#225;nh H&#242;a</option>
+                          <option value="58">Ki&#234;n Giang</option>
+                          <option value="44">L&#226;m Đồng</option>
+                          <option value="6">L&#224;o Cai</option>
+                          <option value="51">Long An</option>
+                          <option value="24">Nam Định</option>
+                          <option value="27">Nghệ An</option>
+                          <option value="25">Ninh B&#236;nh</option>
+                          <option value="38">Ninh Thuận</option>
+                          <option value="16">Ph&#250; Thọ</option>
+                          <option value="36">Ph&#250; Y&#234;n</option>
+                          <option value="29">Quảng B&#236;nh</option>
+                          <option value="33">Quảng Nam</option>
+                          <option value="34">Quảng Ng&#227;i</option>
+                          <option value="14">Quảng Ninh</option>
+                          <option value="30">Quảng Trị</option>
+                          <option value="61">S&#243;c Trăng</option>
+                          <option value="9">Sơn La</option>
+                          <option value="46">T&#226;y Ninh</option>
+                          <option value="22">Th&#225;i B&#236;nh</option>
+                          <option value="12">Th&#225;i Nguy&#234;n</option>
+                          <option value="26">Thanh H&#243;a</option>
+                          <option value="31">Thừa Thi&#234;n Huế</option>
+                          <option value="52">Tiền Giang</option>
+                          <option value="5">Tuy&#234;n Quang</option>
+                          <option value="55">Vĩnh Long</option>
+                          <option value="17">Vĩnh Ph&#250;c</option>
+                          <option value="10">Y&#234;n B&#225;i</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="control">
+                        <select
+                          id="SystemMarketID"
+                          name="SystemMarketID"
+                          placeholder="Chọn cửa hàng nhận sản phẩm *"
+                          data-required="1"
+                        >
+                          <option value="">Cửa hàng *</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row shInfo">
+                  <div class="col">
+                    <div class="control">
+                      <textarea
+                        name="Note"
+                        placeholder="Ghi chú"
+                        spellcheck="false"
+                        data-minlength="15"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row shInfo">
+                  <div class="control-button">
+                    <p>
+                      Quý khách có thể lựa chọn hình thức thanh toán sau khi đặt
+                      hàng.
+                    </p>
+
+                    <button type="submit">XÁC NHẬN VÀ ĐẶT HÀNG</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end -->
+    </div>
+  </div>
+</section>

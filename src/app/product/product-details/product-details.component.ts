@@ -89,7 +89,9 @@ export class ProductDetailsComponent {
           }]
       }
       this.cartService.syncCartWithDatabase(cartInsertData).subscribe(res => {
-        this.noti.success('Thêm sản phẩm vào giỏ hàng thành công!')
+        this.noti.success('Thêm sản phẩm vào giỏ hàng thành công!', "", {
+          positionClass: 'toast-bottom-center'
+        })
         this.cartService.getCartItems().subscribe((cartItems) => {
         });
         this.cartService.notifyCartChanged()
@@ -115,7 +117,9 @@ export class ProductDetailsComponent {
         if (existingItem) {
           if (existingItem.quantity < totalQuantity) {
             this.cartService.addToCart(existingItem);
-            this.noti.success('Thêm sản phẩm vào giỏ hàng thành công!')
+            this.noti.success('Thêm sản phẩm vào giỏ hàng thành công!', "", {
+              positionClass: 'toast-top-left'
+            })
           } else {
             this.noti.error('Số lượng sản phẩm đã vượt quá giới hạn.');
           }
@@ -123,7 +127,9 @@ export class ProductDetailsComponent {
           if (1 < totalQuantity) {
             console.log(newItem)
             this.cartService.addToCart(newItem);
-            this.noti.success('Thêm sản phẩm vào giỏ hàng thành công!')
+            this.noti.success('Thêm sản phẩm vào giỏ hàng thành công!', "", {
+              positionClass: 'toast-top-left'
+            })
           } else {
             this.noti.error('Số lượng sản phẩm đã vượt quá giới hạn.');
           }

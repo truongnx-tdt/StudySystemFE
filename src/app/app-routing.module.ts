@@ -91,6 +91,10 @@ const routes: Routes = [
   {
     path: 'cart',
     loadChildren: () => import('./cart/cart.module').then(m=>m.CartModule)
+  },
+  {
+    path: 'order',
+    loadChildren: () => import('./order/order.module').then(m=>m.OrderModule)  
   }
   ,
   { path: '**', component: NotfoundComponent }
