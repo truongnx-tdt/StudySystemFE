@@ -11,6 +11,7 @@ export class OrderActionComponent {
   totalPrice: number = 0;
   totalQuantity: number = 0;
   totalPriceWords: string = '';
+  recipt: boolean = false;
   constructor(private orderService: OrderService) {
     const storedData = sessionStorage.getItem('listItemOrder');
     this.checkedList = storedData ? JSON.parse(storedData) : [];
@@ -34,4 +35,9 @@ export class OrderActionComponent {
       this.totalPriceWords = res
     })
   }
+
+  reciptAddess(item: any) {
+    this.recipt = !this.recipt;
+  }
+
 }
