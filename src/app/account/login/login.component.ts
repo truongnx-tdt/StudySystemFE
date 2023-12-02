@@ -17,11 +17,7 @@ export class LoginComponent {
   loginFormGroup!: FormGroup;
   loadingTitle = "Loading...";
   constructor(private router: Router, private formBuilder: FormBuilder, private service: AccountService, private toastr: ToastrService, private spinner: NgxSpinnerService, private dialog: MatDialog, public dialogRef: MatDialogRef<LoginComponent>, private cartService: CartService) {
-    if (service.isUserLoggedIn()) {
-      this.router.navigate(['']);
-    } else {
-      sessionStorage.clear();
-    }
+    
   }
 
   ngOnInit(): void {

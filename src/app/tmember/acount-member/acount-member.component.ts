@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { TmemberService } from '../tmember.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-acount-member',
@@ -10,7 +12,7 @@ export class AcountMemberComponent {
 
   userInfor: any;
 
-  constructor(private service: TmemberService) {
+  constructor(private service: TmemberService, private spinner: NgxSpinnerService, private toastr: ToastrService) {
 
   }
 
@@ -42,11 +44,21 @@ export class AcountMemberComponent {
   //#endregion
 
   ngOnInit() {
+    this.getUser()
+  }
+
+  getUser(){
     try {
+      this.spinner.show();
       this.service.getUserById().subscribe(data => {
-        this.userInfor = data;
+        setTimeout(() => {
+          this.userInfor = data;
+          this.spinner.hide();
+        }, 1000)
       }, error => {
         console.error(error)
+        this.toastr.error(error);
+        this.spinner.hide();
       });
     } catch (error) {
       console.log(error);

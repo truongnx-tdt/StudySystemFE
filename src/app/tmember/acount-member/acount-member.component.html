@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <form class="custom-form" *ngIf="isInitialFormVisible">
+      <form class="custom-form" *ngIf="isInitialFormVisible && userInfor">
         <div class="form-group custom-icon">
           <i class="fas fa-user"></i>
         </div>
@@ -62,7 +62,7 @@
             type="text"
             disabled="disabled"
             class="form-control custom-input"
-            placeholder="Tổng tiền đã mua sắm: {{userInfor.priceBought}} vnđ"
+            placeholder="Tổng tiền đã mua sắm: {{userInfor.priceBought | number}} vnđ"
           />
         </div>
         <div class="form-group m-2">
@@ -182,3 +182,4 @@
     </div>
   </div>
 </div>
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>

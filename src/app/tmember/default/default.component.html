@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-6">
       <div class="container card">
-        <div class="row card-body">
+        <div class="row card-body" *ngIf="userData">
           <div class="col-12 text-center">
             <img
               src="/assets/img/logo-TDT-PhotoRoom.png-PhotoRoom.png"
@@ -44,7 +44,7 @@
                   />
                 </div>
                 <div class="col-12 text-center">
-                  <h2 color="red">{{userData.priceBought}} VND</h2>
+                  <h2 color="red">{{userData.priceBought | number}} VND</h2>
                 </div>
               </div>
               <div class="col-4" style="height: 50px">
@@ -69,7 +69,7 @@
     </div>
   </div>
 </div>
-<div class="container">
+<div class="container" *ngIf="userData">
   <div class="row">
     <div class="col-md-4">
       <div class="card custom-card" style="background-color: #fef5f0">

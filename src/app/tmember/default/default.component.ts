@@ -19,17 +19,22 @@ export class DefaultComponent {
     this.getInforUser()
   }
 
-  async getInforUser() {
+   getInforUser() {
     try {
       this.spinner.show();
-      await this.service.getUserById().subscribe(data => {
-        this.userData = data;
-        this.spinner.hide();
-      }, error => {
-        console.error(error)
-        this.toastr.error(error);
-        this.spinner.hide();
-      });
+      
+         this.service.getUserById().subscribe(data => {
+          setTimeout(()=>{
+          this.userData = data;
+          this.spinner.hide();
+        }, 1000)
+        }, error => {
+          console.error(error)
+          this.toastr.error(error);
+          this.spinner.hide();
+        });
+      
+     
     } catch (error) {
       console.log(error);
       this.toastr.error("fail to load: " + JSON.stringify(error), 'Error')

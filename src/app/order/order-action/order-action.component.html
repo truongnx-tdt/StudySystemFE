@@ -108,8 +108,8 @@
             </div>
 
             <div class="cart-form">
-              <form onsubmit="return validFormOrder_v3(this);">
-                <h3>Thông tin khách hàng</h3>
+              <form [formGroup]="formOrder">
+                <h3><strong>Thông tin khách hàng</strong></h3>
                 <p class="text-gray">
                   <i>Bạn cần nhập đầy đủ các trường thông tin có dấu *</i>
                 </p>
@@ -119,6 +119,7 @@
                       <input
                         name="Title"
                         type="text"
+                        formControlName="userName"
                         placeholder="Họ và tên *"
                       />
                     </div>
@@ -130,7 +131,8 @@
                     <div class="control">
                       <input
                         name="Phone"
-                        type="tel"
+                        type="text"
+                        formControlName="phoneNumber"
                         placeholder="Số điện thoại *"
                       />
                     </div>
@@ -140,7 +142,12 @@
                 <div class="row shInfo">
                   <div class="col">
                     <div class="control">
-                      <input name="Email" type="email" placeholder="Email" />
+                      <input
+                        name="email"
+                        type="email"
+                        formControlName="email"
+                        placeholder="Email"
+                      />
                     </div>
                   </div>
                 </div>
@@ -160,9 +167,11 @@
                       <label class="radio-ctn">
                         <span>Nhận hàng tại nhà</span>
                         <input
-                          name="ReceiveTypeID"
+                          name="receiveType"
                           type="radio"
                           (change)="reciptAddess($event)"
+                          formControlName="receiveType"
+                          value="0"
                           class="cart-paymentTypeId"
                         />
                         <span class="checkmark"></span>
@@ -178,18 +187,20 @@
                       <label class="radio-ctn">
                         <span>Nhận hàng tại cửa hàng</span>
                         <input
-                          name="ReceiveTypeID"
+                          name="receiveType"
                           type="radio"
                           (change)="reciptAddess($event)"
                           class="cart-paymentTypeId"
                           checked
+                          formControlName="receiveType"
+                          value="1"
                         />
                         <span class="checkmark"></span>
                       </label>
                     </div>
                   </div>
                 </div>
-
+                <!-- nhận hàng tại nhà -->
                 <div id="f_payType_1" *ngIf="recipt">
                   <div class="row">
                     <div class="col">
@@ -198,10 +209,11 @@
                           id="SystemCityID"
                           name="SystemCityID"
                           placeholder="Tỉnh/Thành phố *"
-                          data-required="1"
+                          formControlName="province"
                         >
                           <option value="">Tỉnh/Thành phố *</option>
-                          <option value="1">H&#224; Nội</option>
+                          <option value="Hà Nội">H&#224; Nội</option>
+                          <option value="Nam Định">Nam Định</option>
                         </select>
                       </div>
                     </div>
@@ -211,9 +223,11 @@
                           id="SystemDistrictID"
                           name="SystemDistrictID"
                           placeholder="Quận/Huyện *"
-                          data-required="1"
+                          formControlName="district"
                         >
                           <option value="">Quận/Huyện *</option>
+                          <option value="0">A</option>
+                          <option value="1">B</option>
                         </select>
                       </div>
                     </div>
@@ -227,13 +241,13 @@
                           name="Address"
                           type="text"
                           placeholder="Địa chỉ nhận hàng *"
-                          data-required="1"
+                          formControlName="addressReceive"
                         />
                       </div>
                     </div>
                   </div>
                 </div>
-
+                <!-- Nhận hàng tại của hàng -->
                 <div id="f_payType_5" *ngIf="!recipt">
                   <div class="row">
                     <span class="group"><strong>Nơi nhận hàng</strong></span>
@@ -245,6 +259,7 @@
                           id="MKSystemCityID"
                           name="MKSystemCityID"
                           placeholder="Tỉnh/Thành phố"
+                          formControlName="province"
                         >
                           <option value="">Tỉnh/Thành phố *</option>
                           <option value="1">H&#224; Nội</option>
@@ -258,16 +273,18 @@
                           id="SystemMarketID"
                           name="SystemMarketID"
                           placeholder="Chọn cửa hàng nhận sản phẩm *"
-                          data-required="1"
+                          formControlName="addressReceive"
                         >
                           <option value="">Cửa hàng *</option>
-                          <option value="">
+                          <option value="298 Cầu Diễn, Bắc Từ Liêm, Hà Nội">
                             298 Cầu Diễn, Bắc Từ Liêm, Hà Nội
                           </option>
-                          <option value="">
+                          <option value="112 Nguyên Xá, Bắc Từ Liêm, Hà Nội">
                             112 Nguyên Xá, Bắc Từ Liêm, Hà Nội
                           </option>
-                          <option value="">Xóm 8, Ý Yên, Nam Định</option>
+                          <option value="Xóm 8, Ý Yên, Nam Định">
+                            Xóm 8, Ý Yên, Nam Định
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -282,19 +299,54 @@
                         placeholder="Ghi chú"
                         spellcheck="false"
                         data-minlength="15"
+                        formControlName="note"
                       ></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <span class="group"
+                    ><strong>Hình thức thanh toán</strong></span
+                  >
+                </div>
+
+                <div class="d-flex flex-column align-items-start">
+                  <div>
+                    <div id="payType_1">
+                      <label class="radio-ctn">
+                        <span>Thanh toán sau khi nhận hàng</span>
+                        <input
+                          name="methodPayment"
+                          type="radio"
+                          formControlName="methodPayment"
+                          value="0"
+                        />
+                        <span class="checkmark"></span>
+                      </label>
+                    </div>
+                  </div>
+                  <div>
+                    <div id="payType_5">
+                      <label class="radio-ctn">
+                        <span>Thanh toán qua VNPAY</span>
+                        <input
+                          name="methodPayment"
+                          type="radio"
+                          formControlName="methodPayment"
+                          value="1"
+                        />
+                        <span class="checkmark"></span>
+                      </label>
                     </div>
                   </div>
                 </div>
 
                 <div class="row shInfo">
                   <div class="control-button">
-                    <p>
-                      Quý khách có thể lựa chọn hình thức thanh toán sau khi đặt
-                      hàng.
-                    </p>
-
-                    <button type="submit">XÁC NHẬN VÀ ĐẶT HÀNG</button>
+                    <button type="submit" (click)="processedOrder()">
+                      XÁC NHẬN VÀ ĐẶT HÀNG
+                    </button>
                   </div>
                 </div>
               </form>
@@ -306,3 +358,12 @@
     </div>
   </div>
 </section>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">Vui lòng chờ....</p>
+</ngx-spinner>
