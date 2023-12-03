@@ -209,11 +209,15 @@
                           id="SystemCityID"
                           name="SystemCityID"
                           placeholder="Tỉnh/Thành phố *"
-                          formControlName="province"
+                          (change)="onProvinceChange($event)"
                         >
-                          <option value="">Tỉnh/Thành phố *</option>
-                          <option value="Hà Nội">H&#224; Nội</option>
-                          <option value="Nam Định">Nam Định</option>
+                          <option value="" selected>Tỉnh/Thành phố *</option>
+                          <option
+                            *ngFor="let province of provinces"
+                            [value]="province.code"
+                          >
+                            {{ province.name }}
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -223,11 +227,15 @@
                           id="SystemDistrictID"
                           name="SystemDistrictID"
                           placeholder="Quận/Huyện *"
-                          formControlName="district"
+                          (change)="onDistrictChange($event)"
                         >
                           <option value="">Quận/Huyện *</option>
-                          <option value="0">A</option>
-                          <option value="1">B</option>
+                          <option
+                            *ngFor="let district of districts"
+                            [value]="district.code"
+                          >
+                            {{ district.name }}
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -262,8 +270,8 @@
                           formControlName="province"
                         >
                           <option value="">Tỉnh/Thành phố *</option>
-                          <option value="1">H&#224; Nội</option>
-                          <option value="24">Nam Định</option>
+                          <option value="Hà Nội">H&#224; Nội</option>
+                          <option value="Nam Định">Nam Định</option>
                         </select>
                       </div>
                     </div>
@@ -276,13 +284,24 @@
                           formControlName="addressReceive"
                         >
                           <option value="">Cửa hàng *</option>
-                          <option value="298 Cầu Diễn, Bắc Từ Liêm, Hà Nội">
+                          <option
+                            value="298 Cầu Diễn, Bắc Từ Liêm, Hà Nội"
+                            *ngIf="formOrder.get('province')?.value == 'Hà Nội'"
+                          >
                             298 Cầu Diễn, Bắc Từ Liêm, Hà Nội
                           </option>
-                          <option value="112 Nguyên Xá, Bắc Từ Liêm, Hà Nội">
+                          <option
+                            value="112 Nguyên Xá, Bắc Từ Liêm, Hà Nội"
+                            *ngIf="formOrder.get('province')?.value == 'Hà Nội'"
+                          >
                             112 Nguyên Xá, Bắc Từ Liêm, Hà Nội
                           </option>
-                          <option value="Xóm 8, Ý Yên, Nam Định">
+                          <option
+                            value="Xóm 8, Ý Yên, Nam Định"
+                            *ngIf="
+                              formOrder.get('province')?.value == 'Nam Định'
+                            "
+                          >
                             Xóm 8, Ý Yên, Nam Định
                           </option>
                         </select>

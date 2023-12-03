@@ -17,38 +17,33 @@
         </div>
       </div>
 
-      <div class="order-infomation">
+      <div class="order-infomation" *ngIf="userInfor">
         <h3>1. Thông tin người đặt hàng</h3>
 
         <table class="table table-order">
           <tr>
             <td class="label" style="width: 110px">Họ tên</td>
-            <td class="content" style="width: 320px">Đ&#224;m đức long</td>
+            <td class="content" style="width: 320px">
+              {{ userInfor.userName }}
+            </td>
             <td class="label" style="width: 95px">Điện thoại</td>
-            <td class="content">0326234321</td>
+            <td class="content">{{ userInfor.phoneNumber }}</td>
             <td class="label" style="width: 75px">Email</td>
-            <td class="content">duclong@gmail.com &nbsp;</td>
+            <td class="content">{{ userInfor.email }} &nbsp;</td>
           </tr>
           <tr>
             <td class="label">Nhận hàng tại</td>
             <td class="content">
               <span
-                >1415 Trần Hưng Đạo, P.Mỹ Long, TP. Long Xuy&#234;n, Tỉnh An
-                Giang
+                >{{ userInfor.addressReceive }},
+                {{ userInfor.methodPayment == "1" ? "" : userInfor.district }},
+                {{ userInfor.province }}
               </span>
-              <span> - ĐT: 090.229.1415</span>
-            </td>
-            <td class="label">Chỉ đường</td>
-            <td class="content" colspan="3">
-              <a
-                href="https://hoanghamobile.com/1415-tran-hung-dao-phuong-my-long-tp-long-xuyen-tinh-an-giang"
-                >Xem tại đây</a
-              >
             </td>
           </tr>
           <tr>
             <td class="label">Ghi chú</td>
-            <td colspan="5">Đàm đức long testabcc</td>
+            <td colspan="5">{{ userInfor.note }}</td>
           </tr>
           <tr>
             <td class="label">Mốc thời gian</td>
@@ -72,83 +67,73 @@
             <th>Giá tiền</th>
             <th>Tổng (SLxG)</th>
           </tr>
-
-          <tr>
-            <td align="center" valign="middle" rowspan="13">1</td>
-            <td>
-              <strong
-                >Samsung Galaxy S22 Ultra - 8GB/128GB - Ch&#237;nh
-                h&#227;ng</strong
-              >
-            </td>
-            <td align="center">Mặc định</td>
-            <td align="center">Mặc định</td>
-            <td align="center">1</td>
-            <td align="center">16,890,000 ₫</td>
-            <td align="center">16,890,000 ₫</td>
-          </tr>
-          <tr class="text-darkgray">
-            <td colspan="6">
-              <label class="bag">KM</label>
-              <i>
-                Sản phẩm đang thuộc chương tr&#236;nh Flash sale (Số lượng
-                c&#243; hạn). mua chỉ với gi&#225; 16,890,000</i
-              >
-            </td>
-           
-          </tr>
-          <tr class="text-darkgray">
-            <td colspan="6">
-              <label class="bag">KM</label>
-              <i
-                >Giảm th&#234;m tới 1.000.000đ khi tham gia Thu cũ - L&#234;n
-                đời điện thoại Android</i
-              >
-            </td>
-          </tr>
-          <tr class="text-darkgray">
-            
-          </tr>
-          <tr class="text-darkgray">
-           
-          </tr>
-          <tr class="text-darkgray">
-            
-          </tr>
-          <tr class="text-darkgray">
-            
-          </tr>
-          <tr class="text-darkgray">
-            
-          </tr>
-          <tr class="text-darkgray">
-            
-          </tr>
-          <tr class="text-darkgray">
-            
-          </tr>
-          <tr class="text-darkgray">
-            
-          </tr>
-          <tr class="text-darkgray">
-            
-          </tr>
-          <tr class="text-darkgray">
-            
-          </tr>
-
+          <tbody *ngFor="let item of listOrderItem; let i = index">
+            <tr>
+              <td align="center" valign="middle" rowspan="13">{{ i + 1 }}</td>
+              <td>
+                <strong>{{ item.productName }}</strong>
+              </td>
+              <td align="center">Mặc định</td>
+              <td align="center">Mặc định</td>
+              <td align="center">{{ item.quantity }}</td>
+              <td align="center">
+                {{
+                  item.priceSell > 0
+                    ? (item.priceSell | number)
+                    : (item.price | number)
+                }}
+                ₫
+              </td>
+              <td align="center">
+                {{
+                  item.priceSell > 0
+                    ? (item.priceSell * item.quantity | number)
+                    : (item.price * item.quantity | number)
+                }}
+                ₫
+              </td>
+            </tr>
+            <tr class="text-darkgray"></tr>
+            <tr class="text-darkgray">
+              <td colspan="6">
+                <label class="bag">KM</label>
+                <i
+                  >Giảm th&#234;m tới 1.000.000đ khi tham gia Thu cũ - L&#234;n
+                  đời điện thoại</i
+                >
+              </td>
+            </tr>
+            <tr class="text-darkgray"></tr>
+            <tr class="text-darkgray"></tr>
+            <tr class="text-darkgray"></tr>
+            <tr class="text-darkgray"></tr>
+            <tr class="text-darkgray"></tr>
+            <tr class="text-darkgray"></tr>
+            <tr class="text-darkgray"></tr>
+            <tr class="text-darkgray"></tr>
+            <tr class="text-darkgray"></tr>
+            <tr class="text-darkgray"></tr>
+          </tbody>
           <tr class="no-border">
             <td colspan="6" align="right">Tổng tiền:</td>
-            <td>16,890,000 ₫</td>
+            <td>
+              <strong class="text-red"
+                >{{ userInfor.totalAmount | number }} ₫</strong
+              >
+            </td>
           </tr>
 
           <tr class="no-border">
-            <td colspan="6" align="right">Giảm giá:</td>
-            <td>-00 ₫</td>
+            <td colspan="6" align="right">Tổng SL:</td>
+            <td>{{ totalQuantity }}</td>
           </tr>
           <tr class="no-border">
-            <td colspan="6" align="right">Tổng tiền thanh toán:</td>
-            <td><strong class="text-red">16,890,000 ₫</strong></td>
+            <td colspan="6" align="right">Bằng chữ:</td>
+            <td>
+              <strong class="text-red">{{
+                totalPriceWords | uppercase
+              }}</strong>
+            </td>
           </tr>
         </table>
       </div>

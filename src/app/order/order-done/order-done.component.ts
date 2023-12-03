@@ -11,16 +11,35 @@ import { OrderService } from '../order.service';
 export class OrderDoneComponent {
   queryParams: any = {};
   currentDateTime: any;
-  constructor(private route: ActivatedRoute, private orderService: OrderService) { 
+  userInfor: any;
+  listOrderItem!: any[];
+  totalQuantity: number = 0;
+  totalPriceWords: string = '';
+  constructor(private route: ActivatedRoute, private orderService: OrderService) {
     this.currentDateTime = Date.now();
+    const getUser = sessionStorage.getItem('userOrderInfor');
+    const getList = sessionStorage.getItem('listItemOrder');
+    this.userInfor = getUser ? JSON.parse(getUser) : [];
+    this.listOrderItem = getList ? JSON.parse(getList) : [];
+    sessionStorage.removeItem('userOrderInfor');
+    sessionStorage.removeItem('listItemOrder');
   }
 
   ngOnInit() {
     this.comfirmPayment()
+    this.calculateTotalQuantity()
   }
 
+  calculateTotalQuantity() {
+    for (let index = 0; index < this.listOrderItem.length; index++) {
+      this.totalQuantity += this.listOrderItem[index].quantity;
+    }
+    this.orderService.convertPriceToNumver(this.userInfor.totalAmount).subscribe(res => {
+      this.totalPriceWords = res
+    })
+  }
 
-  comfirmPayment(){
+  comfirmPayment() {
     // Lấy giá trị snapshot của query parameters
     const snapshotParams = this.route.snapshot.queryParams;
 
@@ -54,7 +73,7 @@ export class OrderDoneComponent {
   }
 
   sendToServer(orderInfo: any) {
-    this.orderService.verifyOrder(orderInfo).subscribe(res=>{
+    this.orderService.verifyOrder(orderInfo).subscribe(res => {
       console.log(res)
     })
   }
