@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AppleService } from '../apple.service';
+import { ProductService } from 'src/app/product/product.service';
 
 @Component({
   selector: 'app-apple-home',
@@ -10,8 +10,7 @@ export class AppleHomeComponent {
   /**
    *
    */
-  constructor(private appleService: AppleService) {
-    this.items = this.appleService.getImgAppleBanner()
+  constructor(private productService: ProductService) {
   }
 
   ngOnInit(): void {
@@ -31,32 +30,33 @@ export class AppleHomeComponent {
   macList: any;
   appleWatchList: any;
   airPods: any;
+  applePlayTech: any;
 
   getIphone() {
-    this.appleService.getAppleProduct('iphone').subscribe(res => {
-      this.iphoneList = res;
+    this.productService.getProductByCategoryId('dien-thoai').subscribe(res => {
+      this.iphoneList = res.filter((x: any) => x.productBrand === 'apple');
     });
   }
 
   getIpad() {
-    this.appleService.getAppleProduct('ipad').subscribe(res => {
-      this.ipadList = res;
+    this.productService.getProductByCategoryId('tablet').subscribe(res => {
+      this.ipadList = res.filter((x: any) => x.productBrand === 'apple');
     });
   }
   getMac() {
-    this.appleService.getAppleProduct('mac').subscribe(res => {
-      this.macList = res;
+    this.productService.getProductByCategoryId('lap-top').subscribe(res => {
+      this.macList = res.filter((x: any) => x.productBrand === 'apple');
     });
   }
   getAppleWacth() {
-    this.appleService.getAppleProduct('apple-watch').subscribe(res => {
-      this.appleWatchList = res;
+    this.productService.getProductByCategoryId('dong-ho').subscribe(res => {
+      this.appleWatchList = res.filter((x: any) => x.productBrand === 'apple');
     });
   }
 
   getAirPods() {
-    this.appleService.getAppleProduct('airpods').subscribe(res => {
-      this.airPods = res;
+    this.productService.getProductByCategoryId('am-thanh').subscribe(res => {
+      this.airPods = res.filter((x: any) => x.productBrand === 'apple');
     });
   }
 

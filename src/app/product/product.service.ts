@@ -15,6 +15,13 @@ export class ProductService {
 
   }
 
+  getProductByCategoryId(cId: string): Observable<any> {
+    return this.http.get(environment.apiUrl + '/api/product-by-category?request=' + cId).pipe(
+      map((item: any) => item.response.data.listProductDeatails)
+    )
+  }
+
+
   getProduct(): Observable<any> {
     return this.http.get(environment.apiUrl + '/api/get-product').pipe(
       map((item: any) => item.response.data.listProductDeatails)

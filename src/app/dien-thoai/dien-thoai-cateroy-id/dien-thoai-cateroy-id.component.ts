@@ -13,31 +13,46 @@ import { ProductService } from 'src/app/product/product.service';
 export class DienThoaiCateroyIdComponent {
   allItems: any;
   titleCategory: any;
-  constructor(private serviceProduct: DienThoaiService, private route: ActivatedRoute, private bcService: BreadcrumbService) {
+  constructor(private productService: ProductService, private route: ActivatedRoute, private bcService: BreadcrumbService) {
 
   }
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.getProductsForCategory();
+     this.getProductsFromApi()
     });
   }
 
+
+  getProductsFromApi(): void {
+    this.productService.getProductByCategoryId('dien-thoai').subscribe(
+      (data) => {
+        this.allItems = data
+        this.bcService.set('@dienThoai', 'Điện thoại');
+        this.getProductsForCategory()
+      },
+      (error) => {
+        console.error('Error fetching products', error);
+      }
+    );
+  }
+
   getProductsForCategory() {
-    const id = this.route.snapshot.paramMap.get('id') as string;
-    if (id === 'filter-price-13') {
-      this.serviceProduct.getProductsByCategory().subscribe(products => {
-        this.allItems = products.filter((product: any) => product.priceSell ? product.priceSell > 5000000 : product.price > 5000000)
+    if (this.allItems) {
+      const id = this.route.snapshot.paramMap.get('id') as string;
+      if (id === 'filter-price-13') {
+        this.allItems = this.allItems.filter((product: any) => product.productSell ? product.productSell > 5000000 : product.productPrice > 5000000)
         this.titleCategory = 'Điện thoại trên 100 triệu'
         this.bcService.set('@dienThoai', 'Điện thoại');
         this.bcService.set('@filterType', "Trên 100 triệu");
-      });
-    } else {
-      this.serviceProduct.getProductsByBrand(id).subscribe(products => {
-        this.allItems = products;
+
+      } else {
+        this.allItems = this.allItems.filter((product: any) => product.productBrand === id);
         this.titleCategory = id === 'apple' ? 'Điện thoại iphone' : 'Điện thoại ' + id;
         this.bcService.set('@dienThoai', 'Điện thoại');
         this.bcService.set('@filterType', id);
-      });
+      }
+    } else {
+      console.log('error')
     }
   }
 }
