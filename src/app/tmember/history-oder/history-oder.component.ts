@@ -77,14 +77,18 @@ export class HistoryOderComponent {
     }
   }
 
-  showDetailOrder(){
+  showDetailOrder() {
     this.isShowDetail = !this.isShowDetail;
   }
 
-  getOrderDetails(item: any){
+  userInfor!: any;
+  itemDetails: any;
+  getOrderDetails(item: any) {
     this.showDetailOrder();
     this.orderDetails = item;
-    console.log(this.service.getUserInfor())
+    this.userInfor = this.service.getUserInfor()
+    this.service.getOrderDetail(item.orderId).subscribe(res => {
+      this.itemDetails = res
+    })
   }
-
 }

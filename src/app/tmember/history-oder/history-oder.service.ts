@@ -25,7 +25,16 @@ export class HistoryOderService {
     )
   }
 
-  getUserInfor(){
+  getUserInfor() {
     return this.userInfo.getUserInfor();
+  }
+
+  getOrderDetail(orderId: string): Observable<any> {
+    const options = {
+      headers: new HttpHeaders().append("Authorization", "Bearer " + this.getToken()),
+    }
+    return this.http.get(environment.apiUrl + '/api/get-order-details?orderId=' + orderId, options).pipe(
+      map((item: any) => item.response.data.data)
+    )
   }
 }

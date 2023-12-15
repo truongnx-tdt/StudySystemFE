@@ -6,13 +6,13 @@
         <div class="block-homepage-menu__content d-flex justify-content-around">
           <div class="content__item d-flex flex-column align-items-center">
             <p class="item__content title">
-              {{ historyOrdeInfor.quantityOrder ?? 0 }}
+              {{historyOrdeInfor ?  historyOrdeInfor.quantityOrder : 0 }}
             </p>
             <p class="item__content text">đơn hàng</p>
           </div>
           <div class="content__item d-flex flex-column align-items-center">
             <p class="item__content title">
-              {{ historyOrdeInfor.totalAmount ?? 0 | currency : "VND" }}
+              {{historyOrdeInfor ?  historyOrdeInfor.totalAmount : 0 | currency : "VND" }}
             </p>
             <p class="item__content text">Tổng tiền tích luỹ</p>
           </div>
@@ -149,6 +149,7 @@
                         </div>
                         <div class="group-btn-info d-flex">
                           <a
+                            *ngIf="item.statusReceiveOrder == 1"
                             target="_blank"
                             rel="noopener"
                             href="https://view-hddt.cps.onl/Viewer/HoaDonViewer.aspx?mhd=9200cd82-f0cc-4d35-9e39-217e7003c5f0"
@@ -237,11 +238,14 @@
             <div class="block-product-list">
               <div class="product-list">
                 <div class="product-list-container">
-                  <div class="block-order-item detail-page">
+                  <div
+                    class="block-order-item detail-page"
+                    *ngFor="let item of itemDetails"
+                  >
                     <div class="order-item d-flex">
                       <div class="order-item__img">
                         <img
-                          src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/g/r/group_265_1_.png"
+                          [src]="item.image"
                           alt="cps-product"
                           loading="lazy"
                         />
@@ -250,63 +254,33 @@
                         <a
                           target="_blank"
                           rel="noopener"
-                          href="https://cellphones.com.vn/ram-laptop-kingston-8gb-3200mhz-sodimm-1-2v-cl22.html"
+                          routerLink="/product-details/{{ item.productId }}"
                           class="info__title"
-                          >RAM Laptop Kingston 1.2V 8GB 3200MHz KVR32S22S8/8</a
+                          >{{ item.nameProduct }}</a
                         >
                         <div class="info__sub-title">
                           <div class="sub-title__quantity">
                             Số lượng:
-                            <p>1</p>
+                            <p>{{ item.totalQuantityByProduct }}</p>
                           </div>
                         </div>
                         <div
                           class="info__group d-flex justify-content-between flex-column"
                         >
                           <div class="price">
-                            495.000đ
-                            <p class="through">990.000đ</p>
+                            {{ item.totalPriceByProduct | currency : "VND" }}
                           </div>
                           <div class="group-btn-info d-flex">
                             <div class="btn-info">Đánh giá</div>
-                            <div class="btn-info">Mua lại</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="block-order-item detail-page">
-                    <div class="order-item d-flex">
-                      <div class="order-item__img">
-                        <img
-                          src="https://cdn2.cellphones.com.vn/358x/media/wysiwyg/placehoder.png"
-                          alt="cps-product"
-                          loading="lazy"
-                        />
-                      </div>
-                      <div class="order-item__info d-flex flex-column">
-                        <a
-                          target="_blank"
-                          rel="noopener"
-                          href="https://cellphones.com.vn/"
-                          class="info__title"
-                          >GÓI DỊCH VỤ LẮP RAM, SSD LAPTOP</a
-                        >
-                        <div class="info__sub-title">
-                          <!---->
-                          <div class="sub-title__quantity">
-                            Số lượng:
-                            <p>1</p>
-                          </div>
-                        </div>
-                        <div class="info__group d-flex justify-content-between">
-                          <div class="price">
-                            0đ
-                            <p class="through">0đ</p>
-                          </div>
-                          <div class="group-btn-info d-flex">
-                            <!---->
-                            <!---->
+                            <div class="btn-info">
+                              <a
+                                class="nav-link"
+                                routerLink="/product-details/{{
+                                  item.productId
+                                }}"
+                                >Mua lại</a
+                              >
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -322,7 +296,10 @@
             id="shippingStatus"
             class="order-detail__shipping-status d-flex justify-content-center"
           >
-            <div class="shipping-status__group-icon d-flex">
+            <div
+              class="shipping-status__group-icon d-flex"
+              *ngIf="orderDetails.statusReceiveOrder == 1"
+            >
               <!---->
               <div
                 class="group-icon__item d-flex flex-column align-items-center active"
@@ -408,7 +385,6 @@
                   Đã <br />
                   giao hàng
                 </p>
-                <p class="item-time">22/9/2023 19:16</p>
               </div>
             </div>
           </div>
@@ -470,13 +446,13 @@
                   class="content__item d-flex align-items-center justify-content-between"
                 >
                   <p class="item-title">Tổng tiền sản phẩm:</p>
-                  <p>990.000đ</p>
+                  <p>{{ orderDetails.totalAmountOrder | currency : "VND" }}</p>
                 </div>
                 <div
                   class="content__item d-flex align-items-center justify-content-between"
                 >
-                  <p class="item-title">Giảm giá:</p>
-                  <p>-495.000đ</p>
+                  <p class="item-title">Tổng số lượng:</p>
+                  <p>{{ orderDetails.quantityOtherItems }}</p>
                 </div>
                 <!---->
                 <div
@@ -490,13 +466,9 @@
                   class="content__item borderTop d-flex align-items-center justify-content-between"
                 >
                   <p class="item-title">Phải thanh toán:</p>
-                  <p class="has-text-weight-bold">495.000đ</p>
-                </div>
-                <div
-                  class="content__item d-flex align-items-center justify-content-between"
-                >
-                  <p class="item-title">Đã thanh toán:</p>
-                  <p class="has-text-weight-bold green">495.000đ</p>
+                  <p class="has-text-weight-bold">
+                    {{ orderDetails.totalAmountOrder | currency : "VND" }}
+                  </p>
                 </div>
                 <!---->
               </div>
@@ -536,7 +508,7 @@
                       ></path>
                     </svg>
                   </div>
-                  <div class="item__text">Nguyễn Xuân Trường</div>
+                  <div class="item__text">{{ userInfor.userFullName }}</div>
                 </div>
                 <div class="content__item d-flex">
                   <div class="cps-icon">
@@ -555,7 +527,7 @@
                       ></path>
                     </svg>
                   </div>
-                  <div class="item__text">0326054827</div>
+                  <div class="item__text">{{ userInfor.phoneNumber }}</div>
                 </div>
                 <div class="content__item d-flex">
                   <div class="cps-icon">
@@ -578,7 +550,9 @@
                       ></path>
                     </svg>
                   </div>
-                  <div class="item__text">HN</div>
+                  <div class="item__text">
+                    {{ userInfor.addressUserProvince }}
+                  </div>
                 </div>
                 <!---->
               </div>
