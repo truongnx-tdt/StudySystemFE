@@ -1,20 +1,24 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <form class="custom-form" *ngIf="isInitialFormVisible && userInfor">
+      <form
+        [formGroup]="formChangeNG"
+        class="custom-form"
+        *ngIf="isInitialFormVisible && userInfor"
+      >
         <div class="form-group custom-icon">
           <i class="fas fa-user"></i>
         </div>
         <div class="form-group custom-h2">
-          <h2>{{userInfor.userFullName}}</h2>
+          <h2>{{ formChangeNG.get("name")?.value }}</h2>
         </div>
 
         <div class="form-group input-group m-2">
-          
           <input
             type="text"
             class="form-control custom-input"
-            placeholder="Họ tên: {{userInfor.userFullName}} "
+            placeholder="Họ tên: {{ userInfor.userFullName }} "
+            formControlName="name"
           />
           <span class="input-group-text bg-transparent border-0"
             ><mat-icon>edit</mat-icon></span
@@ -24,8 +28,8 @@
           <select
             class="form-select form-select-lg mb-2 custom-input"
             aria-label=".form-select-lg example"
+            formControlName="gender"
           >
-            <option selected>Giới tính: {{userInfor.gender}}</option>
             <option value="0">Nam</option>
             <option value="1">Nữ</option>
           </select>
@@ -38,7 +42,7 @@
             type="text"
             disabled="disabled"
             class="form-control custom-input"
-            placeholder="Email: {{userInfor.email}}"
+            placeholder="Email: {{ userInfor.email }}"
           />
         </div>
         <div class="form-group m-2">
@@ -46,7 +50,7 @@
             type="text"
             disabled="disabled"
             class="form-control custom-input"
-            placeholder="Số điện thoại: {{userInfor.phoneNumber}}"
+            placeholder="Số điện thoại: {{ userInfor.phoneNumber }}"
           />
         </div>
         <div class="form-group m-2">
@@ -54,7 +58,7 @@
             type="text"
             disabled="disabled"
             class="form-control custom-input"
-            placeholder="Ngày tham gia TMember: {{userInfor.joinDateAt}}"
+            placeholder="Ngày tham gia TMember: {{ userInfor.joinDateAt }}"
           />
         </div>
         <div class="form-group m-2">
@@ -62,7 +66,9 @@
             type="text"
             disabled="disabled"
             class="form-control custom-input"
-            placeholder="Tổng tiền đã mua sắm: {{userInfor.priceBought | number}} vnđ"
+            placeholder="Tổng tiền đã mua sắm: {{
+              userInfor.priceBought | number
+            }} vnđ"
           />
         </div>
         <div class="form-group m-2">
@@ -72,9 +78,13 @@
             (click)="showUpdateAddressForm()"
             style="border-bottom: 1px solid #e8e8e8"
           >
-            <span class="input-group-text bg-transparent border-0" >Địa chỉ: {{userInfor.addressUserDes}}, {{userInfor.addressUserWard}}, {{userInfor.addressUserDistrict}}, {{userInfor.addressUserProvince}}</span>
+            <span class="input-group-text bg-transparent border-0"
+              >Địa chỉ: {{ userInfor.addressUserDes }},
+              {{ userInfor.addressUserWard }},
+              {{ userInfor.addressUserDistrict }},
+              {{ userInfor.addressUserProvince }}</span
+            >
           </button>
-          
         </div>
 
         <div class="form-group m-2">
@@ -84,18 +94,28 @@
             (click)="showChangePasswordForm()"
             style="border-bottom: 1px solid #e8e8e8"
           >
-            <span class="input-group-text bg-transparent border-0">Đổi mật khẩu</span>
+            <span class="input-group-text bg-transparent border-0"
+              >Đổi mật khẩu</span
+            >
           </button>
         </div>
 
         <div class="form-group mt-3">
-          <button type="submit" class="btn btn-danger custom-button">
+          <button
+            type="submit"
+            class="btn btn-danger custom-button"
+            (click)="changeNameGender()"
+          >
             Cập nhật thông tin
           </button>
         </div>
       </form>
       <!-- Form đổi mật khẩu -->
-      <form class="custom-form" *ngIf="isChangePasswordFormVisible">
+      <form
+        [formGroup]="formChangPassword"
+        class="custom-form"
+        *ngIf="isChangePasswordFormVisible"
+      >
         <div class="form-group">
           <button
             type="button"
@@ -107,31 +127,124 @@
         </div>
 
         <div class="form-group change-password-form">
-          <input
-            type="password"
-            class="form-control custom-input"
-            placeholder="Mật khẩu cũ"
-          />
-          <input
-            type="password"
-            class="form-control custom-input"
-            placeholder="Mật khẩu mới"
-          />
-          <input
-            type="password"
-            class="form-control custom-input"
-            placeholder="Xác nhận mật khẩu mới"
-          />
+          <div class="d-flex align-items-center form-group">
+            <input
+              type="password"
+              class="form-control custom-input"
+              placeholder="Mật khẩu cũ"
+              formControlName="passwordOld"
+              (keydown.space)="$event.preventDefault()"
+            />
+            <div
+              class="d-flex m-0 p-0 align-items-center"
+              *ngIf="oldPwd?.touched && oldPwd?.invalid"
+            >
+              <i
+                class="fa-solid fa-caret-left"
+                style="font-size: 30px; margin: -10px; color: #066a58"
+              ></i>
+              <div
+                *ngIf="oldPwd && oldPwd.errors && oldPwd.errors['required']"
+                class="alert alert-danger p-0"
+              >
+                Nhập mật khẩu cũ.
+              </div>
+            </div>
+          </div>
+          <div class="d-flex align-items-center form-group">
+            <input
+              type="password"
+              class="form-control custom-input"
+              placeholder="Mật khẩu mới"
+              formControlName="passwordNew"
+              (keydown.space)="$event.preventDefault()"
+            />
+            <div
+              class="d-flex m-0 p-0 align-items-center"
+              *ngIf="newPwd?.touched && newPwd?.invalid"
+            >
+              <i
+                class="fa-solid fa-caret-left"
+                style="font-size: 30px; margin: -10px; color: #066a58"
+              ></i>
+              <div
+                *ngIf="
+                  newPwd &&
+                  newPwd.errors &&
+                  newPwd?.invalid &&
+                  newPwd.errors['pattern']
+                "
+                class="alert alert-danger p-0"
+              >
+                Có từ 9 ký tự, chứa ký tự đặc biệt, chữ số chữ cái viết
+                hoa/thường.
+              </div>
+              <div
+                *ngIf="newPwd && newPwd.errors && newPwd.errors['required']"
+                class="alert alert-danger p-0"
+              >
+                Nhập mật khẩu mới.
+              </div>
+            </div>
+          </div>
+          <div class="d-flex align-items-center form-group">
+            <input
+              type="password"
+              class="form-control custom-input"
+              placeholder="Xác nhận mật khẩu mới"
+              formControlName="confirmPasswordNew"
+              (keydown.space)="$event.preventDefault()"
+            />
+            <div
+              class="d-flex m-0 p-0 align-items-center"
+              *ngIf="confirmPwd?.touched && confirmPwd?.invalid"
+            >
+              <i
+                class="fa-solid fa-caret-left"
+                style="font-size: 30px; margin: -10px; color: #066a58"
+              ></i>
+              <div
+                *ngIf="
+                  confirmPwd &&
+                  confirmPwd.errors &&
+                  confirmPwd.errors['required']
+                "
+                class="alert alert-danger p-0"
+              >
+                Nhập mật khẩu mới.
+              </div>
+            </div>
+            <div
+              class="d-flex m-0 p-0 align-items-center"
+              *ngIf="confirmPwd?.valid && formChangPassword.invalid && formChangPassword.errors?.['pwdsDontMatch']"
+            >
+              <i
+                class="fa-solid fa-caret-left"
+                style="font-size: 30px; margin: -10px; color: #066a58"
+              ></i>
+              <div class="alert alert-danger p-0">
+                Mật khẩu mới không trùng khớp.
+              </div>
+            </div>
+          </div>
         </div>
         <div class="form-group mt-3">
-          <button type="submit" class="btn btn-danger custom-button">
+          <button
+            type="submit"
+            class="btn btn-danger custom-button"
+            (click)="changePassword()"
+          >
             Xác nhận
           </button>
         </div>
       </form>
 
       <!-- form doi dia chi -->
-      <form class="custom-form" *ngIf="isUpdateAddressFormVisible">
+      <form
+        class="custom-form"
+        *ngIf="isUpdateAddressFormVisible"
+        [formGroup]="formChangeAddress"
+      >
         <div class="form-group">
           <button
             type="button"
@@ -146,35 +259,44 @@
           <select
             class="form-select form-select-lg mb-2 custom-input"
             aria-label=".form-select-lg example"
+            formControlName="provinceCode"
+            (change)="onProvinceChange()"
           >
-            <option selected>{{userInfor.addressUserProvince}}</option>
-            <option value="0">Nam</option>
-            <option value="1">Nữ</option>
+            <option *ngFor="let item of provinces" [value]="item.code">
+              {{ item.name }}
+            </option>
           </select>
           <select
             class="form-select form-select-lg mb-2 custom-input"
             aria-label=".form-select-lg example"
+            (change)="onDistrictChange()"
+            formControlName="districtCode"
           >
-            <option selected>{{userInfor.addressUserDistrict}}</option>
-            <option value="0">Nam</option>
-            <option value="1">Nữ</option>
+            <option *ngFor="let item of districts" [value]="item.code">
+              {{ item.name }}
+            </option>
           </select>
           <select
             class="form-select form-select-lg mb-2 custom-input"
+            formControlName="wardCode"
             aria-label=".form-select-lg example"
           >
-            <option selected>{{userInfor.addressUserWard}}</option>
-            <option value="0">Nam</option>
-            <option value="1">Nữ</option>
+            <option *ngFor="let item of wards" [value]="item.code">
+              {{ item.name }}
+            </option>
           </select>
           <input
-            type="password"
+            type="text"
             class="form-control custom-input"
-            placeholder="Địa chỉ nhà: {{userInfor.addressUserDes}}"
+            formControlName="descriptions"
           />
         </div>
         <div class="form-group mt-3">
-          <button type="submit" class="btn btn-danger custom-button">
+          <button
+            type="submit"
+            class="btn btn-danger custom-button"
+            (click)="changeAddress()"
+          >
             Xác nhận
           </button>
         </div>

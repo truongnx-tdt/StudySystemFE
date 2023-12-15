@@ -11,6 +11,7 @@ import { SupportComponent } from './support/support.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -27,6 +28,8 @@ import { ToastrModule } from 'ngx-toastr';
     TmemberRoutingModule,
     MaterialModule,
     NgxSpinnerModule,
+    ReactiveFormsModule,
+    FormsModule,
     ToastrModule.forRoot()
   ]
 })

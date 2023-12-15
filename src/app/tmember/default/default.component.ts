@@ -26,6 +26,7 @@ export class DefaultComponent {
          this.service.getUserById().subscribe(data => {
           setTimeout(()=>{
           this.userData = data;
+          this.service.setUserInfor(data);
           this.spinner.hide();
         }, 1000)
         }, error => {
