@@ -20,9 +20,12 @@ export class ProductListComponent {
   toggleHeart = (item: any) => {
     if (this.auth.isUserLoggedIn()) {
       item.isLike = !item.isLike;
-      if (item.isLike) {
-        this.noti.success('Thêm ' + item.productName + ' vào danh sách yêu thích')
-      }
+      this.serviceProduct.ChangeWishPoduct(item.productId).subscribe(res => {
+        this.noti.success(res + ' ' + item.productName + ' vào danh sách yêu thích')
+      }, error => {
+        this.noti.error('Có lỗi xin thử lại')
+
+      })
     } else {
       this.noti.info('Bạn cần đăng nhập để sử dụng tính năng này');
     }

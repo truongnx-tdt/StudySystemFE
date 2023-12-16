@@ -12,7 +12,7 @@
           </div>
           <div class="content__item d-flex flex-column align-items-center">
             <p class="item__content title">
-              {{historyOrdeInfor ?  historyOrdeInfor.totalAmount : 0 | currency : "VND" }}
+              {{historyOrdeInfor ?  (historyOrdeInfor.totalAmount | currency: 'VND'): (0 | currency : "VND") }}
             </p>
             <p class="item__content text">Tổng tiền tích luỹ</p>
           </div>

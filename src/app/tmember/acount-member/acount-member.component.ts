@@ -80,21 +80,22 @@ export class AcountMemberComponent {
 
   getUser() {
     try {
-      // this.service.getUserById().subscribe(data => {
-        setTimeout(() => {
-          this.userInfor = this.service.getUserInfor();
+      this.service.getUserById().subscribe(data => {
+        this.userInfor = data
+        this.service.setUserInfor(data)
+        if (this.userInfor) {
           this.formChangeNG.get('name')?.setValue(this.userInfor.userFullName)
           this.formChangeNG.get('gender')?.setValue(this.userInfor.gender === 'Nam' ? 0 : 1)
           this.formChangeAddress.get('provinceCode')?.setValue(this.userInfor.provinceCode)
           this.formChangeAddress.get('districtCode')?.setValue(this.userInfor.districtCode)
           this.formChangeAddress.get('wardCode')?.setValue(this.userInfor.wardCode)
           this.formChangeAddress.get('descriptions')?.setValue(this.userInfor.addressUserDes)
-        }, 1000)
-      // }, error => {
-      //   console.error(error)
-      //   this.toastr.error(error);
-      //   this.spinner.hide();
-      // });
+        }
+      }, error => {
+        console.error(error)
+        this.toastr.error(error);
+        this.spinner.hide();
+      });
     } catch (error) {
       console.log(error);
     }
@@ -163,9 +164,9 @@ export class AcountMemberComponent {
     if (this.formChangeAddress.valid) {
       console.log(this.formChangeAddress.value)
       this.service.changeAddress(this.formChangeAddress.value).subscribe(res => {
-        this.toastr.success('Thay đổi địa chỉ thành công!', 'Error');
-      }, error=>{
-      this.toastr.error('Có lỗi vui lòng thử lại', 'Error');
+        this.toastr.success('Thay đổi địa chỉ thành công!', 'Success');
+      }, error => {
+        this.toastr.error('Có lỗi vui lòng thử lại', 'Error');
       })
     } else {
       this.toastr.error('Nhập thông tin đầy đủ', 'Error');

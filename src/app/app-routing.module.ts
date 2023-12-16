@@ -90,11 +90,18 @@ const routes: Routes = [
   },
   {
     path: 'cart',
-    loadChildren: () => import('./cart/cart.module').then(m=>m.CartModule)
+    loadChildren: () => import('./cart/cart.module').then(m => m.CartModule)
   },
   {
     path: 'order',
-    loadChildren: () => import('./order/order.module').then(m=>m.OrderModule)  
+    loadChildren: () => import('./order/order.module').then(m => m.OrderModule)
+  },
+  {
+    path: 'san-pham-yeu-thich',
+    loadChildren: () => import('./wish-list/wish-list.module').then(m => m.WishListModule),
+    data: {
+      breadcrumb: { skip: true, alias: 'mentorAdd' }
+    }
   }
   ,
   { path: '**', component: NotfoundComponent }
