@@ -1,6 +1,5 @@
-import { Subscription } from 'rxjs';
+
 import { Component } from '@angular/core';
-import { DienThoaiService } from '../dien-thoai.service';
 import { ActivatedRoute } from '@angular/router';
 import { BreadcrumbService } from 'xng-breadcrumb';
 import { ProductService } from 'src/app/product/product.service';

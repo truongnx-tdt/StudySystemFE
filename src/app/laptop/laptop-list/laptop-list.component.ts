@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { LaptopService } from '../laptop.service';
-import { ActivatedRoute } from '@angular/router';
 import { BreadcrumbService } from 'xng-breadcrumb';
+import { ProductService } from 'src/app/product/product.service';
 
 @Component({
   selector: 'app-laptop-list',
@@ -12,23 +11,24 @@ export class LaptopListComponent {
   allItems: any;
   categoryId: any;
   titleCategory = 'Laptop';
-  constructor(private serviceProduct: LaptopService, private route: ActivatedRoute, private bcService: BreadcrumbService
+  constructor(private bcService: BreadcrumbService, private productService: ProductService
   ) {
 
 
   }
   ngOnInit() {
-    this.getProductsForCategory();
-
-
+    this.getProductsFromApi();
   }
-
-  // getProduct
-  getProductsForCategory() {
-    this.serviceProduct.getProductsByCategory().subscribe(products => {
-      this.allItems = products;
-      this.bcService.set('@laptop', 'Laptop');
-    });
+  getProductsFromApi(): void {
+    this.productService.getProductByCategoryId('lap-top').subscribe(
+      (data) => {
+        this.allItems = data;
+        this.bcService.set('@dienThoai', 'Laptop');
+      },
+      (error) => {
+        console.error('Error fetching products', error);
+      }
+    );
   }
 
 

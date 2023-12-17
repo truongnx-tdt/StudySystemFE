@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { TabletService } from '../tablet.service';
-import { ActivatedRoute } from '@angular/router';
+import { ProductService } from 'src/app/product/product.service';
+
 import { BreadcrumbService } from 'xng-breadcrumb';
 
 @Component({
@@ -11,23 +11,24 @@ import { BreadcrumbService } from 'xng-breadcrumb';
 export class TabletListComponent {
   allItems: any;
   categoryId: any;
-  titleCategory = 'tablet';
-  constructor(private serviceProduct: TabletService, private route: ActivatedRoute, private bcService: BreadcrumbService
+  titleCategory = 'TABLET';
+  constructor(private bcService: BreadcrumbService, private productService: ProductService
   ) {
 
 
   }
   ngOnInit() {
-    this.getProductsForCategory();
-
-
+    this.getProductsFromApi();
   }
-
-  // getProduct
-  getProductsForCategory() {
-    this.serviceProduct.getProductsByCategory().subscribe(products => {
-      this.allItems = products;
-      this.bcService.set('@tablet', 'tablet');
-    });
+  getProductsFromApi(): void {
+    this.productService.getProductByCategoryId('tablet').subscribe(
+      (data) => {
+        this.allItems = data;
+        this.bcService.set('@tablet', 'TABLET');
+      },
+      (error) => {
+        console.error('Error fetching products', error);
+      }
+    );
   }
 }
