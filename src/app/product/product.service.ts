@@ -72,4 +72,18 @@ export class ProductService {
     )
   }
 
+  processRating(infor: any): Observable<any> {
+    const options = {
+      headers: new HttpHeaders().append("Authorization", "Bearer " + this.getToken()),
+    }
+    return this.http.post(environment.apiUrl + '/api/add-comment-rating', infor, options)
+
+  }
+
+  getratingByProductID(productId: string): Observable<any> {
+    return this.http.get(environment.apiUrl + '/api/get-comment-rating?productId=' + productId).pipe(
+      map((item:any) => item.response.data)
+    )
+  }
+
 }

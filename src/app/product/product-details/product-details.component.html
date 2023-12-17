@@ -328,7 +328,10 @@
               {{ dataProductDetail.productName }}
             </h3>
             <div class="product-spect-img">
-              <img [src]="dataProductDetail.images[0].imagePath" />
+              <img
+                loading="lazy"
+                [src]="dataProductDetail.images[0].imagePath"
+              />
             </div>
             <div
               class="specs-special"
@@ -339,12 +342,6 @@
                 dataProductDetail.categoryId === 'pc'
               "
             >
-              <a
-                class="ajax-modal product-specs-button"
-                href="https://hoanghamobile.com/Ajax/fullspecs/3703"
-                ><span class="icon-config"></span>
-                <strong>Cấu hình chi tiết</strong></a
-              >
               <ol>
                 <li>
                   <strong>Màn hình: </strong>
@@ -375,4 +372,176 @@
       </div>
     </div>
   </section>
+
+  <div class="container">
+    <div class="header-container">
+      <div class="header">
+        <h4>
+          <a class="nav-link">Sản phẩm tương tự</a>
+        </h4>
+      </div>
+    </div>
+    <app-carousel-product [items]="ItemSimilar"></app-carousel-product>
+  </div>
+
+  <div class="container">
+    <div
+      class="fb-comments"
+      data-href="https://devtdt.id.vn"
+      data-width="1180"
+      data-numposts="5"
+    ></div>
+  </div>
+  <div class="container">
+    <div class="full-width-content">
+      <form id="reviewForm" [formGroup]="formRating">
+        <div class="heading d-flex">
+          <h3>{{ dataProductDetail.productName }}</h3>
+          <div class="stats d-flex align-items-baseline">
+            <div class="display-rating rating-medium">
+              <button
+                mat-icon-button
+                [color]="color"
+                *ngFor="let ratingId of ratingArr; index as i"
+                [id]="'star_' + i"
+                [matTooltip]="(ratingId + 1).toString()"
+                matTooltipPosition="above"
+                style="padding: 2px; width: 30px; height: 10px"
+              >
+                <mat-icon>
+                  {{ showTnotalRating(dataRating.ratioRating, i) }}
+                </mat-icon>
+              </button>
+            </div>
+            <span>(TB {{ dataRating.ratioRating }} / 1 lượt đánh giá)</span>
+          </div>
+        </div>
+        <div class="rc-form review-form d-flex">
+          <div class="col d-flex flex-column">
+            <div class="control d-flex">
+              <textarea
+                title="Nội dung"
+                placeholder="Nội dung. Tối thiểu 15 ký tự"
+                name="Content"
+                style="height: 100px; overflow-y: hidden"
+                formControlName="comment"
+              ></textarea>
+            </div>
+          </div>
+          <div class="col d-flex flex-column">
+            <div class="row">
+              <div class="control d-flex">
+                <input
+                  type="text"
+                  name="Title"
+                  placeholder="Họ tên"
+                  formControlName="userName"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="control d-flex">
+                <input
+                  type="tel"
+                  name="Phone"
+                  placeholder="Số điện thoại mua hàng"
+                  formControlName="phoneNumber"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col d-flex flex-column">
+            <div class="row">
+              <div class="control d-flex">
+                <input
+                  type="email"
+                  name="Email"
+                  placeholder="Email"
+                  formControlName="email"
+                />
+              </div>
+            </div>
+            <div class="row row-rate d-flex">
+              <strong>Đánh giá của bạn: </strong>
+              <div class="display-rating rating d-flex">
+                <button
+                  mat-icon-button
+                  [color]="color"
+                  *ngFor="let ratingId of ratingArr; index as i"
+                  [id]="'star_' + i"
+                  (click)="onClick(i + 1)"
+                  [matTooltip]="(ratingId + 1).toString()"
+                  matTooltipPosition="above"
+                >
+                  <mat-icon>
+                    {{ showIcon(i) }}
+                  </mat-icon>
+                </button>
+                <div class="d-grid gap-2">
+                  <button
+                    type="button"
+                    name=""
+                    id=""
+                    class="btn btn-outline-secondary"
+                    style="
+                      font-size: 10px;
+                      padding: 4px;
+                      height: 30px;
+                      margin-left: 15px;
+                    "
+                    (click)="sendProcessRating()"
+                  >
+                    Gửi đánh giá <i class="fal fa-paper-plane"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div class="review-content" id="reviewContent" *ngIf="dataRating.ratingData.length > 0">
+        <div class="item d-flex mb-5 border-bottom" *ngFor="let item of dataRating.ratingData">
+          <div class="avt">
+            <img
+              loading="lazy"
+              src="https://hoanghamobile.com/Content/web/img/no-avt.png"
+            />
+          </div>
+          <div class="info">
+            <p
+              itemprop="author"
+              itemtype="http://schema.org/Person"
+              itemscope=""
+            >
+              <strong class="name" itemprop="name" content="Fred Benson"
+                >{{item.userName}}</strong
+              >
+            </p>
+            <div class="display-rating rating-medium">
+              <button
+                mat-icon-button
+                [color]="color"
+                *ngFor="let ratingId of ratingArr; index as i"
+                [id]="'star_' + i"
+                [matTooltip]="(ratingId + 1).toString()"
+                matTooltipPosition="above"
+                style="padding: 0; width: 20px; height: 10px"
+              >
+                <mat-icon>
+                  {{ showRatingOfUser(item.rating, i) }}
+                </mat-icon>
+              </button>
+            </div>
+            <p>
+              <label><i>{{item.commentAt}}</i></label>
+            </p>
+            <div class="content" style="font-size: 12px">
+              {{item.comment}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>

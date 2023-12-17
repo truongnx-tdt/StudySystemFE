@@ -25,7 +25,6 @@ export class HomeComponent {
   //#endregion
   itemsProduct: any;
   constructor(private productService: ProductService) {
-    
   }
   titleApple = 'APPLE AUTHORISED RESELLER';
   titleProductHot = 'ĐIỆN THOẠI NỔI BẬT';
@@ -33,7 +32,6 @@ export class HomeComponent {
 
   ngOnInit(): void {
     this.loadData();
-
   }
 
   loadData() {

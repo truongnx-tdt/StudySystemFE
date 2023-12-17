@@ -6,7 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CoreModule } from '../core/core.module';
 import { MaterialModule } from '../material.module';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     MaterialModule,
     SharedModule,
     CoreModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ProductModule { }

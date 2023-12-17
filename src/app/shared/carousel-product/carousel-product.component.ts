@@ -46,6 +46,7 @@ export class CarouselProductComponent {
     animateIn: 'linear',
     animateOut: 'linear',
     navSpeed: 700,
+    lazyLoad: true,
     navText: ['<i class="fal fa-chevron-left"></i>', '<i class="fal fa-chevron-right"></i>'],
     responsive: {
       0: {

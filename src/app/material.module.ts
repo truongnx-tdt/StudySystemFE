@@ -13,6 +13,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { MatDialogModule } from "@angular/material/dialog";
+import {MatTooltipModule} from '@angular/material/tooltip';
 @NgModule({
     exports: [
         FlexLayoutModule,
@@ -28,7 +29,8 @@ import { MatDialogModule } from "@angular/material/dialog";
         MatRadioModule,
         MatSelectModule,
         SlickCarouselModule,
-        MatDialogModule
+        MatDialogModule,
+        MatTooltipModule
     ]
 })
 
