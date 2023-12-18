@@ -102,8 +102,9 @@ const routes: Routes = [
     data: {
       breadcrumb: { skip: true, alias: 'mentorAdd' }
     }
-  }, {
-    path: 'tin-tuc', loadChildren: () => import('./news/news-routing.module').then(m => m.NewsRoutingModule)
+  },
+  {
+    path: 'tin-tuc', loadChildren: () => import('./news/news.module').then(m => m.NewsModule)
   }
   ,
   { path: '**', component: NotfoundComponent }

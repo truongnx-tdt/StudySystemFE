@@ -9,8 +9,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
-import { ProductModule } from './product/product.module';
-import { TabletModule } from './tablet/tablet.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +23,6 @@ import { TabletModule } from './tablet/tablet.module';
     FormsModule,
     CoreModule,
     HomeModule,
-    ProductModule
   ],
   providers: [],
   bootstrap: [AppComponent],
