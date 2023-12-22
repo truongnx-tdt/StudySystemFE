@@ -100,11 +100,18 @@ const routes: Routes = [
     path: 'san-pham-yeu-thich',
     loadChildren: () => import('./wish-list/wish-list.module').then(m => m.WishListModule),
     data: {
-      breadcrumb: { skip: true, alias: 'mentorAdd' }
+      breasdcrumb: { skip: true, alias: 'mentorAdd' }
     }
   },
   {
     path: 'tin-tuc', loadChildren: () => import('./news/news.module').then(m => m.NewsModule)
+  },
+  {
+    path: 'other',
+    loadChildren: () => import('./orther-ui/orther-ui.module').then(m => m.OrtherUIModule),
+    data: {
+      breasdcrumb: { alias: 'other' }
+    }
   }
   ,
   { path: '**', component: NotfoundComponent }

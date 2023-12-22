@@ -34,12 +34,12 @@ export class CartService {
       return this.http.get(environment.apiUrl + '/api/get-cart', options).pipe(
         map((response: any) => {
           this.cartItems = response.response.data.cartData;
-          this.notifyCartChanged(); 
+          this.notifyCartChanged();
           return this.cartItems;
         }),
         catchError(error => {
           console.error('Error fetching cart items:', error);
-          return of([]); 
+          return of([]);
         })
       );
     } else {
@@ -60,15 +60,15 @@ export class CartService {
       if (this.cartItems[existingItemIndex].quantity < item.totalQuantity) {
         this.cartItems[existingItemIndex].quantity++;
         this.updateCartItems(this.cartItems);
-        this.notifyCartChanged(); 
+        this.notifyCartChanged();
       } else {
         console.log('Số lượng sản phẩm đã vượt quá giới hạn.');
       }
     } else {
-      if (1 < item.totalQuantity) {
+      if (0 < item.totalQuantity) {
         this.cartItems.push({ ...item });
         this.updateCartItems(this.cartItems);
-        this.notifyCartChanged(); 
+        this.notifyCartChanged();
       } else {
         console.log('Số lượng sản phẩm đã vượt quá giới hạn.');
       }

@@ -12,6 +12,7 @@ export class TabletListComponent {
   allItems: any;
   categoryId: any;
   titleCategory = 'TABLET';
+  data: any;
   constructor(private bcService: BreadcrumbService, private productService: ProductService
   ) {
 
@@ -24,11 +25,34 @@ export class TabletListComponent {
     this.productService.getProductByCategoryId('tablet').subscribe(
       (data) => {
         this.allItems = data;
+        this.data = data
         this.bcService.set('@tablet', 'TABLET');
       },
       (error) => {
         console.error('Error fetching products', error);
       }
     );
+  }
+  filterPrice(index: number) {
+    this.allItems = this.data.filter((product: any) => product.productSell ? product.productSell < (index * 1000000) : product.productPrice < (index * 1000000))
+    this.titleCategory = 'Tablet dưới ' + index + ' triệu'
+    this.bcService.set('@tablet', 'Tablet');
+    this.bcService.set('@filterType', this.titleCategory);
+  }
+
+  sortData(order: number) {
+    const customSort = (a: any, b: any): number => {
+      let aValue = a.productSell === 0 ? a.productPrice : a.productSell;
+      let bValue = b.productSell === 0 ? b.productPrice : b.productSell;
+
+      if (order === 0) {
+        return aValue - bValue;
+      } else if (order === 1) {
+        return bValue - aValue;
+      } else {
+        return 0;
+      }
+    };
+    this.allItems.sort(customSort);
   }
 }

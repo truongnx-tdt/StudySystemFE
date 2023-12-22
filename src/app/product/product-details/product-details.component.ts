@@ -25,7 +25,7 @@ export class ProductDetailsComponent {
   // rating total from db
   // rating by user 
   constructor(private productService: ProductService, private route: ActivatedRoute, private brcrumb: BreadcrumbService, private authService: AuthService, private noti: ToastrService, private sanitizer: DomSanitizer, private cartService: CartService, private formBulider: FormBuilder) {
-    
+
   }
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -49,7 +49,7 @@ export class ProductDetailsComponent {
       rating: 0
     });
 
-   
+
   }
 
 
@@ -136,6 +136,7 @@ export class ProductDetailsComponent {
       })
       this.cartService.clearCart();
     } else {
+      debugger
       const totalQuantity = this.dataProductDetail.productQuantity;
       console.log(totalQuantity)
       const newItem: cartItem = {
@@ -151,6 +152,7 @@ export class ProductDetailsComponent {
       this.cartService.getCartItems().subscribe((cartItems: any[]) => {
         const existingItem = cartItems.find((cartItem) => cartItem.productId === this.dataProductDetail.productId);
         if (existingItem) {
+
           if (existingItem.quantity < totalQuantity) {
             this.cartService.addToCart(existingItem);
             this.noti.success('Thêm sản phẩm vào giỏ hàng thành công!', "", {
@@ -160,7 +162,8 @@ export class ProductDetailsComponent {
             this.noti.error('Số lượng sản phẩm đã vượt quá giới hạn.');
           }
         } else {
-          if (1 < totalQuantity) {
+
+          if (0 < totalQuantity) {
             console.log(newItem)
             this.cartService.addToCart(newItem);
             this.noti.success('Thêm sản phẩm vào giỏ hàng thành công!', "", {

@@ -15,4 +15,10 @@ export class NewsService {
       map((item: any) => item.response.data.newsData)
     )
   }
+
+  getNewsById(id: number): Observable<any> {
+    return this.http.get(environment.apiUrl + "/api/get-news-detail?id=" + id).pipe(
+      map((item: any) => item.response.data)
+    )
+  }
 }

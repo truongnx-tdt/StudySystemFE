@@ -11,12 +11,13 @@ import { ProductService } from 'src/app/product/product.service';
 export class TabletCategoryComponent {
   allItems: any;
   titleCategory: any;
+  data: any;
   constructor(private productService: ProductService, private route: ActivatedRoute, private bcService: BreadcrumbService) {
 
   }
   ngOnInit() {
     this.route.params.subscribe(params => {
-     this.getProductsFromApi()
+      this.getProductsFromApi()
     });
   }
 
@@ -25,6 +26,7 @@ export class TabletCategoryComponent {
     this.productService.getProductByCategoryId('tablet').subscribe(
       (data) => {
         this.allItems = data
+
         this.bcService.set('@tablet', 'TABLET');
         this.getProductsForCategory()
       },
@@ -37,20 +39,38 @@ export class TabletCategoryComponent {
   getProductsForCategory() {
     if (this.allItems) {
       const id = this.route.snapshot.paramMap.get('id') as string;
-      if (id === 'filter-price-13') {
-        this.allItems = this.allItems.filter((product: any) => product.productSell ? product.productSell > 5000000 : product.productPrice > 5000000)
-        this.titleCategory = 'Tablet trên 100 triệu'
-        this.bcService.set('@dienThoai', 'Tablet');
-        this.bcService.set('@filterType', "Trên 100 triệu");
 
-      } else {
-        this.allItems = this.allItems.filter((product: any) => product.productBrand === id);
-        this.titleCategory = id === 'apple' ? 'IPAD' : 'Tablet ' + id;
-        this.bcService.set('@dienThoai', 'Tablet');
-        this.bcService.set('@filterType', id);
-      }
+      this.allItems = this.allItems.filter((product: any) => product.productBrand === id);
+      this.data = this.allItems
+      this.titleCategory = id === 'apple' ? 'IPAD' : 'Tablet ' + id;
+      this.bcService.set('@tablet', 'Tablet');
+      this.bcService.set('@filterType', id);
+
     } else {
       console.log('error')
     }
+  }
+
+  filterPrice(index: number) {
+    this.allItems = this.data.filter((product: any) => product.productSell ? product.productSell < (index * 1000000) : product.productPrice < (index * 1000000))
+    this.titleCategory = 'Tablet dưới ' + index + ' triệu'
+    this.bcService.set('@tablet', 'Tablet');
+    this.bcService.set('@filterType', this.titleCategory);
+  }
+
+  sortData(order: number) {
+    const customSort = (a: any, b: any): number => {
+      let aValue = a.productSell === 0 ? a.productPrice : a.productSell;
+      let bValue = b.productSell === 0 ? b.productPrice : b.productSell;
+
+      if (order === 0) {
+        return aValue - bValue;
+      } else if (order === 1) {
+        return bValue - aValue;
+      } else {
+        return 0;
+      }
+    };
+    this.allItems.sort(customSort);
   }
 }
