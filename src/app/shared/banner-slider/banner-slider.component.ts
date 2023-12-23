@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-banner-slider',
@@ -8,8 +9,15 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class BannerSliderComponent {
   @Input() items: any;
-  constructor() {
-    this.items = DATA_BANNER;
+  constructor(private service: SharedService) {
+  }
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.service.getDataBanner().subscribe(res => {
+      this.items = res
+    })
   }
   customBannerOptions: OwlOptions = {
     loop: true,
@@ -39,26 +47,3 @@ export class BannerSliderComponent {
     nav: true
   }
 }
-
-const DATA_BANNER = [{
-  img: 'https://cdn.hoanghamobile.com/i/home/Uploads/2023/11/03/web-xiaomi-12-web.jpg',
-  id: 'SP01'
-},
-{
-  img: 'https://cdn.hoanghamobile.com/i/home/Uploads/2023/11/08/1200x375-lnv.png',
-  id: 'SP01'
-},
-{
-  img: 'https://cdn.hoanghamobile.com/i/home/Uploads/2023/10/31/1200x375-tuanlexiaomi-311023.jpg',
-  id: 'SP01'
-},
-{
-  img: 'https://cdn.hoanghamobile.com/i/home/Uploads/2023/11/10/1200x375-lenovo.png',
-  id: 'SP01'
-},
-
-{
-  img: 'https://cdn.hoanghamobile.com/i/home/Uploads/2023/11/15/hoangha-1200x382.jpg',
-  id: 'SP01'
-}
-];

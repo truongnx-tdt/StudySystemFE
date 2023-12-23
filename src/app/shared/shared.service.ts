@@ -16,4 +16,10 @@ export class SharedService {
       map(response => response.response.data.imgs.map((imgData: ImgData) => imgData.image))
     );
   }
+
+  getDataBanner(): Observable<any> {
+    return this.http.get(environment.apiUrl + '/api/get-data-banner').pipe(
+      map((item: any) => item.response.data.data)
+    )
+  }
 }

@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-   
+
     // user login-onl check
     this.isUserOnl()
   }
@@ -28,8 +28,8 @@ export class AppComponent implements OnInit {
           this.auth.isUserOnl().subscribe(response => {
             console.log('user-onl');
           }, error => {
-            // sessionStorage.clear();
-            // window.location.reload();
+            sessionStorage.removeItem('token');
+            window.location.reload();
           });
         }
       }, 5 * 60 * 1000);
@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
   checkScroll() {
 
     const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    
+
     if (scrollPosition >= this.topPosToStartShowing) {
       this.isShow = true;
     } else {
@@ -54,10 +54,10 @@ export class AppComponent implements OnInit {
 
   // TODO: Cross browsing
   gotoTop() {
-    window.scroll({ 
-      top: 0, 
-      left: 0, 
-      behavior: 'smooth' 
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
     });
   }
 
