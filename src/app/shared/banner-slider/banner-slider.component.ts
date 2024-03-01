@@ -1,3 +1,4 @@
+import { filter } from 'rxjs';
 import { Component, Input } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { SharedService } from '../shared.service';
@@ -16,7 +17,7 @@ export class BannerSliderComponent {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.service.getDataBanner().subscribe(res => {
-      this.items = res
+      this.items = res.filter((item: any) => item.isActive)
     })
   }
   customBannerOptions: OwlOptions = {
