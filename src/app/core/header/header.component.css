@@ -15,7 +15,7 @@ a {
 header .top-navigation {
   width: 100%;
   display: inline-flex;
-  background: #ffe6e6;
+  background: #00483d;
   padding: 6px 0;
 }
 
@@ -35,7 +35,7 @@ header .top-navigation li,
 header .top-navigation li a,
 header .top-navigation li a:link,
 header .top-navigation li a:visited {
-  color: black;
+  color: white;
 }
 
 header .top-navigation li a:hover {
@@ -55,7 +55,7 @@ header .top-navigation li.member i {
 
 header .top-navigation li.member .sub {
   position: absolute;
-  background: transparent linear-gradient(90deg, red 0%, #ffe6e6 100%) 0% 0%
+  background: transparent linear-gradient(90deg, red 0%, #00483d 100%) 0% 0%
     no-repeat;
   z-index: 99;
   right: 0;
@@ -64,7 +64,7 @@ header .top-navigation li.member .sub {
 }
 
 header .top-navigation li.member:hover {
-  background: transparent linear-gradient(90deg, red 0%, #ffe6e6 100%) 0% 0%
+  background: transparent linear-gradient(90deg, red 0%, #00483d 100%) 0% 0%
     no-repeat;
 }
 
@@ -131,8 +131,8 @@ header .heading .search-box button {
   position: absolute;
   right: 4px;
   top: -5px;
-  background: #ffe6e6;
-  background-image: linear-gradient(#00917a, #ffe6e6);
+  background: #00483d;
+  background-image: linear-gradient(#00917a, #00483d);
   border: none;
   border-radius: 17px;
   width: 42px;
@@ -251,7 +251,7 @@ header nav {
 }
 
 header nav ul.root {
-  background: #ffe6e6;
+  background: #00483d;
   box-shadow: 0 4px 6px #ccc;
   border-radius: 5px;
   list-style: none;
@@ -274,7 +274,7 @@ header nav ul.root li a,
 header nav ul.root li a:link,
 header nav ul.root li a:visited {
   font-size: 13px;
-  color: rgb(20, 63, 20);
+  color: white;
   display: block;
   align-items: center;
   justify-content: center;
@@ -297,7 +297,7 @@ header nav ul.root li a:after {
   height: 4px;
   content: " ";
   border-radius: 2px;
-  background: #ffe6e6;
+  background: #00483d;
 }
 
 header nav ul.root li.actived a:after,
