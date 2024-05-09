@@ -39,7 +39,7 @@ header .top-navigation li a:visited {
 }
 
 header .top-navigation li a:hover {
-  color: red;
+  color: red!important;
 }
 
 header .top-navigation li.member {
