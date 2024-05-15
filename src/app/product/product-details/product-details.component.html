@@ -90,11 +90,12 @@
 
           <div style="display: flex"></div>
 
-          <div class="product-action">
+          <div class="product-action" *ngIf="dataProductDetail.productQuantity != 0">
             <a
               title="Mua ngay"
               data-sku="MPUR4EU"
               routerLink="/cart"
+              
               (click)="addToCart()"
               class="btn-red btnQuickOrder btnbuy"
               ><strong>MUA NGAY</strong
@@ -115,6 +116,17 @@
               class="add-cart btn-orange btnbuy btn-icon"
               ><i class="fal fa-cart-plus"></i
               ><label style="font-size: 11px">Thêm giỏ hàng</label></a
+            >
+          </div>
+
+          <div class="product-action" *ngIf="dataProductDetail.productQuantity == 0">
+            <a
+              title=""
+              data-sku="MPUR4EU"
+              (click)="addToCart()"
+              class="btn-red btnQuickOrder btnbuy"
+              ><strong>Sản phẩm đã hết hàng</strong
+              ><span> Chúng tôi sẽ cập nhập hàng về trong thời gian tới</span></a
             >
           </div>
 
@@ -216,7 +228,7 @@
                     <label class="data">
                       <strong
                         ><i class="fal fa-headset"></i>&nbsp;
-                        <a>0326.054.827</a></strong
+                        <a>1900.2091</a></strong
                       >
                       - <i class="fal fa-location-dot"></i>&nbsp;
                       <a title="298 Cầu Diễn, Bắc từ liêm" role="button"
@@ -232,7 +244,7 @@
                     <label class="data">
                       <strong
                         ><i class="fal fa-headset"></i>&nbsp;
-                        <a>0326.054.827</a></strong
+                        <a>1900.2091</a></strong
                       >
                       - <i class="fal fa-location-dot"></i>&nbsp;
                       <a
@@ -250,7 +262,7 @@
                     <label class="data">
                       <strong
                         ><i class="fal fa-headset"></i>&nbsp;
-                        <a>0326.054.827</a></strong
+                        <a>1900.2091</a></strong
                       >
                       - <i class="fal fa-location-dot"></i>&nbsp;
                       <a title="Xóm 8, Ý Yên, Hà Nội" role="button"

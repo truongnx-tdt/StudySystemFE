@@ -7,6 +7,7 @@ import { AccountService } from '../account.service';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { RegisterComponent } from '../register/register.component';
 import { CartService } from 'src/app/cart/cart.service';
+import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 
 @Component({
   selector: 'app-login',
@@ -88,5 +89,10 @@ export class LoginComponent {
     this.dialogRef.close();
   }
 
+  forgetPassword() {
+    const dialogConfig = new MatDialogConfig();
+    const dialogRef = this.dialog.open(ForgotPasswordComponent, dialogConfig);
+    this.dialogRef.close();
+  }
 
 }
