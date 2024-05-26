@@ -1,10 +1,10 @@
-import { DienThoaiRoutingModule } from './dien-thoai/dien-thoai-routing.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/section-home/home.component';
 import { NotfoundComponent } from './core/notfound/notfound.component';
 import { authGuard } from './guard/auth.guard';
 import { authIsactiveGuard } from './guard/auth-isactive.guard';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
@@ -112,8 +112,7 @@ const routes: Routes = [
     data: {
       breasdcrumb: { alias: 'other' }
     }
-  }
-  ,
+  },
   { path: '**', component: NotfoundComponent }
 ];
 

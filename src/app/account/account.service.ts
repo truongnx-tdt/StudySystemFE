@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ReplaySubject, map, of } from 'rxjs';
+import { Observable, ReplaySubject, map, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -58,6 +58,14 @@ export class AccountService {
   apiUrlRegister = environment.apiUrl + "/api/register-user";
   reisterProcessService(request: any) {
     return this.httpRequest.post(this.apiUrlRegister, request);
+  }
+
+  findAcount(request: any): Observable<any> {
+    return this.httpRequest.post(environment.apiUrl + "/api/find-account", request);
+  }
+
+  forgotPassword(request: any): Observable<any> {
+    return this.httpRequest.post(environment.apiUrl + "/api/forgot-password", request);
   }
 
 }
